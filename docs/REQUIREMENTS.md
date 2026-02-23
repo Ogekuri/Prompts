@@ -31,7 +31,11 @@ Prefix `DOC` is reserved for document-authoring constraints in this section.
 ### 1.2 Project Scope
 This project defines and maintains prompt and template artifacts used by the useReq process to enforce SRS-driven development with the sequence Requirements -> Design -> Implementation -> Verification.
 
-### 1.3 Assumptions
+### 1.3 Persona
+- When you edits prompt and template, act as a Senior AI Prompt Engineer and Senior LLM-Ops Engineer.
+- When you edits `README.md`, act as a Technical Writer activity.
+
+### 1.4 Assumptions
 - No application runtime source code is in scope for this SRS.
 - No mandatory third-party runtime library was requested.
 - Verification can be implemented with deterministic textual checks on Markdown artifacts.
@@ -46,11 +50,9 @@ This project defines and maintains prompt and template artifacts used by the use
 - **PRJ-005**: MUST preserve the process order Requirements -> Design -> Implementation -> Verification when edits prompt instructions.
 - **PRJ-006**: `docs/REQUIREMENTS.md` MUST include role classifications for prompts that generate, review, or consume `%%DOC_PATH%%/REQUIREMENTS.md`.
 - **PRJ-007**: `docs/REQUIREMENTS.md` MUST include role classifications for prompts that generate, review, or consume `%%DOC_PATH%%/WORKFLOW.md`.
-- **PRJ-008**: MUST allow adding or removing prompt/template files only through an explicit change request that updates `docs/REQUIREMENTS.md` and documents the artifact delta.
 
 ### 2.2 Project Constraints
-- **CTN-001**: When you edits prompt and template, LLM agent MUST act as a Senior AI Prompt Engineer and Senior LLM-Ops Engineer.
-- **CTN-002**: When you edits `README.md`, LLM agent MUST as a Technical Writer activity.
+
 - **CTN-003**: MUST NOT modify placeholders `%%ARGS%%`, `%%DOC_PATH%%`, `%%GUIDELINES_FILES%%`, `%%SRC_PATHS%%`, and `%%TEST_PATH%%`.
 - **CTN-004**: MUST NOT change the files referenced by `%%ARGS%%`, `%%DOC_PATH%%`, `%%GUIDELINES_FILES%%`, `%%SRC_PATHS%%`, and `%%TEST_PATH%%` through placeholder redefinition.
 - **CTN-005**: MUST ensure prompts and templates are free of typographical errors.
