@@ -42,6 +42,24 @@ This project defines and maintains prompt and template artifacts used by the use
 - When you edits `README.md`, act as a Technical Writer activity.
 - When perform check and test on prompts and templates, act as a Senior AI Prompt Engineer, Senior LLM-Ops Engineer, and an expert static code analyst. Your task is to validate and review the provided promts and templates.
 
+### 1.5 Absolute Rules, Non-Negotiable
+- When edits prompt or template:
+  - MUST ensure placeholder tokens `%%ARGS%%`, `%%DOC_PATH%%`, `%%GUIDELINES_FILES%%`, `%%SRC_PATHS%%`, and `%%TEST_PATH%%` remain unchanged in maintained artifacts.
+  - MUST ensure prompts and templates are free of typographical errors.
+  - MUST ensure prompts and templates are free of grammatical errors.
+  - MUST ensure identical actions across prompts use identical canonical instruction phrasing.
+  - MUST ensure prompts do not include unauthorized chain-interrupt instructions outside explicitly defined workflow interruption points.
+  - MUST ensure prompts and templates are optimized for LLM-Agent consumption and avoid unnecessary token-heavy content.
+  - MUST ensure `README.md` documents scope and behavior for every prompt and template listed in section 2.3.
+  - MUST ensure `src/prompts/` and `src/docs/` do not contain governance instructions about maintaining, editing, or verifying prompts/templates itself.
+  - MUST ensure prompt/template file additions or removals are accompanied by an explicit change request and corresponding `docs/REQUIREMENTS.md` updates.
+  - MUST enforce uniform terminology and semantics across prompts for identical actions, references, and process keywords.
+  - MUST reuse identical instruction phrasing when different prompts describe the same action.
+  - MUST NOT include instructions that interrupt agent reasoning flow unless the interruption is explicitly required by workflow conditions.
+  - MUST NOT include instructions that increase hallucination risk unless explicitly required by a formal requirement. Ignore “tangential/borderline” included by design.
+  - MUST optimize prompts for LLM context efficiency and token economy.
+  - MUST target all prompts and templates to LLM Agent processing and MUST NOT target human-only reading.
+  - MUST NOT include in `src/prompts/` or `src/docs/` any governance instructions describing how prompts or templates are maintained, edited, or verified.
 
 ## 2. Project Requirements
 
@@ -51,23 +69,6 @@ This project defines and maintains prompt and template artifacts used by the use
 - **PRJ-003**: MUST maintain `README.md` as the operational index for prompts and templates.
 - **PRJ-004**: MUST define each prompt with a single primary workflow intent and deterministic output objective.
 - **PRJ-005**: MUST preserve the process order Requirements -> Design -> Implementation -> Verification when edits prompt instructions.
-- **PRJ-006**: `docs/REQUIREMENTS.md` MUST include role classifications for prompts that generate, review, or consume `%%DOC_PATH%%/REQUIREMENTS.md`.
-- **PRJ-007**: `docs/REQUIREMENTS.md` MUST include role classifications for prompts that generate, review, or consume `%%DOC_PATH%%/WORKFLOW.md`.
-
-### 2.2 Project Constraints
-
-- **CTN-003**: MUST NOT modify placeholders `%%ARGS%%`, `%%DOC_PATH%%`, `%%GUIDELINES_FILES%%`, `%%SRC_PATHS%%`, and `%%TEST_PATH%%`.
-- **CTN-004**: MUST NOT change the files referenced by `%%ARGS%%`, `%%DOC_PATH%%`, `%%GUIDELINES_FILES%%`, `%%SRC_PATHS%%`, and `%%TEST_PATH%%` through placeholder redefinition.
-- **CTN-005**: MUST ensure prompts and templates are free of typographical errors.
-- **CTN-006**: MUST ensure prompts and templates are free of grammatical errors.
-- **CTN-007**: MUST enforce uniform terminology and semantics across prompts for identical actions, references, and process keywords.
-- **CTN-008**: MUST reuse identical instruction phrasing when different prompts describe the same action.
-- **CTN-009**: MUST NOT include instructions that interrupt agent reasoning flow unless the interruption is explicitly required by workflow conditions.
-- **CTN-010**: MUST NOT include instructions that increase hallucination risk unless explicitly required by a formal requirement. Ignore “tangential/borderline” included by design.
-- **CTN-011**: MUST optimize prompts for LLM context efficiency and token economy.
-- **CTN-012**: MUST target all prompts and templates to LLM Agent processing and MUST NOT target human-only reading.
-- **CTN-013**: MUST NOT include in `src/prompts/` or `src/docs/` any governance instructions describing how prompts or templates are maintained, edited, or verified.
-- **CTN-014**: MUST store all governance rules for prompt/template maintenance, modification, and verification exclusively in `docs/REQUIREMENTS.md`. The governace can be also documentend in `README.md`.
 
 ### 2.3 In-Scope Artifacts
 | Category | Path | Intended Function |
@@ -153,13 +154,4 @@ Prompts/
 - **REQ-014**: MUST define `write.md` to generate an SRS from user-request text without relying on source-code evidence.
 - **REQ-015**: MUST require `README.md` to document purpose and operating behavior for every prompt file in scope.
 - **REQ-016**: MUST require `README.md` to document purpose and operating behavior for every template file in scope.
-- **REQ-021**: MUST verify that all in-scope prompt, template, and README paths exist and are documented in the SRS scope matrix.
-- **REQ-022**: MUST verify placeholder tokens `%%ARGS%%`, `%%DOC_PATH%%`, `%%GUIDELINES_FILES%%`, `%%SRC_PATHS%%`, and `%%TEST_PATH%%` remain unchanged in maintained artifacts.
-- **REQ-023**: MUST verify prompts and templates pass typo, and grammar quality checks with deterministic pass or fail output.
-- **REQ-024**: MUST verify identical actions across prompts use identical canonical instruction phrasing.
-- **REQ-025**: MUST verify prompt role mappings for `%%DOC_PATH%%/REQUIREMENTS.md` and `%%DOC_PATH%%/WORKFLOW.md` match requirements DES-003 through DES-009.
-- **REQ-026**: MUST verify prompts do not include unauthorized chain-interrupt instructions outside explicitly defined workflow interruption points.
-- **REQ-027**: MUST verify prompts and templates are optimized for LLM-Agent consumption and avoid unnecessary token-heavy content.
-- **REQ-028**: MUST verify `README.md` documents scope and behavior for every prompt and template listed in section 2.3.
-- **REQ-029**: MUST verify `src/prompts/` and `src/docs/` do not contain governance instructions about maintaining, editing, or verifying prompts/templates.
-- **REQ-030**: MUST verify prompt/template file additions or removals are accompanied by an explicit change request and corresponding `docs/REQUIREMENTS.md` updates.
+
