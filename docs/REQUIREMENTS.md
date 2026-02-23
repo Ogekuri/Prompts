@@ -63,7 +63,7 @@ This project defines and maintains prompt and template artifacts used by the use
 - **CTN-007**: MUST enforce uniform terminology and semantics across prompts for identical actions, references, and process keywords.
 - **CTN-008**: MUST reuse identical instruction phrasing when different prompts describe the same action.
 - **CTN-009**: MUST NOT include instructions that interrupt agent reasoning flow unless the interruption is explicitly required by workflow conditions.
-- **CTN-010**: MUST NOT include instructions that increase hallucination risk unless explicitly required by a formal requirement. Ignore “high recall + tangential/borderline” included by design.
+- **CTN-010**: MUST NOT include instructions that increase hallucination risk unless explicitly required by a formal requirement. Ignore “tangential/borderline” included by design.
 - **CTN-011**: MUST optimize prompts for LLM context efficiency and token economy.
 - **CTN-012**: MUST target all prompts and templates to LLM Agent processing and MUST NOT target human-only reading.
 - **CTN-013**: MUST NOT include in `src/prompts/` or `src/docs/` any governance instructions describing how prompts or templates are maintained, edited, or verified.
@@ -153,16 +153,13 @@ Prompts/
 - **REQ-014**: MUST define `write.md` to generate an SRS from user-request text without relying on source-code evidence.
 - **REQ-015**: MUST require `README.md` to document purpose and operating behavior for every prompt file in scope.
 - **REQ-016**: MUST require `README.md` to document purpose and operating behavior for every template file in scope.
-
-## 4. Test Requirements
-
-- **TST-001**: MUST verify that all in-scope prompt, template, and README paths exist and are documented in the SRS scope matrix.
-- **TST-002**: MUST verify placeholder tokens `%%ARGS%%`, `%%DOC_PATH%%`, `%%GUIDELINES_FILES%%`, `%%SRC_PATHS%%`, and `%%TEST_PATH%%` remain unchanged in maintained artifacts.
-- **TST-003**: MUST verify prompts and templates pass typo, and grammar quality checks with deterministic pass or fail output.
-- **TST-004**: MUST verify identical actions across prompts use identical canonical instruction phrasing.
-- **TST-005**: MUST verify prompt role mappings for `%%DOC_PATH%%/REQUIREMENTS.md` and `%%DOC_PATH%%/WORKFLOW.md` match requirements DES-003 through DES-009.
-- **TST-006**: MUST verify prompts do not include unauthorized chain-interrupt instructions outside explicitly defined workflow interruption points.
-- **TST-007**: MUST verify prompts and templates are optimized for LLM-Agent consumption and avoid unnecessary token-heavy content.
-- **TST-008**: MUST verify `README.md` documents scope and behavior for every prompt and template listed in section 2.3.
-- **TST-009**: MUST verify `src/prompts/` and `src/docs/` do not contain governance instructions about maintaining, editing, or verifying prompts/templates.
-- **TST-010**: MUST verify prompt/template file additions or removals are accompanied by an explicit change request and corresponding `docs/REQUIREMENTS.md` updates.
+- **REQ-021**: MUST verify that all in-scope prompt, template, and README paths exist and are documented in the SRS scope matrix.
+- **REQ-022**: MUST verify placeholder tokens `%%ARGS%%`, `%%DOC_PATH%%`, `%%GUIDELINES_FILES%%`, `%%SRC_PATHS%%`, and `%%TEST_PATH%%` remain unchanged in maintained artifacts.
+- **REQ-023**: MUST verify prompts and templates pass typo, and grammar quality checks with deterministic pass or fail output.
+- **REQ-024**: MUST verify identical actions across prompts use identical canonical instruction phrasing.
+- **REQ-025**: MUST verify prompt role mappings for `%%DOC_PATH%%/REQUIREMENTS.md` and `%%DOC_PATH%%/WORKFLOW.md` match requirements DES-003 through DES-009.
+- **REQ-026**: MUST verify prompts do not include unauthorized chain-interrupt instructions outside explicitly defined workflow interruption points.
+- **REQ-027**: MUST verify prompts and templates are optimized for LLM-Agent consumption and avoid unnecessary token-heavy content.
+- **REQ-028**: MUST verify `README.md` documents scope and behavior for every prompt and template listed in section 2.3.
+- **REQ-029**: MUST verify `src/prompts/` and `src/docs/` do not contain governance instructions about maintaining, editing, or verifying prompts/templates.
+- **REQ-030**: MUST verify prompt/template file additions or removals are accompanied by an explicit change request and corresponding `docs/REQUIREMENTS.md` updates.
