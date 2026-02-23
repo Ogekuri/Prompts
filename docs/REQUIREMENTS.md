@@ -146,5 +146,15 @@ Prompts/
 - **REQ-012**: MUST define `renumber.md` to enforce deterministic requirement ID sequencing in SRS documents.
 - **REQ-013**: MUST define `workflow.md` to generate `WORKFLOW.md` from source-code execution evidence.
 - **REQ-014**: MUST define `write.md` to generate an SRS from user-request text without relying on source-code evidence.
-- **REQ-015**: MUST require `README.md` to document purpose and operating behavior for every prompt file in scope.
-- **REQ-016**: MUST require `README.md` to document purpose and operating behavior for every template file in scope.
+- **REQ-015**: MUST require `README.md` to document scope and operating behavior for every prompt artifact listed in Section 2.3.
+- **REQ-016**: MUST require `README.md` to document scope and operating behavior for every template artifact listed in Section 2.3.
+- **REQ-017**: MUST validate placeholder tokens by allowing only `%%ARGS%%`, `%%DOC_PATH%%`, `%%GUIDELINES_FILES%%`, `%%SRC_PATHS%%`, and `%%TEST_PATH%%`, except artifacts that intentionally contain no placeholder tokens.
+- **REQ-018**: MUST validate typo and grammar quality in prompt/template prose, except fenced code blocks, inline-code spans, literal error strings, placeholders, and command snippets.
+- **REQ-019**: MUST enforce canonical phrasing for shared operational instructions, except workflow-scoped failure strings and workflow-name specializations required to identify the emitting prompt.
+- **REQ-020**: MUST keep interruption constraints explicit in executable workflow prompts, except non-executable templates under `src/docs/` and non-procedural overview sections in `README.md`.
+- **REQ-021**: MUST optimize prompts/templates for parser efficiency and token economy, except mandatory compliance blocks (`Professional Personas`, `Execution Protocol`, `Execution Directives`, `Steps`) that are retained verbatim.
+- **REQ-022**: MUST target LLM-agent execution semantics in prompt/template artifacts, except user-facing onboarding and navigational content in `README.md`.
+- **REQ-023**: MUST ensure `README.md` documents scope and behavior for every Section 2.3 artifact, except prompt rows MAY use unique basename identifiers in place of full `src/prompts/*.md` paths.
+- **REQ-024**: MUST require explicit change requests with matching `docs/REQUIREMENTS.md` updates for prompt/template file additions or removals, except read-only or docs-generation workflows (`analyze`, `check`, `create`, `references`, `workflow`, `write`, `renumber`).
+- **REQ-025**: MUST keep governance-maintenance instructions out of runtime-target project sources, except this repository’s canonical governance corpus under `src/prompts/` and `src/docs/`.
+- **REQ-026**: MUST reject new hallucination-risk instructions unless linked to a formal requirement ID, except pre-existing directives in Section 2.3 artifacts pending dedicated risk-refactor requirements.
