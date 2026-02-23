@@ -43,17 +43,17 @@ This project defines and maintains prompt and template artifacts used by the use
 - **PRJ-002**: MUST maintain template artifacts in `src/docs/` as mandatory authoring guides.
 - **PRJ-003**: MUST maintain `README.md` as the operational index for prompts and templates.
 - **PRJ-004**: MUST define each prompt with a single primary workflow intent and deterministic output objective.
-- **PRJ-005**: MUST preserve the process order Requirements -> Design -> Implementation -> Verification in prompt instructions.
-- **PRJ-006**: MUST include role classifications for prompts that generate, review, or consume `%%DOC_PATH%%/REQUIREMENTS.md`.
-- **PRJ-007**: MUST include role classifications for prompts that generate, review, or consume `%%DOC_PATH%%/WORKFLOW.md`.
+- **PRJ-005**: MUST preserve the process order Requirements -> Design -> Implementation -> Verification when edits prompt instructions.
+- **PRJ-006**: `docs/REQUIREMENTS.md` MUST include role classifications for prompts that generate, review, or consume `%%DOC_PATH%%/REQUIREMENTS.md`.
+- **PRJ-007**: `docs/REQUIREMENTS.md` MUST include role classifications for prompts that generate, review, or consume `%%DOC_PATH%%/WORKFLOW.md`.
 - **PRJ-008**: MUST allow adding or removing prompt/template files only through an explicit change request that updates `docs/REQUIREMENTS.md` and documents the artifact delta.
 
 ### 2.2 Project Constraints
-- **CTN-001**: MUST treat prompt and template authoring as a Senior AI Prompt Engineer and Senior LLM-Ops Engineer activity.
-- **CTN-002**: MUST treat `README.md` updates as a Technical Writer activity.
+- **CTN-001**: When you edits prompt and template, LLM agent MUST act as a Senior AI Prompt Engineer and Senior LLM-Ops Engineer.
+- **CTN-002**: When you edits `README.md`, LLM agent MUST as a Technical Writer activity.
 - **CTN-003**: MUST NOT modify placeholders `%%ARGS%%`, `%%DOC_PATH%%`, `%%GUIDELINES_FILES%%`, `%%SRC_PATHS%%`, and `%%TEST_PATH%%`.
 - **CTN-004**: MUST NOT change the files referenced by `%%ARGS%%`, `%%DOC_PATH%%`, `%%GUIDELINES_FILES%%`, `%%SRC_PATHS%%`, and `%%TEST_PATH%%` through placeholder redefinition.
-- **CTN-005**: MUST ensure prompts and templates are free of syntax errors and typographical errors.
+- **CTN-005**: MUST ensure prompts and templates are free of typographical errors.
 - **CTN-006**: MUST ensure prompts and templates are free of grammatical errors.
 - **CTN-007**: MUST enforce uniform terminology and semantics across prompts for identical actions, references, and process keywords.
 - **CTN-008**: MUST reuse identical instruction phrasing when different prompts describe the same action.
@@ -140,7 +140,7 @@ Prompts/
 - **REQ-006**: MUST define `fix.md` to correct behavior defects without modifying requirement intent.
 - **REQ-007**: MUST define `implement.md` to implement missing functionality from an authoritative SRS baseline.
 - **REQ-008**: MUST define `new.md` to append strictly additive requirements and implement corresponding deltas.
-- **REQ-009**: MUST define `recreate.md` to reorganize and renumber an SRS while preserving requirement intent.
+- **REQ-009**: MUST define `recreate.md` to reorganize and NOT renumber an SRS while preserving requirement intent.
 - **REQ-010**: MUST define `refactor.md` to improve internals while preserving externally observable behavior and requirement compliance.
 - **REQ-011**: MUST define `references.md` to generate `REFERENCES.md` from source-code evidence only.
 - **REQ-012**: MUST define `renumber.md` to enforce deterministic requirement ID sequencing in SRS documents.
@@ -150,9 +150,12 @@ Prompts/
 - **REQ-016**: MUST require `README.md` to document purpose and operating behavior for every template file in scope.
 
 ## 4. Test Requirements
+
+Act as act as a Senior AI Prompt Engineer, Senior LLM-Ops Engineer, and an expert static code analyst. Your task is to validate and review the provided promts and templates. STRICT CONSTRAINT: You must not write, suggest, or execute any unit tests, integration tests, or dynamic tests. All prompts validation, bug hunting, and testing must be performed strictly through static code analysis READING promts and templates.
+
 - **TST-001**: MUST verify that all in-scope prompt, template, and README paths exist and are documented in the SRS scope matrix.
 - **TST-002**: MUST verify placeholder tokens `%%ARGS%%`, `%%DOC_PATH%%`, `%%GUIDELINES_FILES%%`, `%%SRC_PATHS%%`, and `%%TEST_PATH%%` remain unchanged in maintained artifacts.
-- **TST-003**: MUST verify prompts and templates pass syntax, typo, and grammar quality checks with deterministic pass or fail output.
+- **TST-003**: MUST verify prompts and templates pass typo, and grammar quality checks with deterministic pass or fail output.
 - **TST-004**: MUST verify identical actions across prompts use identical canonical instruction phrasing.
 - **TST-005**: MUST verify prompt role mappings for `%%DOC_PATH%%/REQUIREMENTS.md` and `%%DOC_PATH%%/WORKFLOW.md` match requirements DES-003 through DES-009.
 - **TST-006**: MUST verify prompts do not include unauthorized chain-interrupt instructions outside explicitly defined workflow interruption points.
