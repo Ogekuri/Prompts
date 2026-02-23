@@ -104,7 +104,7 @@ This project defines and maintains prompt and template artifacts used by the use
 - **DES-007**: MUST map `workflow.md` and `implement.md` as generators of `%%DOC_PATH%%/WORKFLOW.md`.
 - **DES-008**: MUST map `change.md`, `cover.md`, `fix.md`, `new.md`, and `refactor.md` as reviewers of `%%DOC_PATH%%/WORKFLOW.md`.
 - **DES-009**: MUST map `analyze.md`, `change.md`, `check.md`, `cover.md`, `fix.md`, `new.md`, `recreate.md`, and `refactor.md` as consumers of `%%DOC_PATH%%/WORKFLOW.md`.
-- **DES-010**: MUST standardize repeated operational instructions, including Git-state checks and completion or error messages, using identical wording across prompts.
+- **DES-010**: MUST standardize repeated operational instructions, including Git-state checks and completion or error messages, using identical wording across prompts, except for the prompt's name specialization.
 - **DES-011**: MUST implement text-first interaction semantics and MUST NOT require GUI-specific behavior.
 - **DES-012**: MUST preserve reusable keyword tokens exactly so installation-time substitution remains valid.
 
