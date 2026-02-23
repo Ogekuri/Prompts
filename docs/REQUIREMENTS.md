@@ -84,18 +84,10 @@ This project defines and maintains prompt and template artifacts used by the use
 ## 3. Requirements
 
 ### 3.1 Design and Implementation
-- **DES-001**: MUST organize artifacts into dedicated prompt, template, and project-documentation components with explicit responsibilities.
-- **DES-002**: MUST implement a deterministic prompt taxonomy for `%%DOC_PATH%%/REQUIREMENTS.md` with generator, reviewer, and consumer roles.
-- **DES-003**: MUST map `create.md`, `recreate.md`, and `write.md` as generators of `%%DOC_PATH%%/REQUIREMENTS.md`.
-- **DES-004**: MUST map `change.md`, `new.md`, and `renumber.md` as reviewers of `%%DOC_PATH%%/REQUIREMENTS.md`.
-- **DES-005**: MUST map `change.md`, `new.md`, `renumber.md`, `recreate.md`, `analyze.md`, `check.md`, `cover.md`, `implement.md`, `refactor.md`, and `workflow.md` as consumers of `%%DOC_PATH%%/REQUIREMENTS.md`.
-- **DES-006**: MUST implement a deterministic prompt taxonomy for `%%DOC_PATH%%/WORKFLOW.md` with generator, reviewer, and consumer roles.
-- **DES-007**: MUST map `workflow.md` and `implement.md` as generators of `%%DOC_PATH%%/WORKFLOW.md`.
-- **DES-008**: MUST map `change.md`, `cover.md`, `fix.md`, `new.md`, and `refactor.md` as reviewers of `%%DOC_PATH%%/WORKFLOW.md`.
-- **DES-009**: MUST map `analyze.md`, `change.md`, `check.md`, `cover.md`, `fix.md`, `new.md`, `recreate.md`, and `refactor.md` as consumers of `%%DOC_PATH%%/WORKFLOW.md`.
-- **DES-010**: MUST standardize repeated operational instructions, including Git-state checks and completion or error messages, using identical wording across prompts, except for the prompt's name specialization.
-- **DES-011**: MUST implement text-first interaction semantics and MUST NOT require GUI-specific behavior.
-- **DES-012**: MUST preserve reusable keyword tokens exactly so installation-time substitution remains valid.
+- **DES-001**: MUST organize artifacts into dedicated prompt and template with explicit responsibilities.
+- **DES-002**: MUST standardize repeated operational instructions, including Git-state checks and completion or error messages, using identical wording across prompts, except for the prompt's name specialization.
+- **DES-003**: MUST implement text-first interaction semantics and MUST NOT require GUI-specific behavior.
+- **DES-004**: MUST preserve reusable keyword tokens exactly so installation-time substitution remains valid.
 
 Proposed repository structure (max depth 3, depth 4 for `src/`):
 
@@ -141,11 +133,11 @@ Prompts/
 - **REQ-013**: MUST define `workflow.md` to generate `WORKFLOW.md` from source-code execution evidence.
 - **REQ-014**: MUST define `write.md` to generate an SRS from user-request text without relying on source-code evidence.
 - **REQ-017**: MUST validate placeholder tokens by allowing only `%%ARGS%%`, `%%DOC_PATH%%`, `%%GUIDELINES_FILES%%`, `%%SRC_PATHS%%`, and `%%TEST_PATH%%`, except artifacts that intentionally contain no placeholder tokens.
-- **REQ-018**: prompts and templates MUST NOT contain typo and grammar errors, except fenced code blocks, inline-code spans, literal error strings, placeholders, and command snippets.
+- **REQ-018**: MUST NOT contain typo and grammar errors, except fenced code blocks, inline-code spans, literal error strings, placeholders, and command snippets.
 - **REQ-019**: MUST enforce canonical phrasing for shared operational instructions, except workflow-scoped failure strings and workflow-name specializations required to identify the emitting prompt.
 - **REQ-021**: MUST optimize prompts/templates for parser efficiency and token economy, except mandatory compliance blocks (`Professional Personas`, `Execution Protocol`, `Execution Directives`, `Steps`) that are retained verbatim.
-- **REQ-022**: prompts and template MUST be optimized for LLM-Agent
-- **REQ-023**: identical actions across prompts, MUST use identical canonical instruction phrasing, outside explicitly prompt specifications, unless listed here:
+- **REQ-022**: MUST be optimized for LLM-Agent
+- **REQ-023**: MUST use identical canonical instruction phrasing for identical actions across prompts, outside explicitly prompt specifications, unless listed here:
   - Workflow identity literals MAY vary where required to bind the emitting prompt (`/req.<name>`, commit-type prefix, workflow-specific title/scope text, and step labels tied to workflow intent).
   - Workflow-scoped failure or warning strings MAY vary only in workflow-name specialization while preserving the same control action pattern (`OUTPUT exactly "<STRING>"`, then terminate or override final line as explicitly defined).
   - Numeric bounds and scoped nouns MAY vary when they encode workflow-specific semantics (for example step-count cardinality and requirement-type nouns), while shared operational commands MUST remain byte-identical.
