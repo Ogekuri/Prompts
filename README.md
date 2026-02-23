@@ -81,12 +81,3 @@ This repository maintains the prompt set in `src/prompts/` and the documentation
 ## Usage
 
 Use this repository as the canonical source for prompt/template maintenance.
-
-- Select a prompt by workflow intent:
-  - **Requirements generators**: `write`, `create`, `recreate`
-  - **Requirements reviewers**: `change`, `new`, `renumber`
-  - **Requirements consumers**: `analyze`, `check`, `cover`, `fix`, `implement`, `refactor`, `workflow`
-- Regenerate docs-only artifacts with:
-  - `workflow` for `WORKFLOW.md`
-  - `references` for `REFERENCES.md`
-- Keep terminology and repeated operational instructions uniform across prompts when updating content.

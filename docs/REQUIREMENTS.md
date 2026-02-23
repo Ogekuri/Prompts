@@ -8,7 +8,6 @@ scope:
   paths:
     - "src/prompts/**/*.md"
     - "src/docs/**/*.md"
-    - "README.md"
   excludes:
     - ".*/**"
 visibility: "draft"
@@ -39,7 +38,6 @@ This project defines and maintains prompt and template artifacts used by the use
 
 ### 1.4 Persona
 - When you edits prompt and template, act as a Senior AI Prompt Engineer and Senior LLM-Ops Engineer.
-- When you edits `README.md`, act as a Technical Writer activity.
 - When perform check and test on prompts and templates, act as a Senior AI Prompt Engineer, Senior LLM-Ops Engineer, and an expert static code analyst. Your task is to validate and review the provided promts and templates.
 
 ### 1.5 Absolute Rules, Non-Negotiable
@@ -50,7 +48,6 @@ This project defines and maintains prompt and template artifacts used by the use
   - MUST keep interruption rules explicit: prompts MUST NOT interrupt agent reasoning flow unless the interruption is required by defined workflow conditions.
   - MUST optimize prompts/templates for LLM-agent parsing, context efficiency, and token economy.
   - MUST target prompts/templates to LLM-agent execution and MUST NOT target human-only reading.
-  - MUST ensure `README.md` documents scope and behavior for every prompt/template listed in section 2.3.
   - MUST require an explicit change request and corresponding `docs/REQUIREMENTS.md` update for any prompt/template file addition or removal.
   - MUST keep `src/prompts/` and `src/docs/` free of governance instructions about maintaining, editing, or verifying prompts/templates.
   - MUST NOT add instructions that increase hallucination risk unless explicitly required by a formal requirement.
@@ -60,9 +57,8 @@ This project defines and maintains prompt and template artifacts used by the use
 ### 2.1 Project Functions
 - **PRJ-001**: MUST maintain prompt artifacts in `src/prompts/` for SRS-driven workflows.
 - **PRJ-002**: MUST maintain template artifacts in `src/docs/` as mandatory authoring guides.
-- **PRJ-003**: MUST maintain `README.md` as the operational index for prompts and templates.
-- **PRJ-004**: MUST define each prompt with a single primary workflow intent and deterministic output objective.
-- **PRJ-005**: MUST preserve the process order Requirements -> Design -> Implementation -> Verification when edits prompt instructions.
+- **PRJ-003**: MUST define each prompt with a single primary workflow intent and deterministic output objective.
+- **PRJ-004**: MUST preserve the process order Requirements -> Design -> Implementation -> Verification when edits prompt instructions.
 
 ### 2.3 In-Scope Artifacts
 | Category | Path | Intended Function |
@@ -84,7 +80,6 @@ This project defines and maintains prompt and template artifacts used by the use
 | Template | `src/docs/Document_Source_Code_in_Doxygen_Style.md` | Mandatory source-code documentation guideline. |
 | Template | `src/docs/HDT_Test_Authoring_Guide.md` | Mandatory unit-test authoring guideline. |
 | Template | `src/docs/Requirements_Template.md` | Mandatory SRS authoring guideline. |
-| Document | `README.md` | Project-level prompt and template documentation. |
 
 ## 3. Requirements
 
@@ -106,7 +101,6 @@ Proposed repository structure (max depth 3, depth 4 for `src/`):
 
 ```text
 Prompts/
-├── README.md
 ├── docs/
 │   └── REQUIREMENTS.md
 └── src/
@@ -146,13 +140,16 @@ Prompts/
 - **REQ-012**: MUST define `renumber.md` to enforce deterministic requirement ID sequencing in SRS documents.
 - **REQ-013**: MUST define `workflow.md` to generate `WORKFLOW.md` from source-code execution evidence.
 - **REQ-014**: MUST define `write.md` to generate an SRS from user-request text without relying on source-code evidence.
-- **REQ-015**: MUST require `README.md` to document scope and operating behavior for every prompt artifact listed in Section 2.3.
-- **REQ-016**: MUST require `README.md` to document scope and operating behavior for every template artifact listed in Section 2.3.
 - **REQ-017**: MUST validate placeholder tokens by allowing only `%%ARGS%%`, `%%DOC_PATH%%`, `%%GUIDELINES_FILES%%`, `%%SRC_PATHS%%`, and `%%TEST_PATH%%`, except artifacts that intentionally contain no placeholder tokens.
-- **REQ-018**: MUST validate typo and grammar quality in prompt/template prose, except fenced code blocks, inline-code spans, literal error strings, placeholders, and command snippets.
+- **REQ-018**: prompts and templates MUST NOT contain typo and grammar errors, except fenced code blocks, inline-code spans, literal error strings, placeholders, and command snippets.
 - **REQ-019**: MUST enforce canonical phrasing for shared operational instructions, except workflow-scoped failure strings and workflow-name specializations required to identify the emitting prompt.
-- **REQ-020**: MUST keep interruption constraints explicit in executable workflow prompts, except non-executable templates under `src/docs/` and non-procedural overview sections in `README.md`.
 - **REQ-021**: MUST optimize prompts/templates for parser efficiency and token economy, except mandatory compliance blocks (`Professional Personas`, `Execution Protocol`, `Execution Directives`, `Steps`) that are retained verbatim.
-- **REQ-022**: MUST target LLM-agent execution semantics in prompt/template artifacts, except user-facing onboarding and navigational content in `README.md`.
-- **REQ-023**: MUST ensure `README.md` documents scope and behavior for every Section 2.3 artifact, except prompt rows MAY use unique basename identifiers in place of full `src/prompts/*.md` paths.
-- **REQ-026**: MUST reject new hallucination-risk instructions unless linked to a formal requirement ID, except pre-existing directives in Section 2.3 artifacts pending dedicated risk-refactor requirements.
+- **REQ-022**: prompts and template MUST be optimized for LLM-Agent
+- **REQ-023**: identical actions across prompts, MUST use identical canonical instruction phrasing, outside explicitly promtps specifications, unless listed here:
+  -
+- **REQ-024**: MUST avoid instructions that can cause unnecessary token-heavy content, unless listed here:
+  - 
+- **REQ-025**: MUST reject unauthorized chain-interrupt instructions outside explicitly defined workflow interruption points, unless listed here:
+  - 
+- **REQ-026**: MUST reject new hallucination-risk instructions unless listed here:
+  - 
