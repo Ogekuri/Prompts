@@ -155,6 +155,4 @@ Prompts/
 - **REQ-021**: MUST optimize prompts/templates for parser efficiency and token economy, except mandatory compliance blocks (`Professional Personas`, `Execution Protocol`, `Execution Directives`, `Steps`) that are retained verbatim.
 - **REQ-022**: MUST target LLM-agent execution semantics in prompt/template artifacts, except user-facing onboarding and navigational content in `README.md`.
 - **REQ-023**: MUST ensure `README.md` documents scope and behavior for every Section 2.3 artifact, except prompt rows MAY use unique basename identifiers in place of full `src/prompts/*.md` paths.
-- **REQ-024**: MUST require explicit change requests with matching `docs/REQUIREMENTS.md` updates for prompt/template file additions or removals, except read-only or docs-generation workflows (`analyze`, `check`, `create`, `references`, `workflow`, `write`, `renumber`).
-- **REQ-025**: MUST keep governance-maintenance instructions out of runtime-target project sources, except this repository’s canonical governance corpus under `src/prompts/` and `src/docs/`.
 - **REQ-026**: MUST reject new hallucination-risk instructions unless linked to a formal requirement ID, except pre-existing directives in Section 2.3 artifacts pending dedicated risk-refactor requirements.
