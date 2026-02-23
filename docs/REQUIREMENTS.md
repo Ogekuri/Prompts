@@ -1,7 +1,7 @@
 ---
 title: "Prompts Project Requirements"
 description: Software requirements specification
-version: "0.2.0"
+version: "0.2.1"
 date: "2026-02-23"
 author: "req-write"
 scope:
@@ -131,7 +131,7 @@ Proposed repository structure (max depth 3, depth 4 for `src/`):
 - **REQ-014**: MUST define `write.md` to generate an SRS from user-request text without relying on source-code evidence.
 - **REQ-017**: MUST validate placeholder tokens by allowing only `%%ARGS%%`, `%%DOC_PATH%%`, `%%GUIDELINES_FILES%%`, `%%SRC_PATHS%%`, and `%%TEST_PATH%%`, except artifacts that intentionally contain no placeholder tokens.
 - **REQ-018**: MUST NOT contain typo and grammar errors, except fenced code blocks, inline-code spans, literal error strings, placeholders, and command snippets.
-- **REQ-019**: MUST enforce canonical phrasing for shared operational instructions, except workflow-scoped failure strings and workflow-name specializations required to identify the emitting prompt.
+- **REQ-019**: MUST enforce canonical phrasing for shared operational instructions, including conditional `.req/config.json` copy during worktree setup and conditional `.req/config.json` removal before merge when `.gitignore` excludes that path.
 - **REQ-021**: MUST optimize prompts/templates for parser efficiency and token economy, except mandatory compliance blocks (`Professional Personas`, `Execution Protocol`, `Execution Directives`, `Steps`) that are retained verbatim.
 - **REQ-022**: MUST be optimized for LLM-Agent.
 - **REQ-023**: MUST use identical canonical instruction phrasing for identical actions across prompts, outside explicitly prompt specifications, except where explicitly allowed below.

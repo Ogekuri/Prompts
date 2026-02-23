@@ -132,6 +132,8 @@ Create internally a *check-list* for the **Global Roadmap** including all the nu
    - Identify the Git project name with `basename "$(git rev-parse --show-toplevel)"` and refer to it as <PROJECT_NAME>.
    - Create a dedicated worktree OUTSIDE the current repository directory to isolate changes:
       - Execute: `git worktree add ../userReq-<PROJECT_NAME>-<ORIGINAL_BRANCH>-<EXECUTION_ID> -b userReq-<PROJECT_NAME>-<ORIGINAL_BRANCH>-<EXECUTION_ID>`
+      - If `.gitignore` excludes `.req/config.json`, copy `.req/config.json` into the new worktree before continuing:
+         - `if git check-ignore -q .req/config.json && [ -f .req/config.json ]; then mkdir -p ../userReq-<PROJECT_NAME>-<ORIGINAL_BRANCH>-<EXECUTION_ID>/.req && cp .req/config.json ../userReq-<PROJECT_NAME>-<ORIGINAL_BRANCH>-<EXECUTION_ID>/.req/config.json; fi`
    - Move into the worktree directory and perform ALL subsequent steps from there:
       - `cd ../userReq-<PROJECT_NAME>-<ORIGINAL_BRANCH>-<EXECUTION_ID>`
 4. Generate and apply the **Requirement Delta** to change requirements
@@ -210,6 +212,8 @@ Create internally a *check-list* for the **Global Roadmap** including all the nu
 10. **CRITICAL**: Merge Conflict Management
    - Return to the original repository directory (the sibling directory of the worktree). After working in `../userReq-<PROJECT_NAME>-<ORIGINAL_BRANCH>-<EXECUTION_ID>`, return with: `cd ../<PROJECT_NAME>`
    - Ensure you are on <ORIGINAL_BRANCH>: `git checkout <ORIGINAL_BRANCH>`
+   - If `.gitignore` excludes `.req/config.json`, remove `.req/config.json` before merge:
+      - `if git check-ignore -q .req/config.json; then rm -f .req/config.json; fi`
    - Merge the isolated branch into <ORIGINAL_BRANCH>: `git merge userReq-<PROJECT_NAME>-<ORIGINAL_BRANCH>-<EXECUTION_ID>`
    - If the merge completes successfully, remove the worktree directory with force: `git worktree remove ../userReq-<PROJECT_NAME>-<ORIGINAL_BRANCH>-<EXECUTION_ID> --force`
    - If the merge fails or results in conflicts, do NOT remove the worktree directory and override the final line with EXACTLY "WARNING: Change request completed with merge conflicting!".
