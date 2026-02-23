@@ -43,23 +43,17 @@ This project defines and maintains prompt and template artifacts used by the use
 - When perform check and test on prompts and templates, act as a Senior AI Prompt Engineer, Senior LLM-Ops Engineer, and an expert static code analyst. Your task is to validate and review the provided promts and templates.
 
 ### 1.5 Absolute Rules, Non-Negotiable
-- When edits prompt or template:
-  - MUST ensure placeholder tokens `%%ARGS%%`, `%%DOC_PATH%%`, `%%GUIDELINES_FILES%%`, `%%SRC_PATHS%%`, and `%%TEST_PATH%%` remain unchanged in maintained artifacts.
-  - MUST ensure prompts and templates are free of typographical errors.
-  - MUST ensure prompts and templates are free of grammatical errors.
-  - MUST ensure identical actions across prompts use identical canonical instruction phrasing.
-  - MUST ensure prompts do not include unauthorized chain-interrupt instructions outside explicitly defined workflow interruption points.
-  - MUST ensure prompts and templates are optimized for LLM-Agent consumption and avoid unnecessary token-heavy content.
-  - MUST ensure `README.md` documents scope and behavior for every prompt and template listed in section 2.3.
-  - MUST ensure `src/prompts/` and `src/docs/` do not contain governance instructions about maintaining, editing, or verifying prompts/templates itself.
-  - MUST ensure prompt/template file additions or removals are accompanied by an explicit change request and corresponding `docs/REQUIREMENTS.md` updates.
-  - MUST enforce uniform terminology and semantics across prompts for identical actions, references, and process keywords.
-  - MUST reuse identical instruction phrasing when different prompts describe the same action.
-  - MUST NOT include instructions that interrupt agent reasoning flow unless the interruption is explicitly required by workflow conditions.
-  - MUST NOT include instructions that increase hallucination risk unless explicitly required by a formal requirement. Ignore “tangential/borderline” included by design.
-  - MUST optimize prompts for LLM context efficiency and token economy.
-  - MUST target all prompts and templates to LLM Agent processing and MUST NOT target human-only reading.
-  - MUST NOT include in `src/prompts/` or `src/docs/` any governance instructions describing how prompts or templates are maintained, edited, or verified.
+- When editing prompt or template artifacts:
+  - MUST preserve placeholder tokens `%%ARGS%%`, `%%DOC_PATH%%`, `%%GUIDELINES_FILES%%`, `%%SRC_PATHS%%`, and `%%TEST_PATH%%` exactly as-is.
+  - MUST keep all prompt/template text free of typographical and grammatical errors.
+  - MUST use uniform terminology and identical canonical instruction phrasing for identical actions, references, and process keywords.
+  - MUST keep interruption rules explicit: prompts MUST NOT interrupt agent reasoning flow unless the interruption is required by defined workflow conditions.
+  - MUST optimize prompts/templates for LLM-agent parsing, context efficiency, and token economy.
+  - MUST target prompts/templates to LLM-agent execution and MUST NOT target human-only reading.
+  - MUST ensure `README.md` documents scope and behavior for every prompt/template listed in section 2.3.
+  - MUST require an explicit change request and corresponding `docs/REQUIREMENTS.md` update for any prompt/template file addition or removal.
+  - MUST keep `src/prompts/` and `src/docs/` free of governance instructions about maintaining, editing, or verifying prompts/templates.
+  - MUST NOT add instructions that increase hallucination risk unless explicitly required by a formal requirement.
 
 ## 2. Project Requirements
 
