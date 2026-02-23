@@ -1,7 +1,7 @@
 ---
 title: "Prompts Project Requirements"
 description: Software requirements specification
-version: "0.1.0"
+version: "0.2.0"
 date: "2026-02-23"
 author: "req-write"
 scope:
@@ -46,7 +46,7 @@ This project defines and maintains prompt and template artifacts used by the use
 - **PRJ-005**: MUST preserve the process order Requirements -> Design -> Implementation -> Verification in prompt instructions.
 - **PRJ-006**: MUST include role classifications for prompts that generate, review, or consume `%%DOC_PATH%%/REQUIREMENTS.md`.
 - **PRJ-007**: MUST include role classifications for prompts that generate, review, or consume `%%DOC_PATH%%/WORKFLOW.md`.
-- **PRJ-008**: MAY introduce additional prompt files only if backward compatibility with existing workflow semantics is preserved.
+- **PRJ-008**: MUST allow adding or removing prompt/template files only through an explicit change request that updates `docs/REQUIREMENTS.md` and documents the artifact delta.
 
 ### 2.2 Project Constraints
 - **CTN-001**: MUST treat prompt and template authoring as a Senior AI Prompt Engineer and Senior LLM-Ops Engineer activity.
@@ -61,6 +61,8 @@ This project defines and maintains prompt and template artifacts used by the use
 - **CTN-010**: MUST NOT include instructions that increase hallucination risk unless explicitly required by a formal requirement.
 - **CTN-011**: MUST optimize prompts for LLM context efficiency and token economy.
 - **CTN-012**: MUST target all prompts and templates to LLM Agent processing and MUST NOT target human-only reading.
+- **CTN-013**: MUST NOT include in `src/prompts/` or `src/docs/` any governance instructions describing how prompts or templates are maintained, edited, or verified.
+- **CTN-014**: MUST store all governance rules for prompt/template maintenance, modification, and verification exclusively in `docs/REQUIREMENTS.md`.
 
 ### 2.3 In-Scope Artifacts
 | Category | Path | Intended Function |
@@ -156,3 +158,5 @@ Prompts/
 - **TST-006**: MUST verify prompts do not include unauthorized chain-interrupt instructions outside explicitly defined workflow interruption points.
 - **TST-007**: MUST verify prompts and templates are optimized for LLM-Agent consumption and avoid unnecessary token-heavy content.
 - **TST-008**: MUST verify `README.md` documents scope and behavior for every prompt and template listed in section 2.3.
+- **TST-009**: MUST verify `src/prompts/` and `src/docs/` do not contain governance instructions about maintaining, editing, or verifying prompts/templates.
+- **TST-010**: MUST verify prompt/template file additions or removals are accompanied by an explicit change request and corresponding `docs/REQUIREMENTS.md` updates.
