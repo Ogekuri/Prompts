@@ -31,14 +31,17 @@ Prefix `DOC` is reserved for document-authoring constraints in this section.
 ### 1.2 Project Scope
 This project defines and maintains prompt and template artifacts used by the useReq process to enforce SRS-driven development with the sequence Requirements -> Design -> Implementation -> Verification.
 
-### 1.3 Persona
-- When you edits prompt and template, act as a Senior AI Prompt Engineer and Senior LLM-Ops Engineer.
-- When you edits `README.md`, act as a Technical Writer activity.
-
-### 1.4 Assumptions
+### 1.3 Assumptions
 - No application runtime source code is in scope for this SRS.
 - No mandatory third-party runtime library was requested.
 - Verification can be implemented with deterministic textual checks on Markdown artifacts.
+- **CRITICAL**: You MUST NOT write, suggest, or execute any unit tests, integration tests, or dynamic tests. All prompts and template validation, bug hunting, and testing must be performed strictly through static code analysis READING promts and templates.
+
+### 1.4 Persona
+- When you edits prompt and template, act as a Senior AI Prompt Engineer and Senior LLM-Ops Engineer.
+- When you edits `README.md`, act as a Technical Writer activity.
+- When perform check and test on prompts and templates, act as a Senior AI Prompt Engineer, Senior LLM-Ops Engineer, and an expert static code analyst. Your task is to validate and review the provided promts and templates.
+
 
 ## 2. Project Requirements
 
@@ -60,11 +63,11 @@ This project defines and maintains prompt and template artifacts used by the use
 - **CTN-007**: MUST enforce uniform terminology and semantics across prompts for identical actions, references, and process keywords.
 - **CTN-008**: MUST reuse identical instruction phrasing when different prompts describe the same action.
 - **CTN-009**: MUST NOT include instructions that interrupt agent reasoning flow unless the interruption is explicitly required by workflow conditions.
-- **CTN-010**: MUST NOT include instructions that increase hallucination risk unless explicitly required by a formal requirement.
+- **CTN-010**: MUST NOT include instructions that increase hallucination risk unless explicitly required by a formal requirement. Ignore “high recall + tangential/borderline” included by design.
 - **CTN-011**: MUST optimize prompts for LLM context efficiency and token economy.
 - **CTN-012**: MUST target all prompts and templates to LLM Agent processing and MUST NOT target human-only reading.
 - **CTN-013**: MUST NOT include in `src/prompts/` or `src/docs/` any governance instructions describing how prompts or templates are maintained, edited, or verified.
-- **CTN-014**: MUST store all governance rules for prompt/template maintenance, modification, and verification exclusively in `docs/REQUIREMENTS.md`.
+- **CTN-014**: MUST store all governance rules for prompt/template maintenance, modification, and verification exclusively in `docs/REQUIREMENTS.md`. The governace can be also documentend in `README.md`.
 
 ### 2.3 In-Scope Artifacts
 | Category | Path | Intended Function |
@@ -152,8 +155,6 @@ Prompts/
 - **REQ-016**: MUST require `README.md` to document purpose and operating behavior for every template file in scope.
 
 ## 4. Test Requirements
-
-Act as act as a Senior AI Prompt Engineer, Senior LLM-Ops Engineer, and an expert static code analyst. Your task is to validate and review the provided promts and templates. STRICT CONSTRAINT: You must not write, suggest, or execute any unit tests, integration tests, or dynamic tests. All prompts validation, bug hunting, and testing must be performed strictly through static code analysis READING promts and templates.
 
 - **TST-001**: MUST verify that all in-scope prompt, template, and README paths exist and are documented in the SRS scope matrix.
 - **TST-002**: MUST verify placeholder tokens `%%ARGS%%`, `%%DOC_PATH%%`, `%%GUIDELINES_FILES%%`, `%%SRC_PATHS%%`, and `%%TEST_PATH%%` remain unchanged in maintained artifacts.
