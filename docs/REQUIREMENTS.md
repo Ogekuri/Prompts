@@ -34,11 +34,11 @@ This project defines and maintains prompt and template artifacts used by the use
 - No application runtime source code is in scope for this SRS.
 - No mandatory third-party runtime library was requested.
 - Verification can be implemented with deterministic textual checks on Markdown artifacts.
-- **CRITICAL**: You MUST NOT write, suggest, or execute any unit tests, integration tests, or dynamic tests. All prompts and template validation, bug hunting, and testing must be performed strictly through static code analysis READING promts and templates.
+- **CRITICAL**: You MUST NOT write, suggest, or execute any unit tests, integration tests, or dynamic tests. All prompts and template validation, bug hunting, and testing must be performed strictly through static code analysis READING prompts and templates.
 
 ### 1.4 Persona
-- When you edits prompt and template, act as a Senior AI Prompt Engineer and Senior LLM-Ops Engineer.
-- When perform check and test on prompts and templates, act as a Senior AI Prompt Engineer, Senior LLM-Ops Engineer, and an expert static code analyst. Your task is to validate and review the provided promts and templates.
+- When you edit prompts and templates, act as a Senior AI Prompt Engineer and Senior LLM-Ops Engineer.
+- When performing checks and tests on prompts and templates, act as a Senior AI Prompt Engineer, Senior LLM-Ops Engineer, and an expert static code analyst. Your task is to validate and review the provided prompts and templates.
 
 ### 1.5 Absolute Rules, Non-Negotiable
 - When editing prompt or template artifacts:
@@ -58,7 +58,7 @@ This project defines and maintains prompt and template artifacts used by the use
 - **PRJ-001**: MUST maintain prompt artifacts in `src/prompts/` for SRS-driven workflows.
 - **PRJ-002**: MUST maintain template artifacts in `src/docs/` as mandatory authoring guides.
 - **PRJ-003**: MUST define each prompt with a single primary workflow intent and deterministic output objective.
-- **PRJ-004**: MUST preserve the process order Requirements -> Design -> Implementation -> Verification when edits prompt instructions.
+- **PRJ-004**: MUST preserve the process order Requirements -> Design -> Implementation -> Verification when editing prompt instructions.
 
 ### 2.3 In-Scope Artifacts
 | Category | Path | Intended Function |
@@ -92,9 +92,6 @@ This project defines and maintains prompt and template artifacts used by the use
 Proposed repository structure (max depth 3, depth 4 for `src/`):
 
 ```text
-Prompts/
-├── docs/
-│   └── REQUIREMENTS.md
 └── src/
     ├── docs/
     │   ├── Document_Source_Code_in_Doxygen_Style.md
