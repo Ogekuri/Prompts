@@ -23,7 +23,7 @@ tags: ["srs", "prompts", "templates"]
 Prefix `DOC` is reserved for document-authoring constraints in this section.
 
 - **DOC-001**: MUST write and maintain this document in English.
-- **DOC-002**: MUST use only RFC 2119 keywords (MUST, MUST NOT, SHOULD, SHOULD NOT, MAY) and MUST NOT use "shall".
+- **DOC-002**: MUST use only RFC 2119 keywords (MUST, MUST NOT, SHOULD, SHOULD NOT, MAY) and MUST NOT use modal verbs outside that set in requirement statements.
 - **DOC-003**: MUST express every requirement bullet using the canonical format `- **<ID>**: <RFC2119 keyword> <single-sentence requirement>.`.
 - **DOC-004**: MUST keep requirement IDs unique and non-repurposed within each published revision, and MUST update internal cross-references deterministically when IDs are renumbered.
 - **DOC-005**: MUST write requirements for LLM Agents and automated parsers using high semantic density and no conversational filler.
@@ -148,4 +148,3 @@ Prompts/
 - **REQ-014**: MUST define `write.md` to generate an SRS from user-request text without relying on source-code evidence.
 - **REQ-015**: MUST require `README.md` to document purpose and operating behavior for every prompt file in scope.
 - **REQ-016**: MUST require `README.md` to document purpose and operating behavior for every template file in scope.
-
