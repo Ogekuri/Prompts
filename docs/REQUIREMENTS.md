@@ -145,11 +145,19 @@ Prompts/
 - **REQ-019**: MUST enforce canonical phrasing for shared operational instructions, except workflow-scoped failure strings and workflow-name specializations required to identify the emitting prompt.
 - **REQ-021**: MUST optimize prompts/templates for parser efficiency and token economy, except mandatory compliance blocks (`Professional Personas`, `Execution Protocol`, `Execution Directives`, `Steps`) that are retained verbatim.
 - **REQ-022**: prompts and template MUST be optimized for LLM-Agent
-- **REQ-023**: identical actions across prompts, MUST use identical canonical instruction phrasing, outside explicitly promtps specifications, unless listed here:
-  -
+- **REQ-023**: identical actions across prompts, MUST use identical canonical instruction phrasing, outside explicitly prompt specifications, unless listed here:
+  - Workflow identity literals MAY vary where required to bind the emitting prompt (`/req.<name>`, commit-type prefix, workflow-specific title/scope text, and step labels tied to workflow intent).
+  - Workflow-scoped failure or warning strings MAY vary only in workflow-name specialization while preserving the same control action pattern (`OUTPUT exactly "<STRING>"`, then terminate or override final line as explicitly defined).
+  - Numeric bounds and scoped nouns MAY vary when they encode workflow-specific semantics (for example step-count cardinality and requirement-type nouns), while shared operational commands MUST remain byte-identical.
 - **REQ-024**: MUST avoid instructions that can cause unnecessary token-heavy content, unless listed here:
-  - 
+  - Mandatory compliance blocks MAY remain verbose when retained verbatim by policy (`Professional Personas`, `Execution Protocol`, `Execution Directives`, and `Steps`).
+  - Canonical executable literals MAY remain fully expanded where determinism depends on exact text (shell commands, fixed report schema, fixed error strings, and WORKFLOW.md schema contracts).
+  - High-detail enumerations MAY be used only when they constrain behavior and reduce ambiguity (supported tag sets, allowed temp/cache paths, and explicit termination-condition matrices).
 - **REQ-025**: MUST reject unauthorized chain-interrupt instructions outside explicitly defined workflow interruption points, unless listed here:
-  - 
+  - Authorized interruption points are only the explicit Step branches that require exact-string output and immediate stop/override (git-status failure, required-file absence, incompatibility guards, test-loop exhaustion, and no-op commit termination).
+  - Read-only or coverage workflows MAY emit a declared no-change terminal string when explicitly defined by that workflow step (for example "All requirements are already covered. No changes needed.").
+  - Merge-conflict handling MAY override only the final status line with the predefined warning string, without adding new interruption branches.
 - **REQ-026**: MUST reject new hallucination-risk instructions unless listed here:
-  - 
+  - Evidence-first high-recall directives MAY remain when uncertainty is explicitly downgraded to candidates and never asserted as complete without file-backed proof.
+  - Autonomous disambiguation directives MAY remain only when constrained to least-invasive choices anchored to repository evidence and requirement traceability.
+  - Tool-gated execution directives MAY require waiting for actual tool responses and exact-string outputs to prevent fabricated results.
