@@ -100,7 +100,7 @@ jobs:
         with:
           draft: false
           prerelease: false
-          files: src/*
+          files: src/**/*
           fail_on_unmatched_files: true
           generate_release_notes: false
           tag_name: ${{ github.ref_name }}
