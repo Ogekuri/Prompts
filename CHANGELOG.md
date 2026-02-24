@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.2.0](https://github.com/Ogekuri/Prompts/compare/v0.1.0..v0.2.0) - 2026-02-24
+### 🐛  Bug Fixes
+- Remove src/.place-holder file. *(core)*
+
 ## [0.1.0](https://github.com/Ogekuri/Prompts/releases/tag/v0.1.0) - 2026-02-24
 ### ⛰️  Features
 - add workflow. *(core)*
@@ -93,5 +97,7 @@
 # History
 
 - \[0.1.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.1.0
+- \[0.2.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.2.0
 
 [0.1.0]: https://github.com/Ogekuri/Prompts/releases/tag/v0.1.0
+[0.2.0]: https://github.com/Ogekuri/Prompts/compare/v0.1.0..v0.2.0
