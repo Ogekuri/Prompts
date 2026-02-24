@@ -134,7 +134,7 @@ Proposed repository structure (max depth 3, depth 4 for `src/`):
 - **REQ-015**: MUST define `readme.md` to update root `README.md` from user-visible implementation evidence only.
 - **REQ-017**: MUST validate placeholder tokens by allowing only `%%ARGS%%`, `%%DOC_PATH%%`, `%%GUIDELINES_FILES%%`, `%%SRC_PATHS%%`, and `%%TEST_PATH%%`, except artifacts that intentionally contain no placeholder tokens.
 - **REQ-018**: MUST NOT contain typo and grammar errors, except fenced code blocks, inline-code spans, literal error strings, placeholders, and command snippets.
-- **REQ-019**: MUST enforce canonical phrasing for shared operational instructions, including conditional `.req/config.json` copy during worktree setup and conditional removal of `../userReq-<PROJECT_NAME>-<ORIGINAL_BRANCH>-<EXECUTION_ID>/.req/config.json` before merge when `.gitignore` excludes `.req/config.json`.
+- **REQ-019**: MUST enforce canonical phrasing for shared operational instructions, including conditional `.req/config.json` copy during worktree setup, conditional removal of `../userReq-<PROJECT_NAME>-<ORIGINAL_BRANCH>-<EXECUTION_ID>/.req/config.json` before merge when `.gitignore` excludes `.req/config.json`, and successful-merge cleanup that removes both the worktree and its branch.
 - **REQ-021**: MUST optimize prompts/templates for parser efficiency and token economy, except mandatory compliance blocks (`Professional Personas`, `Execution Protocol`, `Execution Directives`, `Steps`) that are retained verbatim.
 - **REQ-022**: MUST be optimized for LLM-Agent.
 - **REQ-023**: MUST use identical canonical instruction phrasing for identical actions across prompts, outside explicitly prompt specifications, except where explicitly allowed below.
