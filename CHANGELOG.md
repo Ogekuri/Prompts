@@ -1,7 +1,8 @@
 # Changelog
 
-## [0.0.1](https://github.com/Ogekuri/Prompts/releases/tag/v0.0.1) - 2026-02-24
+## [0.0.2](https://github.com/Ogekuri/Prompts/releases/tag/v0.0.2) - 2026-02-24
 ### ⛰️  Features
+- add workflow. *(core)*
 - add .place-holder files. *(core)*
 - add guidelines/ and .gitignore. *(core)*
 - cap prompt usage length [useReq] *(requirements)*
@@ -84,6 +85,6 @@
 
 # History
 
-- \[0.0.1\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.0.1
+- \[0.0.2\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.0.2
 
-[0.0.1]: https://github.com/Ogekuri/Prompts/releases/tag/v0.0.1
+[0.0.2]: https://github.com/Ogekuri/Prompts/releases/tag/v0.0.2
