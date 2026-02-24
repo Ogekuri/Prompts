@@ -156,241 +156,241 @@ Proposed repository structure (max depth 3, depth 4 for `src/`):
 #### 3.3.1 Analyze Prompt
 
 ##### Context Requirements
-- **ANZ-CTX-001**: MUST include the `## Purpose` section with exact text equality to the `## Purpose` section in `src/prompts/analyze.md`.
-- **ANZ-CTX-002**: MUST include the `## Scope` section with exact text equality to the `## Scope` section in `src/prompts/analyze.md`.
-- **ANZ-CTX-003**: MUST include the `## Professional Personas` section with exact text equality to the `## Professional Personas` section in `src/prompts/analyze.md`.
-- **ANZ-CTX-004**: MUST include the `## Behavior` section with exact text equality to the `## Behavior` section in `src/prompts/analyze.md`.
+- **ANZ-CTX-001**: MUST define the `## Purpose` section to instruct: Enable evidence-backed reasoning about a request or investigation by grounding conclusions in the normative SRS (`%%DOC_PATH%%/REQUIREMENTS.md`), the runtime/workflow model (`%%DOC_PATH%%/WORKFLOW.md`), references (`%%DOC_PATH%%/REFERENCES.md`), and the actual implementation, so downstream LLM Agents can choose the correct follow-up workflow with minimal re-discovery.
+- **ANZ-CTX-002**: MUST define the `## Scope` section to instruct: In scope: read-only analysis of the above documents plus source under %%SRC_PATHS%% (and tests only as evidence when explicitly needed), including tool-assisted extraction; output is an analysis report with concrete evidence (paths/line numbers). Out of scope: any repository modification (requirements/code/tests/docs), generating patches, or applying fixes.
+- **ANZ-CTX-003**: MUST define the `## Professional Personas` section to instruct: Act as a Senior System Engineer when analyzing source code and directory structures to understand the system's architecture and logic; Act as a Business Analyst when cross-referencing code findings with `%%DOC_PATH%%/REQUIREMENTS.md` to ensure functional alignment; Act as a Technical Writer when producing the final analysis report or workflow descriptions, ensuring clarity, technical precision, and structured formatting; Act as a QA Auditor when reporting facts, requiring concrete evidence (file paths, line numbers) for every finding; Act as an Expert Debugger when you identify a failure symptom with concrete evidence (failing test, stack trace, reproducible output). Only explain the root cause, not propose or implement fixes; Act as an Expert GitOps Engineer when executing git workflows, especially when creating/removing/managing git worktrees to isolate changes safely.
+- **ANZ-CTX-004**: MUST define the `## Behavior` section to instruct: Only analyze the code and present the results; make no changes; Do NOT create or modify tests in this workflow; Report facts: for each finding include file paths and, when useful, line numbers or short code excerpts; Allowed git commands in this workflow (read-only only): `git status`, `git diff`, `git ls-files`, `git grep`, `git rev-parse`, `git branch --show-current`. Do NOT run any other git commands; If `.venv/bin/python` exists in the project root, use it for Python executions (e.g., `PYTHONPATH=src .venv/bin/python -m pytest`, `PYTHONPATH=src .venv/bin/python -m <program name>`). Non-Python tooling should use the project's standard commands; Use filesystem/shell tools to read files as needed (read-only only; e.g., `cat`, `sed -n`, `head`, `tail`, `rg`, `less`). Do NOT use in-place editing flags (e.g., `-i`, `perl -pi`) in this workflow.
 
 ##### Steps Requirements
-- **ANZ-STP-001**: MUST include Step 1 with exact text equality to Step 1 in `src/prompts/analyze.md`.
-- **ANZ-STP-002**: MUST include Step 2 with exact text equality to Step 2 in `src/prompts/analyze.md`.
+- **ANZ-STP-001**: MUST define Step 1 to instruct: CRITICAL: Check `%%DOC_PATH%%/REQUIREMENTS.md`, `%%DOC_PATH%%/WORKFLOW.md` and `%%DOC_PATH%%/REFERENCES.md` file presence.
+- **ANZ-STP-002**: MUST define Step 2 to instruct: Analyze the [User Request](#users-request) and present the analysis report.
 
 #### 3.3.2 Change Prompt
 
 ##### Context Requirements
-- **CHG-CTX-001**: MUST include the `## Purpose` section with exact text equality to the `## Purpose` section in `src/prompts/change.md`.
-- **CHG-CTX-002**: MUST include the `## Scope` section with exact text equality to the `## Scope` section in `src/prompts/change.md`.
-- **CHG-CTX-003**: MUST include the `## Professional Personas` section with exact text equality to the `## Professional Personas` section in `src/prompts/change.md`.
-- **CHG-CTX-004**: MUST include the `## Behavior` section with exact text equality to the `## Behavior` section in `src/prompts/change.md`.
+- **CHG-CTX-001**: MUST define the `## Purpose` section to instruct: Evolve existing system behavior safely by first updating the normative SRS (`%%DOC_PATH%%/REQUIREMENTS.md`) to encode the requested change, then implementing and verifying the corresponding code/test deltas with strict traceability to requirement IDs so downstream LLM Agents can reason over the change deterministically.
+- **CHG-CTX-002**: MUST define the `## Scope` section to instruct: In scope: patch-style edits to `%%DOC_PATH%%/REQUIREMENTS.md`, an implementation plan, code/test changes under %%SRC_PATHS%% and %%TEST_PATH%%, verification via the test suite, and updates to `%%DOC_PATH%%/WORKFLOW.md` and `%%DOC_PATH%%/REFERENCES.md`, ending with a clean git commit. Out of scope: work that keeps requirements unchanged (use `/req.fix`, `/req.refactor`, or `/req.cover`), and any implementation not justified by the updated requirements.
+- **CHG-CTX-003**: MUST define the `## Professional Personas` section to instruct: Act as a Business Analyst when generating Requirement Delta and during requirements analysis and update: your priority is requirement integrity, atomic description of changes, and ensuring no logical conflicts in `%%DOC_PATH%%/REQUIREMENTS.md`; Act as a Senior System Architect when generating the Implementation Delta: translate requirements into a robust, modular, and non-breaking technical implementation plan; Act as a Senior Software Developer during implementation: implement the planned changes with high-quality, idiomatic code that maps strictly to Requirement IDs; Act as a QA Engineer during verification and testing: verify compliance with zero leniency, using mandatory code evidence and strict test-fix loops to ensure stability; Act as an Expert GitOps Engineer when executing git workflows, especially when creating/removing/managing git worktrees to isolate changes safely.
+- **CHG-CTX-004**: MUST define the `## Behavior` section to instruct: Propose changes based only on the requirements, user request, and repository evidence. Every proposed code change MUST reference at least one requirement ID or explicit text in user request; Use `%%DOC_PATH%%/REQUIREMENTS.md`, `%%DOC_PATH%%/WORKFLOW.md`, and `%%DOC_PATH%%/REFERENCES.md` as the primary technical inputs; keep decisions traceable to requirements and repository evidence; All newly written or edited content MUST be in English. Do NOT translate existing text outside the minimal change surface required by this workflow; if you detect non-English text elsewhere, report it in Evidence instead of rewriting it; Prefer clean implementation over legacy support. Do not add backward compatibility UNLESS the updated requirements explicitly mandate it; Do not implement migrations/auto-upgrades UNLESS the updated requirements explicitly include a migration/upgrade requirement; If `.venv/bin/python` exists in the project root, use it for Python executions (e.g., `PYTHONPATH=src .venv/bin/python -m pytest`, `PYTHONPATH=src .venv/bin/python -m <program name>`). Non-Python tooling should use the project's standard commands; Use filesystem/shell tools to read/write/delete files as needed (e.g., `cat`, `sed`, `perl -pi`, `printf > file`, `rm -f`, ...). Prefer read-only commands for analysis.
 
 ##### Steps Requirements
-- **CHG-STP-001**: MUST include Step 1 with exact text equality to Step 1 in `src/prompts/change.md`.
-- **CHG-STP-002**: MUST include Step 2 with exact text equality to Step 2 in `src/prompts/change.md`.
-- **CHG-STP-003**: MUST include Step 3 with exact text equality to Step 3 in `src/prompts/change.md`.
-- **CHG-STP-004**: MUST include Step 4 with exact text equality to Step 4 in `src/prompts/change.md`.
-- **CHG-STP-005**: MUST include Step 5 with exact text equality to Step 5 in `src/prompts/change.md`.
-- **CHG-STP-006**: MUST include Step 6 with exact text equality to Step 6 in `src/prompts/change.md`.
-- **CHG-STP-007**: MUST include Step 7 with exact text equality to Step 7 in `src/prompts/change.md`.
-- **CHG-STP-008**: MUST include Step 8 with exact text equality to Step 8 in `src/prompts/change.md`.
-- **CHG-STP-009**: MUST include Step 9 with exact text equality to Step 9 in `src/prompts/change.md`.
-- **CHG-STP-010**: MUST include Step 10 with exact text equality to Step 10 in `src/prompts/change.md`.
-- **CHG-STP-011**: MUST include Step 11 with exact text equality to Step 11 in `src/prompts/change.md`.
+- **CHG-STP-001**: MUST define Step 1 to instruct: CRITICAL: Check GIT Status.
+- **CHG-STP-002**: MUST define Step 2 to instruct: CRITICAL: Check `%%DOC_PATH%%/REQUIREMENTS.md`, `%%DOC_PATH%%/WORKFLOW.md` and `%%DOC_PATH%%/REFERENCES.md` file presence.
+- **CHG-STP-003**: MUST define Step 3 to instruct: CRITICAL: Worktree Generation & Isolation.
+- **CHG-STP-004**: MUST define Step 4 to instruct: Generate and apply the Requirement Delta to change requirements.
+- **CHG-STP-005**: MUST define Step 5 to instruct: Generate Design Delta and implement the Implementation Delta according to the Requirement Delta.
+- **CHG-STP-006**: MUST define Step 6 to instruct: Generate Verification Delta by testing the implementation result and implementing needed bug fixes.
+- **CHG-STP-007**: MUST define Step 7 to instruct: Update `%%DOC_PATH%%/WORKFLOW.md` via targeted edits using the canonical WORKFLOW.md contract (same terminology, same schema, same call-trace rules).
+- **CHG-STP-008**: MUST define Step 8 to instruct: Update `%%DOC_PATH%%/REFERENCES.md` references file.
+- **CHG-STP-009**: MUST define Step 9 to instruct: CRITICAL: Stage & commit.
+- **CHG-STP-010**: MUST define Step 10 to instruct: CRITICAL: Merge Conflict Management.
+- **CHG-STP-011**: MUST define Step 11 to instruct: Present results.
 
 #### 3.3.3 Check Prompt
 
 ##### Context Requirements
-- **CHK-CTX-001**: MUST include the `## Purpose` section with exact text equality to the `## Purpose` section in `src/prompts/check.md`.
-- **CHK-CTX-002**: MUST include the `## Scope` section with exact text equality to the `## Scope` section in `src/prompts/check.md`.
-- **CHK-CTX-003**: MUST include the `## Professional Personas` section with exact text equality to the `## Professional Personas` section in `src/prompts/check.md`.
-- **CHK-CTX-004**: MUST include the `## Behavior` section with exact text equality to the `## Behavior` section in `src/prompts/check.md`.
+- **CHK-CTX-001**: MUST define the `## Purpose` section to instruct: Provide an evidence-backed compliance audit by running tests and mapping every requirement in the SRS (`%%DOC_PATH%%/REQUIREMENTS.md`) to concrete implementation evidence, so downstream LLM Agents can decide whether coverage work is required and where to apply it.
+- **CHK-CTX-002**: MUST define the `## Scope` section to instruct: In scope: read `%%DOC_PATH%%/REQUIREMENTS.md` (and related docs), run the test suite as evidence, mark ALL requirements as OK/FAIL with proof, and (only when FAILs exist) produce an implementation-only, patch-oriented technical report. Out of scope: any file modification (requirements/code/tests/docs) or applying fixes.
+- **CHK-CTX-003**: MUST define the `## Professional Personas` section to instruct: Act as a Senior System Engineer when analyzing source code and directory structures to understand the system's architecture and logic; Act as a Business Analyst when cross-referencing code findings with `%%DOC_PATH%%/REQUIREMENTS.md` to ensure functional alignment; Act as a Technical Writer when producing the final analysis report or workflow descriptions, ensuring clarity, technical precision, and structured formatting; Act as a QA Auditor when reporting facts, requiring concrete evidence (file paths, line numbers) for every finding; Act as an Expert GitOps Engineer when executing git workflows, especially when creating/removing/managing git worktrees to isolate changes safely.
+- **CHK-CTX-004**: MUST define the `## Behavior` section to instruct: Only analyze the code and test execution and present the results; make no changes; Do NOT create or modify tests in this workflow; Report facts: for each finding include file paths and, when useful, line numbers or short code excerpts; If `.venv/bin/python` exists in the project root, use it for Python executions (e.g., `PYTHONPATH=src .venv/bin/python -m pytest`, `PYTHONPATH=src .venv/bin/python -m <program name>`). Non-Python tooling should use the project's standard commands; Use filesystem/shell tools to read files as needed (read-only only; e.g., `cat`, `sed -n`, `head`, `tail`, `rg`, `less`).
 
 ##### Steps Requirements
-- **CHK-STP-001**: MUST include Step 1 with exact text equality to Step 1 in `src/prompts/check.md`.
-- **CHK-STP-002**: MUST include Step 2 with exact text equality to Step 2 in `src/prompts/check.md`.
-- **CHK-STP-003**: MUST include Step 3 with exact text equality to Step 3 in `src/prompts/check.md`.
+- **CHK-STP-001**: MUST define Step 1 to instruct: CRITICAL: Check `%%DOC_PATH%%/REQUIREMENTS.md`, `%%DOC_PATH%%/WORKFLOW.md` and `%%DOC_PATH%%/REFERENCES.md` file presence.
+- **CHK-STP-002**: MUST define Step 2 to instruct: Run test suite, check requirements coverage and generate Implementation Delta.
+- **CHK-STP-003**: MUST define Step 3 to instruct: Present results and Implementation Delta.
 
 #### 3.3.4 Cover Prompt
 
 ##### Context Requirements
-- **COV-CTX-001**: MUST include the `## Purpose` section with exact text equality to the `## Purpose` section in `src/prompts/cover.md`.
-- **COV-CTX-002**: MUST include the `## Scope` section with exact text equality to the `## Scope` section in `src/prompts/cover.md`.
-- **COV-CTX-003**: MUST include the `## Professional Personas` section with exact text equality to the `## Professional Personas` section in `src/prompts/cover.md`.
-- **COV-CTX-004**: MUST include the `## Behavior` section with exact text equality to the `## Behavior` section in `src/prompts/cover.md`.
+- **COV-CTX-001**: MUST define the `## Purpose` section to instruct: Close coverage gaps by implementing the missing behaviors for uncovered requirement IDs in the existing codebase, so the implementation becomes fully compliant with the current SRS (`%%DOC_PATH%%/REQUIREMENTS.md`) without changing that SRS.
+- **COV-CTX-002**: MUST define the `## Scope` section to instruct: In scope: identify uncovered requirement IDs, implement minimal code changes under %%SRC_PATHS%%, add/adjust tests under %%TEST_PATH%% as needed, run verification, update `%%DOC_PATH%%/WORKFLOW.md` and `%%DOC_PATH%%/REFERENCES.md`, and commit. Out of scope: editing `%%DOC_PATH%%/REQUIREMENTS.md`, introducing new requirements/features, or performing large-scale rewrites (use `/req.implement` for “from scratch” rebuilds).
+- **COV-CTX-003**: MUST define the `## Professional Personas` section to instruct: Act as a QA Automation Engineer when identifying uncovered requirements: you must prove the lack of coverage through code analysis or failing test scenarios; Act as a Business Analyst when mapping requirement IDs from `%%DOC_PATH%%/REQUIREMENTS.md` to observable behaviors; Act as a Senior System Architect when generating the Implementation Delta and planning the coverage strategy: ensure the new implementation integrates perfectly with the existing architecture without regressions; Act as a Senior Software Developer when implementing the missing logic: focus on satisfying the Requirement IDs previously marked as uncovered; Act as a QA Engineer during verification and testing Steps: verify compliance with zero leniency, using mandatory code evidence and strict test-fix loops to ensure stability; Act as an Expert GitOps Engineer when executing git workflows, especially when creating/removing/managing git worktrees to isolate changes safely.
+- **COV-CTX-004**: MUST define the `## Behavior` section to instruct: Do not modify `%%DOC_PATH%%/REQUIREMENTS.md`; Always strictly respect requirements; Use `%%DOC_PATH%%/REQUIREMENTS.md`, `%%DOC_PATH%%/WORKFLOW.md`, and `%%DOC_PATH%%/REFERENCES.md` as the primary technical inputs; keep decisions traceable to requirements and repository evidence; All newly written or edited content MUST be in English. Do NOT translate existing text outside the minimal change surface required by this workflow; if you detect non-English text elsewhere, report it in Evidence instead of rewriting it; Prioritize backward compatibility. Do not introduce breaking changes; preserve existing interfaces, data formats, and features. If maintaining compatibility would require migrations/auto-upgrades conversion logic, report the conflict instead of implementing, and then terminate the execution; If `.venv/bin/python` exists in the project root, use it for Python executions (e.g., `PYTHONPATH=src .venv/bin/python -m pytest`, `PYTHONPATH=src .venv/bin/python -m <program name>`). Non-Python tooling should use the project's standard commands; Use filesystem/shell tools to read/write/delete files as needed (e.g., `cat`, `sed`, `perl -pi`, `printf > file`, `rm -f`, ...). Prefer read-only commands for analysis.
 
 ##### Steps Requirements
-- **COV-STP-001**: MUST include Step 1 with exact text equality to Step 1 in `src/prompts/cover.md`.
-- **COV-STP-002**: MUST include Step 2 with exact text equality to Step 2 in `src/prompts/cover.md`.
-- **COV-STP-003**: MUST include Step 3 with exact text equality to Step 3 in `src/prompts/cover.md`.
-- **COV-STP-004**: MUST include Step 4 with exact text equality to Step 4 in `src/prompts/cover.md`.
-- **COV-STP-005**: MUST include Step 5 with exact text equality to Step 5 in `src/prompts/cover.md`.
-- **COV-STP-006**: MUST include Step 6 with exact text equality to Step 6 in `src/prompts/cover.md`.
-- **COV-STP-007**: MUST include Step 7 with exact text equality to Step 7 in `src/prompts/cover.md`.
-- **COV-STP-008**: MUST include Step 8 with exact text equality to Step 8 in `src/prompts/cover.md`.
-- **COV-STP-009**: MUST include Step 9 with exact text equality to Step 9 in `src/prompts/cover.md`.
-- **COV-STP-010**: MUST include Step 10 with exact text equality to Step 10 in `src/prompts/cover.md`.
+- **COV-STP-001**: MUST define Step 1 to instruct: CRITICAL: Check GIT Status.
+- **COV-STP-002**: MUST define Step 2 to instruct: CRITICAL: Check `%%DOC_PATH%%/REQUIREMENTS.md`, `%%DOC_PATH%%/WORKFLOW.md` and `%%DOC_PATH%%/REFERENCES.md` file presence.
+- **COV-STP-003**: MUST define Step 3 to instruct: CRITICAL: Worktree Generation & Isolation.
+- **COV-STP-004**: MUST define Step 4 to instruct: Check requirements coverage, generate Design Delta and implement the Implementation Delta to cover uncovered requirements.
+- **COV-STP-005**: MUST define Step 5 to instruct: Generate Verification Delta by testing the implementation result and implementing needed bug fixes.
+- **COV-STP-006**: MUST define Step 6 to instruct: Update `%%DOC_PATH%%/WORKFLOW.md` via targeted edits using the canonical WORKFLOW.md contract (same terminology, same schema, same call-trace rules).
+- **COV-STP-007**: MUST define Step 7 to instruct: Update `%%DOC_PATH%%/REFERENCES.md` references file.
+- **COV-STP-008**: MUST define Step 8 to instruct: CRITICAL: Stage & commit.
+- **COV-STP-009**: MUST define Step 9 to instruct: CRITICAL: Merge Conflict Management.
+- **COV-STP-010**: MUST define Step 10 to instruct: Present results.
 
 #### 3.3.5 Create Prompt
 
 ##### Context Requirements
-- **CRT-CTX-001**: MUST include the `## Purpose` section with exact text equality to the `## Purpose` section in `src/prompts/create.md`.
-- **CRT-CTX-002**: MUST include the `## Scope` section with exact text equality to the `## Scope` section in `src/prompts/create.md`.
-- **CRT-CTX-003**: MUST include the `## Professional Personas` section with exact text equality to the `## Professional Personas` section in `src/prompts/create.md`.
-- **CRT-CTX-004**: MUST include the `## Behavior` section with exact text equality to the `## Behavior` section in `src/prompts/create.md`.
+- **CRT-CTX-001**: MUST define the `## Purpose` section to instruct: Bootstrap an SRS (`%%DOC_PATH%%/REQUIREMENTS.md`) from repository evidence so downstream LLM Agents can start SRS-driven work grounded in what the code actually does (requirements → design → implementation → verification), without guessing undocumented behavior.
+- **CRT-CTX-002**: MUST define the `## Scope` section to instruct: In scope: static analysis of source under %%SRC_PATHS%% (and targeted tests only as evidence when needed) to create/update `%%DOC_PATH%%/REQUIREMENTS.md` in English. Out of scope: any changes to source code, tests, `%%DOC_PATH%%/WORKFLOW.md`, or `%%DOC_PATH%%/REFERENCES.md`.
+- **CRT-CTX-003**: MUST define the `## Professional Personas` section to instruct: Act as a Senior Technical Requirements Engineer when analyzing source code to infer behavior: ensure every software requirement generated is atomic, unambiguous, and empirically testable; Act as a Technical Writer when structuring the SRS document `%%DOC_PATH%%/REQUIREMENTS.md`: use RFC 2119 keywords exclusively (MUST, MUST NOT, SHOULD, SHOULD NOT, MAY) and never use "shall"; maintain a clean, hierarchical Markdown structure with a maximum depth of 3 levels; Act as a Business Analyst when verifying the "True State": ensure the draft accurately reflects implemented logic, including limitations or bugs.
+- **CRT-CTX-004**: MUST define the `## Behavior` section to instruct: Write the document in English; Do not perform unrelated edits; If `.venv/bin/python` exists in the project root, use it for Python executions (e.g., `PYTHONPATH=src .venv/bin/python -m pytest`, `PYTHONPATH=src .venv/bin/python -m <program name>`). Non-Python tooling should use the project's standard commands; Use filesystem/shell tools to read/write/delete files as needed (e.g., `cat`, `sed`, `perl -pi`, `printf > file`, `rm -f`, ...), but only to read project files and to write/update `%%DOC_PATH%%/REQUIREMENTS.md`. Avoid in-place edits on any other path. Prefer read-only commands for analysis.
 
 ##### Steps Requirements
-- **CRT-STP-001**: MUST include Step 1 with exact text equality to Step 1 in `src/prompts/create.md`.
-- **CRT-STP-002**: MUST include Step 2 with exact text equality to Step 2 in `src/prompts/create.md`.
-- **CRT-STP-003**: MUST include Step 3 with exact text equality to Step 3 in `src/prompts/create.md`.
+- **CRT-STP-001**: MUST define Step 1 to instruct: Generate the Software Requirements Specification.
+- **CRT-STP-002**: MUST define Step 2 to instruct: Validate the Software Requirements Specification.
+- **CRT-STP-003**: MUST define Step 3 to instruct: Present results.
 
 #### 3.3.6 Fix Prompt
 
 ##### Context Requirements
-- **FIX-CTX-001**: MUST include the `## Purpose` section with exact text equality to the `## Purpose` section in `src/prompts/fix.md`.
-- **FIX-CTX-002**: MUST include the `## Scope` section with exact text equality to the `## Scope` section in `src/prompts/fix.md`.
-- **FIX-CTX-003**: MUST include the `## Professional Personas` section with exact text equality to the `## Professional Personas` section in `src/prompts/fix.md`.
-- **FIX-CTX-004**: MUST include the `## Behavior` section with exact text equality to the `## Behavior` section in `src/prompts/fix.md`.
+- **FIX-CTX-001**: MUST define the `## Purpose` section to instruct: Restore required behavior by diagnosing and fixing a defect while keeping the normative SRS (`%%DOC_PATH%%/REQUIREMENTS.md`) unchanged, so downstream LLM Agents can treat the fix as a semantics-correcting change rather than a requirements change.
+- **FIX-CTX-002**: MUST define the `## Scope` section to instruct: In scope: reproduce/triage the defect with concrete evidence, implement the smallest safe fix under %%SRC_PATHS%%, add regression tests under %%TEST_PATH%% when appropriate, run verification, update `%%DOC_PATH%%/WORKFLOW.md` and `%%DOC_PATH%%/REFERENCES.md`, and commit. Out of scope: editing requirements, adding new features, or refactoring beyond what is necessary to implement the fix safely.
+- **FIX-CTX-003**: MUST define the `## Professional Personas` section to instruct: Act as an Expert Debugger when diagnosing defects: you MUST identify the failure symptom with concrete evidence (failing test, stack trace) before proposing the fix; Act as a Senior Software Developer when implementing a defect fix: apply the smallest safe change that restores required behavior while preserving public interfaces; Act as a Business Analyst when reading `%%DOC_PATH%%/REQUIREMENTS.md` to ensure that fixes or refactors never violate or change existing documented behaviors; Act as a QA Automation Engineer when validating the fix/refactor: ensure that the test suite passes and that no regressions are introduced; Act as an Expert GitOps Engineer when executing git workflows, especially when creating/removing/managing git worktrees to isolate changes safely.
+- **FIX-CTX-004**: MUST define the `## Behavior` section to instruct: Do not modify `%%DOC_PATH%%/REQUIREMENTS.md`; Always strictly respect requirements; Use `%%DOC_PATH%%/REQUIREMENTS.md`, `%%DOC_PATH%%/WORKFLOW.md`, and `%%DOC_PATH%%/REFERENCES.md` as the primary technical inputs; keep decisions traceable to requirements and repository evidence; All newly written or edited content MUST be in English. Do NOT translate existing text outside the minimal change surface required by this workflow; if you detect non-English text elsewhere, report it in Evidence instead of rewriting it; Prioritize backward compatibility. Do not introduce breaking changes; preserve existing interfaces, data formats, and features; If maintaining compatibility would require migrations/auto-upgrades conversion logic, report the conflict instead of implementing, and then terminate the execution; If `.venv/bin/python` exists in the project root, use it for Python executions (e.g., `PYTHONPATH=src .venv/bin/python -m pytest`, `PYTHONPATH=src .venv/bin/python -m <program name>`). Non-Python tooling should use the project's standard commands; Use filesystem/shell tools to read/write/delete files as needed (e.g., `cat`, `sed`, `perl -pi`, `printf > file`, `rm -f`, ...). Prefer read-only commands for analysis.
 
 ##### Steps Requirements
-- **FIX-STP-001**: MUST include Step 1 with exact text equality to Step 1 in `src/prompts/fix.md`.
-- **FIX-STP-002**: MUST include Step 2 with exact text equality to Step 2 in `src/prompts/fix.md`.
-- **FIX-STP-003**: MUST include Step 3 with exact text equality to Step 3 in `src/prompts/fix.md`.
-- **FIX-STP-004**: MUST include Step 4 with exact text equality to Step 4 in `src/prompts/fix.md`.
-- **FIX-STP-005**: MUST include Step 5 with exact text equality to Step 5 in `src/prompts/fix.md`.
-- **FIX-STP-006**: MUST include Step 6 with exact text equality to Step 6 in `src/prompts/fix.md`.
-- **FIX-STP-007**: MUST include Step 7 with exact text equality to Step 7 in `src/prompts/fix.md`.
-- **FIX-STP-008**: MUST include Step 8 with exact text equality to Step 8 in `src/prompts/fix.md`.
-- **FIX-STP-009**: MUST include Step 9 with exact text equality to Step 9 in `src/prompts/fix.md`.
-- **FIX-STP-010**: MUST include Step 10 with exact text equality to Step 10 in `src/prompts/fix.md`.
+- **FIX-STP-001**: MUST define Step 1 to instruct: CRITICAL: Check GIT Status.
+- **FIX-STP-002**: MUST define Step 2 to instruct: CRITICAL: Check `%%DOC_PATH%%/REQUIREMENTS.md`, `%%DOC_PATH%%/WORKFLOW.md` and `%%DOC_PATH%%/REFERENCES.md` file presence.
+- **FIX-STP-003**: MUST define Step 3 to instruct: CRITICAL: Worktree Generation & Isolation.
+- **FIX-STP-004**: MUST define Step 4 to instruct: Read requirements, generate Design Delta and implement the Implementation Delta to fix the defect.
+- **FIX-STP-005**: MUST define Step 5 to instruct: Generate Verification Delta by testing the implementation result and implementing needed bug fixes.
+- **FIX-STP-006**: MUST define Step 6 to instruct: Update `%%DOC_PATH%%/WORKFLOW.md` via targeted edits using the canonical WORKFLOW.md contract (same terminology, same schema, same call-trace rules).
+- **FIX-STP-007**: MUST define Step 7 to instruct: Update `%%DOC_PATH%%/REFERENCES.md` references file.
+- **FIX-STP-008**: MUST define Step 8 to instruct: CRITICAL: Stage & commit.
+- **FIX-STP-009**: MUST define Step 9 to instruct: CRITICAL: Merge Conflict Management.
+- **FIX-STP-010**: MUST define Step 10 to instruct: Present results.
 
 #### 3.3.7 Implement Prompt
 
 ##### Context Requirements
-- **IMP-CTX-001**: MUST include the `## Purpose` section with exact text equality to the `## Purpose` section in `src/prompts/implement.md`.
-- **IMP-CTX-002**: MUST include the `## Scope` section with exact text equality to the `## Scope` section in `src/prompts/implement.md`.
-- **IMP-CTX-003**: MUST include the `## Professional Personas` section with exact text equality to the `## Professional Personas` section in `src/prompts/implement.md`.
-- **IMP-CTX-004**: MUST include the `## Behavior` section with exact text equality to the `## Behavior` section in `src/prompts/implement.md`.
+- **IMP-CTX-001**: MUST define the `## Purpose` section to instruct: Produce a working implementation from the normative SRS (`%%DOC_PATH%%/REQUIREMENTS.md`) by building missing functionality end-to-end (including “from scratch” where needed), so the codebase becomes fully compliant with the documented requirement IDs without changing those requirements.
+- **IMP-CTX-002**: MUST define the `## Scope` section to instruct: In scope: read `%%DOC_PATH%%/REQUIREMENTS.md`, implement/introduce source under %%SRC_PATHS%% (including new modules/files), add tests under %%TEST_PATH%%, verify via the test suite, update `%%DOC_PATH%%/WORKFLOW.md` and `%%DOC_PATH%%/REFERENCES.md`, and commit. Out of scope: editing requirements or introducing features not present in the SRS (use `/req.change` or `/req.new` to evolve requirements first).
+- **IMP-CTX-003**: MUST define the `## Professional Personas` section to instruct: Act as a QA Automation Engineer when identifying uncovered requirements: you must prove the lack of coverage through code analysis or failing test scenarios; Act as a Business Analyst when mapping requirement IDs from `%%DOC_PATH%%/REQUIREMENTS.md` to observable behaviors; Act as a Senior System Architect when generating the Implementation Delta and planning the coverage strategy: ensure the new implementation integrates perfectly with the existing architecture without regressions; Act as a Senior Software Developer when implementing the missing logic: focus on satisfying the Requirement IDs previously marked as uncovered; Act as a QA Engineer during verification and testing Steps: verify compliance with zero leniency, using mandatory code evidence and strict test-fix loops to ensure stability; Act as an Expert GitOps Engineer when executing git workflows, especially when creating/removing/managing git worktrees to isolate changes safely.
+- **IMP-CTX-004**: MUST define the `## Behavior` section to instruct: Do not modify `%%DOC_PATH%%/REQUIREMENTS.md`; Always strictly respect requirements; Use `%%DOC_PATH%%/REQUIREMENTS.md`, `%%DOC_PATH%%/WORKFLOW.md`, and `%%DOC_PATH%%/REFERENCES.md` as the primary technical inputs; keep decisions traceable to requirements and repository evidence; All newly written or edited content MUST be in English. Do NOT translate existing text outside the minimal change surface required by this workflow; if you detect non-English text elsewhere, report it in Evidence instead of rewriting it; Prioritize backward compatibility. Do not introduce breaking changes; preserve existing interfaces, data formats, and features. If maintaining compatibility would require migrations/auto-upgrades conversion logic, report the conflict instead of implementing, and then terminate the execution; If `.venv/bin/python` exists in the project root, use it for Python executions (e.g., `PYTHONPATH=src .venv/bin/python -m pytest`, `PYTHONPATH=src .venv/bin/python -m <program name>`). Non-Python tooling should use the project's standard commands; Use filesystem/shell tools to read/write/delete files as needed (e.g., `cat`, `sed`, `perl -pi`, `printf > file`, `rm -f`, ...). Prefer read-only commands for analysis.
 
 ##### Steps Requirements
-- **IMP-STP-001**: MUST include Step 1 with exact text equality to Step 1 in `src/prompts/implement.md`.
-- **IMP-STP-002**: MUST include Step 2 with exact text equality to Step 2 in `src/prompts/implement.md`.
-- **IMP-STP-003**: MUST include Step 3 with exact text equality to Step 3 in `src/prompts/implement.md`.
-- **IMP-STP-004**: MUST include Step 4 with exact text equality to Step 4 in `src/prompts/implement.md`.
-- **IMP-STP-005**: MUST include Step 5 with exact text equality to Step 5 in `src/prompts/implement.md`.
-- **IMP-STP-006**: MUST include Step 6 with exact text equality to Step 6 in `src/prompts/implement.md`.
-- **IMP-STP-007**: MUST include Step 7 with exact text equality to Step 7 in `src/prompts/implement.md`.
-- **IMP-STP-008**: MUST include Step 8 with exact text equality to Step 8 in `src/prompts/implement.md`.
-- **IMP-STP-009**: MUST include Step 9 with exact text equality to Step 9 in `src/prompts/implement.md`.
-- **IMP-STP-010**: MUST include Step 10 with exact text equality to Step 10 in `src/prompts/implement.md`.
+- **IMP-STP-001**: MUST define Step 1 to instruct: CRITICAL: Check GIT Status.
+- **IMP-STP-002**: MUST define Step 2 to instruct: CRITICAL: Worktree Generation & Isolation.
+- **IMP-STP-003**: MUST define Step 3 to instruct: Read requirements, generate Design Delta and implement the Implementation Delta to cover all requirements.
+- **IMP-STP-004**: MUST define Step 4 to instruct: Generate Verification Delta by testing the implementation result and implementing needed bug fixes.
+- **IMP-STP-005**: MUST define Step 5 to instruct: Static analysis: build the runtime model from %%SRC_PATHS%%.
+- **IMP-STP-006**: MUST define Step 6 to instruct: Generate and overwrite `%%DOC_PATH%%/WORKFLOW.md` document.
+- **IMP-STP-007**: MUST define Step 7 to instruct: Update `%%DOC_PATH%%/REFERENCES.md` references file.
+- **IMP-STP-008**: MUST define Step 8 to instruct: CRITICAL: Stage & commit.
+- **IMP-STP-009**: MUST define Step 9 to instruct: CRITICAL: Merge Conflict Management.
+- **IMP-STP-010**: MUST define Step 10 to instruct: Present results.
 
 #### 3.3.8 New Prompt
 
 ##### Context Requirements
-- **NEW-CTX-001**: MUST include the `## Purpose` section with exact text equality to the `## Purpose` section in `src/prompts/new.md`.
-- **NEW-CTX-002**: MUST include the `## Scope` section with exact text equality to the `## Scope` section in `src/prompts/new.md`.
-- **NEW-CTX-003**: MUST include the `## Professional Personas` section with exact text equality to the `## Professional Personas` section in `src/prompts/new.md`.
-- **NEW-CTX-004**: MUST include the `## Behavior` section with exact text equality to the `## Behavior` section in `src/prompts/new.md`.
+- **NEW-CTX-001**: MUST define the `## Purpose` section to instruct: Introduce a new, backwards-compatible capability by first extending the normative SRS (`%%DOC_PATH%%/REQUIREMENTS.md`) with the new requirement(s), then implementing and verifying the corresponding code/test changes with strict traceability to requirement IDs so downstream LLM Agents can reason over the new feature deterministically.
+- **NEW-CTX-002**: MUST define the `## Scope` section to instruct: In scope: patch-style updates to `%%DOC_PATH%%/REQUIREMENTS.md` that add the new feature requirements, an implementation plan, code/test changes under %%SRC_PATHS%% and %%TEST_PATH%%, verification via the test suite, updates to `%%DOC_PATH%%/WORKFLOW.md` and `%%DOC_PATH%%/REFERENCES.md`, and a clean git commit. Out of scope: breaking changes, migrations/compatibility conversions, or any feature work not captured as explicit requirements (report conflicts and terminate per prompt rules).
+- **NEW-CTX-003**: MUST define the `## Professional Personas` section to instruct: Act as a Business Analyst when generating Requirement Delta and during requirements analysis and update: your priority is requirement integrity, atomic description of changes, and ensuring no logical conflicts in `%%DOC_PATH%%/REQUIREMENTS.md`; Act as a Senior System Architect when generating the Implementation Delta: translate requirements into a robust, modular, and non-breaking technical implementation plan; Act as a Senior Software Developer during implementation: implement the planned changes with high-quality, idiomatic code that maps strictly to Requirement IDs; Act as a QA Engineer during verification and testing: verify compliance with zero leniency, using mandatory code evidence and strict test-fix loops to ensure stability; Act as an Expert GitOps Engineer when executing git workflows, especially when creating/removing/managing git worktrees to isolate changes safely.
+- **NEW-CTX-004**: MUST define the `## Behavior` section to instruct: Propose changes based only on the requirements, user request, and repository evidence. Every proposed code change MUST reference at least one requirement ID or explicit text in user request; Use `%%DOC_PATH%%/REQUIREMENTS.md`, `%%DOC_PATH%%/WORKFLOW.md`, and `%%DOC_PATH%%/REFERENCES.md` as the primary technical inputs; keep decisions traceable to requirements and repository evidence; All newly written or edited content MUST be in English. Do NOT translate existing text outside the minimal change surface required by this workflow; if you detect non-English text elsewhere, report it in Evidence instead of rewriting it; Prioritize backward compatibility. Do not introduce breaking changes; preserve existing interfaces, data formats, and features; If maintaining compatibility would require migrations/auto-upgrades conversion logic, report the conflict instead of implementing, and then terminate the execution; If `.venv/bin/python` exists in the project root, use it for Python executions (e.g., `PYTHONPATH=src .venv/bin/python -m pytest`, `PYTHONPATH=src .venv/bin/python -m <program name>`). Non-Python tooling should use the project's standard commands; Use filesystem/shell tools to read/write/delete files as needed (e.g., `cat`, `sed`, `perl -pi`, `printf > file`, `rm -f`, ...). Prefer read-only commands for analysis.
 
 ##### Steps Requirements
-- **NEW-STP-001**: MUST include Step 1 with exact text equality to Step 1 in `src/prompts/new.md`.
-- **NEW-STP-002**: MUST include Step 2 with exact text equality to Step 2 in `src/prompts/new.md`.
-- **NEW-STP-003**: MUST include Step 3 with exact text equality to Step 3 in `src/prompts/new.md`.
-- **NEW-STP-004**: MUST include Step 4 with exact text equality to Step 4 in `src/prompts/new.md`.
-- **NEW-STP-005**: MUST include Step 5 with exact text equality to Step 5 in `src/prompts/new.md`.
-- **NEW-STP-006**: MUST include Step 6 with exact text equality to Step 6 in `src/prompts/new.md`.
-- **NEW-STP-007**: MUST include Step 7 with exact text equality to Step 7 in `src/prompts/new.md`.
-- **NEW-STP-008**: MUST include Step 8 with exact text equality to Step 8 in `src/prompts/new.md`.
-- **NEW-STP-009**: MUST include Step 9 with exact text equality to Step 9 in `src/prompts/new.md`.
-- **NEW-STP-010**: MUST include Step 10 with exact text equality to Step 10 in `src/prompts/new.md`.
-- **NEW-STP-011**: MUST include Step 11 with exact text equality to Step 11 in `src/prompts/new.md`.
+- **NEW-STP-001**: MUST define Step 1 to instruct: CRITICAL: Check GIT Status.
+- **NEW-STP-002**: MUST define Step 2 to instruct: CRITICAL: Check `%%DOC_PATH%%/REQUIREMENTS.md`, `%%DOC_PATH%%/WORKFLOW.md` and `%%DOC_PATH%%/REFERENCES.md` file presence.
+- **NEW-STP-003**: MUST define Step 3 to instruct: CRITICAL: Worktree Generation & Isolation.
+- **NEW-STP-004**: MUST define Step 4 to instruct: Generate and apply the Requirement Delta to cover new requirements.
+- **NEW-STP-005**: MUST define Step 5 to instruct: Generate Design Delta and implement the Implementation Delta according to the Requirement Delta.
+- **NEW-STP-006**: MUST define Step 6 to instruct: Generate Verification Delta by testing the implementation result and implementing needed bug fixes.
+- **NEW-STP-007**: MUST define Step 7 to instruct: Update `%%DOC_PATH%%/WORKFLOW.md` via targeted edits using the canonical WORKFLOW.md contract (same terminology, same schema, same call-trace rules).
+- **NEW-STP-008**: MUST define Step 8 to instruct: Update `%%DOC_PATH%%/REFERENCES.md` references file.
+- **NEW-STP-009**: MUST define Step 9 to instruct: CRITICAL: Stage & commit.
+- **NEW-STP-010**: MUST define Step 10 to instruct: CRITICAL: Merge Conflict Management.
+- **NEW-STP-011**: MUST define Step 11 to instruct: Present results.
 
 #### 3.3.9 ReCreate Prompt
 
 ##### Context Requirements
-- **RCR-CTX-001**: MUST include the `## Purpose` section with exact text equality to the `## Purpose` section in `src/prompts/recreate.md`.
-- **RCR-CTX-002**: MUST include the `## Scope` section with exact text equality to the `## Scope` section in `src/prompts/recreate.md`.
-- **RCR-CTX-003**: MUST include the `## Professional Personas` section with exact text equality to the `## Professional Personas` section in `src/prompts/recreate.md`.
-- **RCR-CTX-004**: MUST include the `## Behavior` section with exact text equality to the `## Behavior` section in `src/prompts/recreate.md`.
+- **RCR-CTX-001**: MUST define the `## Purpose` section to instruct: Rebuild and reorganize the SRS (`%%DOC_PATH%%/REQUIREMENTS.md`) from repository evidence while preserving all existing requirement IDs so downstream LLM Agents can rely on a clean structure and stable traceability when driving subsequent design/implementation work.
+- **RCR-CTX-002**: MUST define the `## Scope` section to instruct: In scope: static analysis of source under %%SRC_PATHS%% (and targeted tests only as evidence when needed) to rewrite `%%DOC_PATH%%/REQUIREMENTS.md` in English, allowing reorganization and additions, but forbidding any renumbering/renaming of existing requirement IDs. Out of scope: any changes to source code, tests, `%%DOC_PATH%%/WORKFLOW.md`, or `%%DOC_PATH%%/REFERENCES.md`.
+- **RCR-CTX-003**: MUST define the `## Professional Personas` section to instruct: Act as a Senior Technical Requirements Engineer when analyzing source code to infer behavior: ensure every software requirement generated is atomic, unambiguous, and empirically testable; Act as a Technical Writer when structuring the SRS document `%%DOC_PATH%%/REQUIREMENTS.md`: use RFC 2119 keywords exclusively (MUST, MUST NOT, SHOULD, SHOULD NOT, MAY) and never use "shall"; maintain a clean, hierarchical Markdown structure with a maximum depth of 3 levels; Act as a Business Analyst when verifying the "True State": ensure the draft accurately reflects implemented logic, including limitations or bugs; Act as an Expert GitOps Engineer when executing git workflows, especially when creating/removing/managing git worktrees to isolate changes safely.
+- **RCR-CTX-004**: MUST define the `## Behavior` section to instruct: Write the document in English; Do not perform unrelated edits; If `.venv/bin/python` exists in the project root, use it for Python executions (e.g., `PYTHONPATH=src .venv/bin/python -m pytest`, `PYTHONPATH=src .venv/bin/python -m <program name>`). Non-Python tooling should use the project's standard commands; Use filesystem/shell tools to read/write/delete files as needed (e.g., `cat`, `sed`, `perl -pi`, `printf > file`, `rm -f`, ...), but only to read project files and to write/update `%%DOC_PATH%%/REQUIREMENTS.md`. Avoid in-place edits on any other path. Prefer read-only commands for analysis.
 
 ##### Steps Requirements
-- **RCR-STP-001**: MUST include Step 1 with exact text equality to Step 1 in `src/prompts/recreate.md`.
-- **RCR-STP-002**: MUST include Step 2 with exact text equality to Step 2 in `src/prompts/recreate.md`.
-- **RCR-STP-003**: MUST include Step 3 with exact text equality to Step 3 in `src/prompts/recreate.md`.
-- **RCR-STP-004**: MUST include Step 4 with exact text equality to Step 4 in `src/prompts/recreate.md`.
-- **RCR-STP-005**: MUST include Step 5 with exact text equality to Step 5 in `src/prompts/recreate.md`.
-- **RCR-STP-006**: MUST include Step 6 with exact text equality to Step 6 in `src/prompts/recreate.md`.
-- **RCR-STP-007**: MUST include Step 7 with exact text equality to Step 7 in `src/prompts/recreate.md`.
-- **RCR-STP-008**: MUST include Step 8 with exact text equality to Step 8 in `src/prompts/recreate.md`.
+- **RCR-STP-001**: MUST define Step 1 to instruct: CRITICAL: Check GIT Status.
+- **RCR-STP-002**: MUST define Step 2 to instruct: CRITICAL: Check `%%DOC_PATH%%/REQUIREMENTS.md`, `%%DOC_PATH%%/WORKFLOW.md` and `%%DOC_PATH%%/REFERENCES.md` file presence.
+- **RCR-STP-003**: MUST define Step 3 to instruct: CRITICAL: Worktree Generation & Isolation.
+- **RCR-STP-004**: MUST define Step 4 to instruct: Generate the Software Requirements Specification.
+- **RCR-STP-005**: MUST define Step 5 to instruct: Validate the Software Requirements Specification.
+- **RCR-STP-006**: MUST define Step 6 to instruct: CRITICAL: Stage & commit.
+- **RCR-STP-007**: MUST define Step 7 to instruct: CRITICAL: Merge Conflict Management.
+- **RCR-STP-008**: MUST define Step 8 to instruct: Present results.
 
 #### 3.3.10 Refactor Prompt
 
 ##### Context Requirements
-- **RFR-CTX-001**: MUST include the `## Purpose` section with exact text equality to the `## Purpose` section in `src/prompts/refactor.md`.
-- **RFR-CTX-002**: MUST include the `## Scope` section with exact text equality to the `## Scope` section in `src/prompts/refactor.md`.
-- **RFR-CTX-003**: MUST include the `## Professional Personas` section with exact text equality to the `## Professional Personas` section in `src/prompts/refactor.md`.
-- **RFR-CTX-004**: MUST include the `## Behavior` section with exact text equality to the `## Behavior` section in `src/prompts/refactor.md`.
+- **RFR-CTX-001**: MUST define the `## Purpose` section to instruct: Improve maintainability, structure, and/or performance while strictly preserving externally observable behavior and keeping the normative SRS (`%%DOC_PATH%%/REQUIREMENTS.md`) unchanged, so downstream LLM Agents can treat the refactor as a semantics-preserving transformation.
+- **RFR-CTX-002**: MUST define the `## Scope` section to instruct: In scope: internal refactors under %%SRC_PATHS%% (including private API reshaping) that preserve public interfaces/data formats, optional test adjustments only when objectively incorrect, verification via the test suite, updates to `%%DOC_PATH%%/WORKFLOW.md` and `%%DOC_PATH%%/REFERENCES.md`, and a clean git commit. Out of scope: editing requirements, introducing new features, or making intentional behavioral changes (use `/req.change` or `/req.new`).
+- **RFR-CTX-003**: MUST define the `## Professional Personas` section to instruct: Act as a Senior Software Developer when refactoring: prioritize clean internal logic and performance while strictly preserving public interfaces and backward compatibility; Act as a Business Analyst when reading `%%DOC_PATH%%/REQUIREMENTS.md` to ensure that fixes or refactors never violate or change existing documented behaviors; Act as a QA Automation Engineer when validating the fix/refactor: ensure that the test suite passes and that no regressions are introduced; Act as an Expert Debugger only if tests fail or a defect emerges during refactor; Act as an Expert GitOps Engineer when executing git workflows, especially when creating/removing/managing git worktrees to isolate changes safely.
+- **RFR-CTX-004**: MUST define the `## Behavior` section to instruct: Always strictly respect requirements; Use `%%DOC_PATH%%/REQUIREMENTS.md`, `%%DOC_PATH%%/WORKFLOW.md`, and `%%DOC_PATH%%/REFERENCES.md` as the primary technical inputs; keep decisions traceable to requirements and repository evidence; All newly written or edited content MUST be in English. Do NOT translate existing text outside the minimal change surface required by this workflow; if you detect non-English text elsewhere, report it in Evidence instead of rewriting it; Prioritize clean implementation of internal logic. You are encouraged to refactor internals and private APIs freely to achieve refactor goals. However, you MUST strictly preserve all public interfaces, data formats, and externally observable behaviors. Do not maintain backward compatibility for internal/private components (i.e., remove legacy internal code), but ensure strict backward compatibility for the public API; If `.venv/bin/python` exists in the project root, use it for Python executions (e.g., `PYTHONPATH=src .venv/bin/python -m pytest`, `PYTHONPATH=src .venv/bin/python -m <program name>`). Non-Python tooling should use the project's standard commands; Use filesystem/shell tools to read/write/delete files as needed (e.g., `cat`, `sed`, `perl -pi`, `printf > file`, `rm -f`, ...). Prefer read-only commands for analysis.
 
 ##### Steps Requirements
-- **RFR-STP-001**: MUST include Step 1 with exact text equality to Step 1 in `src/prompts/refactor.md`.
-- **RFR-STP-002**: MUST include Step 2 with exact text equality to Step 2 in `src/prompts/refactor.md`.
-- **RFR-STP-003**: MUST include Step 3 with exact text equality to Step 3 in `src/prompts/refactor.md`.
-- **RFR-STP-004**: MUST include Step 4 with exact text equality to Step 4 in `src/prompts/refactor.md`.
-- **RFR-STP-005**: MUST include Step 5 with exact text equality to Step 5 in `src/prompts/refactor.md`.
-- **RFR-STP-006**: MUST include Step 6 with exact text equality to Step 6 in `src/prompts/refactor.md`.
-- **RFR-STP-007**: MUST include Step 7 with exact text equality to Step 7 in `src/prompts/refactor.md`.
-- **RFR-STP-008**: MUST include Step 8 with exact text equality to Step 8 in `src/prompts/refactor.md`.
-- **RFR-STP-009**: MUST include Step 9 with exact text equality to Step 9 in `src/prompts/refactor.md`.
-- **RFR-STP-010**: MUST include Step 10 with exact text equality to Step 10 in `src/prompts/refactor.md`.
+- **RFR-STP-001**: MUST define Step 1 to instruct: CRITICAL: Check GIT Status.
+- **RFR-STP-002**: MUST define Step 2 to instruct: CRITICAL: Check `%%DOC_PATH%%/REQUIREMENTS.md`, `%%DOC_PATH%%/WORKFLOW.md` and `%%DOC_PATH%%/REFERENCES.md` file presence.
+- **RFR-STP-003**: MUST define Step 3 to instruct: CRITICAL: Worktree Generation & Isolation.
+- **RFR-STP-004**: MUST define Step 4 to instruct: Generate Design Delta and implement the Implementation Delta to implement the refactor.
+- **RFR-STP-005**: MUST define Step 5 to instruct: Generate Verification Delta by testing the implementation result and implementing needed bug fixes.
+- **RFR-STP-006**: MUST define Step 6 to instruct: Update `%%DOC_PATH%%/WORKFLOW.md` via targeted edits using the canonical WORKFLOW.md contract (same terminology, same schema, same call-trace rules).
+- **RFR-STP-007**: MUST define Step 7 to instruct: Update `%%DOC_PATH%%/REFERENCES.md` references file.
+- **RFR-STP-008**: MUST define Step 8 to instruct: CRITICAL: Stage & commit.
+- **RFR-STP-009**: MUST define Step 9 to instruct: CRITICAL: Merge Conflict Management.
+- **RFR-STP-010**: MUST define Step 10 to instruct: Present results.
 
 #### 3.3.11 References Prompt
 
 ##### Context Requirements
-- **REF-CTX-001**: MUST include the `## Purpose` section with exact text equality to the `## Purpose` section in `src/prompts/references.md`.
-- **REF-CTX-002**: MUST include the `## Scope` section with exact text equality to the `## Scope` section in `src/prompts/references.md`.
-- **REF-CTX-003**: MUST include the `## Professional Personas` section with exact text equality to the `## Professional Personas` section in `src/prompts/references.md`.
-- **REF-CTX-004**: MUST include the `## Behavior` section with exact text equality to the `## Behavior` section in `src/prompts/references.md`.
+- **REF-CTX-001**: MUST define the `## Purpose` section to instruct: Maintain a machine-usable reference index (`%%DOC_PATH%%/REFERENCES.md`) derived from repository evidence so downstream LLM Agents can quickly discover entrypoints, modules, dependencies, and other navigational anchors during SRS-driven work.
+- **REF-CTX-002**: MUST define the `## Scope` section to instruct: In scope: generate/update only `%%DOC_PATH%%/REFERENCES.md` in English (following the prompt’s `req --references` workflow) and commit that doc change. Out of scope: changes to requirements, workflow docs, source code, or tests.
+- **REF-CTX-003**: MUST define the `## Professional Personas` section to instruct: Act as a Senior System Engineer when analyzing source code and directory structures to understand the system's architecture and logic; Act as a Technical Writer when producing the final reference index, ensuring clarity, technical precision, and structured formatting; Act as an Expert GitOps Engineer when executing git workflows, especially when creating/removing/managing git worktrees to isolate changes safely.
+- **REF-CTX-004**: MUST define the `## Behavior` section to instruct: Do not perform unrelated edits; If `.venv/bin/python` exists in the project root, use it for Python executions (e.g., `PYTHONPATH=src .venv/bin/python -m pytest`, `PYTHONPATH=src .venv/bin/python -m <program name>`). Non-Python tooling should use the project's standard commands; Use filesystem/shell tools to read/write/delete files as needed (e.g., `cat`, `sed`, `perl -pi`, `printf > file`, `rm -f`, ...), but only to read project files and to write/update `%%DOC_PATH%%/REFERENCES.md`. Avoid in-place edits on any other path. Prefer read-only commands for analysis.
 
 ##### Steps Requirements
-- **REF-STP-001**: MUST include Step 1 with exact text equality to Step 1 in `src/prompts/references.md`.
-- **REF-STP-002**: MUST include Step 2 with exact text equality to Step 2 in `src/prompts/references.md`.
-- **REF-STP-003**: MUST include Step 3 with exact text equality to Step 3 in `src/prompts/references.md`.
-- **REF-STP-004**: MUST include Step 4 with exact text equality to Step 4 in `src/prompts/references.md`.
-- **REF-STP-005**: MUST include Step 5 with exact text equality to Step 5 in `src/prompts/references.md`.
-- **REF-STP-006**: MUST include Step 6 with exact text equality to Step 6 in `src/prompts/references.md`.
+- **REF-STP-001**: MUST define Step 1 to instruct: CRITICAL: Check GIT Status.
+- **REF-STP-002**: MUST define Step 2 to instruct: CRITICAL: Worktree Generation & Isolation.
+- **REF-STP-003**: MUST define Step 3 to instruct: Update `%%DOC_PATH%%/REFERENCES.md` references file.
+- **REF-STP-004**: MUST define Step 4 to instruct: CRITICAL: Stage & commit.
+- **REF-STP-005**: MUST define Step 5 to instruct: CRITICAL: Merge Conflict Management.
+- **REF-STP-006**: MUST define Step 6 to instruct: Present results.
 
 #### 3.3.12 Renumber Prompt
 
 ##### Context Requirements
-- **RNB-CTX-001**: MUST include the `## Purpose` section with exact text equality to the `## Purpose` section in `src/prompts/renumber.md`.
-- **RNB-CTX-002**: MUST include the `## Scope` section with exact text equality to the `## Scope` section in `src/prompts/renumber.md`.
-- **RNB-CTX-003**: MUST include the `## Professional Personas` section with exact text equality to the `## Professional Personas` section in `src/prompts/renumber.md`.
-- **RNB-CTX-004**: MUST include the `## Behavior` section with exact text equality to the `## Behavior` section in `src/prompts/renumber.md`.
+- **RNB-CTX-001**: MUST define the `## Purpose` section to instruct: Deterministically renumber requirement IDs in `%%DOC_PATH%%/REQUIREMENTS.md` to produce a clean, progressive numbering scheme while preserving the exact requirement text and document order so downstream LLM Agents can rely on stable, sequential identifiers.
+- **RNB-CTX-002**: MUST define the `## Scope` section to instruct: In scope: renumbering requirement identifiers in `%%DOC_PATH%%/REQUIREMENTS.md` in document order and updating internal cross-references to those identifiers, without modifying any requirement text, headings, or ordering. Out of scope: any changes to source code, tests, `%%DOC_PATH%%/WORKFLOW.md`, or `%%DOC_PATH%%/REFERENCES.md`.
+- **RNB-CTX-003**: MUST define the `## Professional Personas` section to instruct: Act as a Senior Technical Requirements Engineer when analyzing source code to infer behavior: ensure every software requirement generated is atomic, unambiguous, and empirically testable; Act as a Technical Writer when structuring the SRS document `%%DOC_PATH%%/REQUIREMENTS.md`: use RFC 2119 keywords exclusively (MUST, MUST NOT, SHOULD, SHOULD NOT, MAY) and never use "shall"; maintain a clean, hierarchical Markdown structure with a maximum depth of 3 levels; Act as a Business Analyst when verifying the "True State": ensure the draft accurately reflects implemented logic, including limitations or bugs; Act as an Expert GitOps Engineer when executing git workflows, especially when creating/removing/managing git worktrees to isolate changes safely.
+- **RNB-CTX-004**: MUST define the `## Behavior` section to instruct: Write the document in English; Do not perform unrelated edits; Do NOT change any requirement content or document structure; only change requirement IDs and requirement-ID cross-references; If `.venv/bin/python` exists in the project root, use it for Python executions (e.g., `PYTHONPATH=src .venv/bin/python -m pytest`, `PYTHONPATH=src .venv/bin/python -m <program name>`). Non-Python tooling should use the project's standard commands; Use filesystem/shell tools to read/write/delete files as needed (e.g., `cat`, `sed`, `perl -pi`, `printf > file`, `rm -f`, ...), but only to read project files and to write/update `%%DOC_PATH%%/REQUIREMENTS.md`. Avoid in-place edits on any other path. Prefer read-only commands for analysis.
 
 ##### Steps Requirements
-- **RNB-STP-001**: MUST include Step 1 with exact text equality to Step 1 in `src/prompts/renumber.md`.
-- **RNB-STP-002**: MUST include Step 2 with exact text equality to Step 2 in `src/prompts/renumber.md`.
-- **RNB-STP-003**: MUST include Step 3 with exact text equality to Step 3 in `src/prompts/renumber.md`.
-- **RNB-STP-004**: MUST include Step 4 with exact text equality to Step 4 in `src/prompts/renumber.md`.
-- **RNB-STP-005**: MUST include Step 5 with exact text equality to Step 5 in `src/prompts/renumber.md`.
-- **RNB-STP-006**: MUST include Step 6 with exact text equality to Step 6 in `src/prompts/renumber.md`.
-- **RNB-STP-007**: MUST include Step 7 with exact text equality to Step 7 in `src/prompts/renumber.md`.
-- **RNB-STP-008**: MUST include Step 8 with exact text equality to Step 8 in `src/prompts/renumber.md`.
+- **RNB-STP-001**: MUST define Step 1 to instruct: CRITICAL: Check GIT Status.
+- **RNB-STP-002**: MUST define Step 2 to instruct: CRITICAL: Check `%%DOC_PATH%%/REQUIREMENTS.md`, `%%DOC_PATH%%/WORKFLOW.md` and `%%DOC_PATH%%/REFERENCES.md` file presence.
+- **RNB-STP-003**: MUST define Step 3 to instruct: CRITICAL: Worktree Generation & Isolation.
+- **RNB-STP-004**: MUST define Step 4 to instruct: CRITICAL: Renumber requirement IDs in the Software Requirements Specification.
+- **RNB-STP-005**: MUST define Step 5 to instruct: Validate the Software Requirements Specification.
+- **RNB-STP-006**: MUST define Step 6 to instruct: CRITICAL: Stage & commit.
+- **RNB-STP-007**: MUST define Step 7 to instruct: CRITICAL: Merge Conflict Management.
+- **RNB-STP-008**: MUST define Step 8 to instruct: Present results.
 
 #### 3.3.13 Workflow Prompt
 
 ##### Context Requirements
-- **WFL-CTX-001**: MUST include the `## Purpose` section with exact text equality to the `## Purpose` section in `src/prompts/workflow.md`.
-- **WFL-CTX-002**: MUST include the `## Scope` section with exact text equality to the `## Scope` section in `src/prompts/workflow.md`.
-- **WFL-CTX-003**: MUST include the `## Professional Personas` section with exact text equality to the `## Professional Personas` section in `src/prompts/workflow.md`.
-- **WFL-CTX-004**: MUST include the `## Behavior` section with exact text equality to the `## Behavior` section in `src/prompts/workflow.md`.
+- **WFL-CTX-001**: MUST define the `## Purpose` section to instruct: Maintain an LLM-oriented runtime/workflow model (`%%DOC_PATH%%/WORKFLOW.md`) derived from repository evidence so downstream LLM Agents can reason about execution units, communication edges, and internal call-traces during SRS-driven design/implementation.
+- **WFL-CTX-002**: MUST define the `## Scope` section to instruct: In scope: static analysis of source under %%SRC_PATHS%% to generate/overwrite only `%%DOC_PATH%%/WORKFLOW.md` in English only, following the mandated schema, then commit that doc change. Out of scope: changes to requirements, references, source code, or tests.
+- **WFL-CTX-003**: MUST define the `## Professional Personas` section to instruct: Act as a Senior System Engineer when analyzing source code; your primary goal is to trace the execution flow (call stack) across files and modules, identifying exactly how data and control move from one function to another; Act as a Business Analyst when cross-referencing code findings with `%%DOC_PATH%%/REQUIREMENTS.md` to ensure functional alignment; Act as a Technical Writer when producing the final analysis report or workflow descriptions, ensuring clarity, technical precision, and structured formatting; Act as a QA Auditor when reporting facts, requiring concrete evidence (file paths, line numbers) for every finding; Act as an Expert GitOps Engineer when executing git workflows, especially when creating/removing/managing git worktrees to isolate changes safely.
+- **WFL-CTX-004**: MUST define the `## Behavior` section to instruct: Write the `%%DOC_PATH%%/WORKFLOW.md` document in English; Do not perform unrelated edits; If `.venv/bin/python` exists in the project root, use it for Python executions (e.g., `PYTHONPATH=src .venv/bin/python -m pytest`, `PYTHONPATH=src .venv/bin/python -m <program name>`). Non-Python tooling should use the project's standard commands; Use filesystem/shell tools to read/write/delete files as needed (e.g., `cat`, `sed`, `perl -pi`, `printf > file`, `rm -f`, ...), but only to read project files and to write/update `%%DOC_PATH%%/WORKFLOW.md`. Avoid in-place edits on any other path. Prefer read-only commands for analysis.
 
 ##### Steps Requirements
-- **WFL-STP-001**: MUST include Step 1 with exact text equality to Step 1 in `src/prompts/workflow.md`.
-- **WFL-STP-002**: MUST include Step 2 with exact text equality to Step 2 in `src/prompts/workflow.md`.
-- **WFL-STP-003**: MUST include Step 3 with exact text equality to Step 3 in `src/prompts/workflow.md`.
-- **WFL-STP-004**: MUST include Step 4 with exact text equality to Step 4 in `src/prompts/workflow.md`.
-- **WFL-STP-005**: MUST include Step 5 with exact text equality to Step 5 in `src/prompts/workflow.md`.
-- **WFL-STP-006**: MUST include Step 6 with exact text equality to Step 6 in `src/prompts/workflow.md`.
-- **WFL-STP-007**: MUST include Step 7 with exact text equality to Step 7 in `src/prompts/workflow.md`.
+- **WFL-STP-001**: MUST define Step 1 to instruct: CRITICAL: Check GIT Status.
+- **WFL-STP-002**: MUST define Step 2 to instruct: CRITICAL: Worktree Generation & Isolation.
+- **WFL-STP-003**: MUST define Step 3 to instruct: Static analysis: build the runtime model from %%SRC_PATHS%%.
+- **WFL-STP-004**: MUST define Step 4 to instruct: Generate and overwrite `%%DOC_PATH%%/WORKFLOW.md` document.
+- **WFL-STP-005**: MUST define Step 5 to instruct: CRITICAL: Stage & commit.
+- **WFL-STP-006**: MUST define Step 6 to instruct: CRITICAL: Merge Conflict Management.
+- **WFL-STP-007**: MUST define Step 7 to instruct: Present results.
 
 #### 3.3.14 Write Prompt
 
 ##### Context Requirements
-- **WRT-CTX-001**: MUST include the `## Purpose` section with exact text equality to the `## Purpose` section in `src/prompts/write.md`.
-- **WRT-CTX-002**: MUST include the `## Scope` section with exact text equality to the `## Scope` section in `src/prompts/write.md`.
-- **WRT-CTX-003**: MUST include the `## Professional Personas` section with exact text equality to the `## Professional Personas` section in `src/prompts/write.md`.
-- **WRT-CTX-004**: MUST include the `## Behavior` section with exact text equality to the `## Behavior` section in `src/prompts/write.md`.
+- **WRT-CTX-001**: MUST define the `## Purpose` section to instruct: Capture the user's intent as an SRS (`%%DOC_PATH%%/REQUIREMENTS.md`) suitable for automated, SRS-driven development (requirements → design → implementation → verification), so downstream LLM Agents can implement the system without inventing unstated requirements.
+- **WRT-CTX-002**: MUST define the `## Scope` section to instruct: In scope: author/update only `%%DOC_PATH%%/REQUIREMENTS.md` from [User Request](#users-request) in English, using explicit Assumptions for missing details and the canonical template structure. Out of scope: using repository source code as evidence, changing any other project file, generating workflow/references docs, or committing code changes.
+- **WRT-CTX-003**: MUST define the `## Professional Personas` section to instruct: Act as a Senior Technical Requirements Engineer when drafting software requirements: ensure every requirement is atomic, unambiguous, and formatted for maximum testability using RFC 2119 keywords (MUST, MUST NOT, SHOULD, SHOULD NOT, MAY) and never use "shall"; Act as a Technical Writer when structuring the SRS document `%%DOC_PATH%%/REQUIREMENTS.md`: apply a clean, hierarchical Markdown structure (max depth 3) and ensure technical precision, clarity, and adherence to professional documentation standards; Act as a Business Analyst when interpreting project goals: bridge the gap between technical implementation and user needs, ensuring the document provides clear value and aligns with the system's intended purpose; Act as a Senior System Architect when describing components or relationships: ensure the technical descriptions reflect a modular, scalable, and robust architecture consistent with industry best practices.
+- **WRT-CTX-004**: MUST define the `## Behavior` section to instruct: Do not perform unrelated edits; (See "Absolute Rules, Non-Negotiable" for file-operation constraints.).
 
 ##### Steps Requirements
-- **WRT-STP-001**: MUST include Step 1 with exact text equality to Step 1 in `src/prompts/write.md`.
-- **WRT-STP-002**: MUST include Step 2 with exact text equality to Step 2 in `src/prompts/write.md`.
+- **WRT-STP-001**: MUST define Step 1 to instruct: Generate the Software Requirements Specification.
+- **WRT-STP-002**: MUST define Step 2 to instruct: Present results.
 
