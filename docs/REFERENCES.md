@@ -21,6 +21,7 @@
 ## Prompt Behavior Updates
 
 - `src/prompts/readme.md`: Behavior and Step 4 now enforce section-scoped README edits, preserving non-analysis content and existing structure/format when possible.
+- `src/prompts/fix.md`: Behavior and Steps 4-5 now prefer a reproducer-test-first bug-fix flow with constrained fallback to no-test verification only when one-test guideline-compliant reproduction is too costly or infeasible.
 
 ## Requirement Updates
 
