@@ -47,6 +47,7 @@ This repository maintains the prompt set in `src/prompts/` and the documentation
 | `fix` | Fix a defect without changing requirements. | Restores compliance for incorrect behavior while keeping SRS unchanged. |
 | `implement` | Implement source code from requirements. | Builds missing implementation from authoritative SRS without changing requirements. |
 | `new` | Add a new requirement and corresponding implementation. | Appends additive requirement IDs and implements related code/test changes. |
+| `readme` | Align root `README.md` with implementation evidence. | Updates user-facing README usage based on current external interface surfaces. |
 | `recreate` | Reorganize and update SRS from source evidence. | Rewrites SRS structure while preserving existing requirement IDs. |
 | `refactor` | Optimize internals without requirement changes. | Improves maintainability/performance while preserving external behavior. |
 | `references` | Generate `REFERENCES.md` from source code. | Rebuilds reference index for modules, entrypoints, and dependencies. |
