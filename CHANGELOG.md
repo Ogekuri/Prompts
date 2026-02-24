@@ -1,6 +1,6 @@
 # Changelog
 
-## [0.0.3](https://github.com/Ogekuri/Prompts/releases/tag/v0.0.3) - 2026-02-24
+## [0.1.0](https://github.com/Ogekuri/Prompts/releases/tag/v0.1.0) - 2026-02-24
 ### ⛰️  Features
 - add workflow. *(core)*
 - add .place-holder files. *(core)*
@@ -92,6 +92,6 @@
 
 # History
 
-- \[0.0.3\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.0.3
+- \[0.1.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.1.0
 
-[0.0.3]: https://github.com/Ogekuri/Prompts/releases/tag/v0.0.3
+[0.1.0]: https://github.com/Ogekuri/Prompts/releases/tag/v0.1.0
