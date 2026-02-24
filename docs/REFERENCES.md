@@ -21,3 +21,7 @@
 ## Prompt Behavior Updates
 
 - `src/prompts/readme.md`: Behavior and Step 4 now enforce section-scoped README edits, preserving non-analysis content and existing structure/format when possible.
+
+## Requirement Updates
+
+- `docs/REQUIREMENTS.md`: Added `REQ-027` requiring all prompt YAML `usage` values to be generated with a maximum length of 1024 characters.

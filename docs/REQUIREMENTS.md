@@ -153,6 +153,7 @@ Proposed repository structure (max depth 3, depth 4 for `src/`):
   - Evidence-first high-recall directives MAY remain when uncertainty is explicitly downgraded to candidates and never asserted as complete without file-backed proof.
   - Autonomous disambiguation directives MAY remain only when constrained to least-invasive choices anchored to repository evidence and requirement traceability.
   - Tool-gated execution directives MAY require waiting for actual tool responses and exact-string outputs to prevent fabricated results.
+- **REQ-027**: MUST ensure each prompt YAML header `usage` value is generated with length less than or equal to 1024 characters.
 
 ### 3.3 Prompt's Specific Requirements
 

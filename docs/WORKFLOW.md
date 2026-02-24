@@ -13,6 +13,7 @@
 - External Boundaries:
   - Git CLI commands (`git worktree add`, `git checkout`, `git merge`, `git worktree remove`).
   - Filesystem read/write operations over `README.md` (targeted section updates preserving unrelated structure/format when possible), `docs/*.md`, and `src/prompts/*.md`.
+  - Prompt YAML metadata handling by external tooling, including bounded `usage` header values.
 
 ## Communication Edges
 
