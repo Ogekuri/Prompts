@@ -114,7 +114,7 @@ Proposed repository structure (max depth 3, depth 4 for `src/`):
         └── write.md
 ```
 
-### 3.2 Functions
+### 3.2 Common Requirements
 - **REQ-001**: MUST define `analyze.md` to produce a read-only analysis report from available project artifacts.
 - **REQ-002**: MUST define `change.md` to modify requirements and implement corresponding project changes in a single controlled workflow.
 - **REQ-003**: MUST define `check.md` to evaluate requirement compliance and report requirement-level pass or fail outcomes.
@@ -150,3 +150,214 @@ Proposed repository structure (max depth 3, depth 4 for `src/`):
   - Evidence-first high-recall directives MAY remain when uncertainty is explicitly downgraded to candidates and never asserted as complete without file-backed proof.
   - Autonomous disambiguation directives MAY remain only when constrained to least-invasive choices anchored to repository evidence and requirement traceability.
   - Tool-gated execution directives MAY require waiting for actual tool responses and exact-string outputs to prevent fabricated results.
+
+### 3.3 Prompt's Specific Requirements
+
+#### 3.3.1 Analyze Prompt
+
+##### Context Requirements
+- TODO: detail here the requirement that produce the 'Purpose' section creation.
+- TODO: detail here the requirement that produce the 'Scope' section creation.
+- TODO: detail here the requirement that produce the 'Professional Personas' section creation.
+- TODO: detail here the requirement that produce the 'Behavior' section creation.
+
+##### Steps Requirements
+- TODO: detail here the requrement that produce the 'Step 1' on bullet-list.
+- TODO: detail here the requrement that produce the 'Step 2' on bullet-list.
+- TODO: continue detailing all reqirements that produce exacly each step of the prompt.
+
+
+#### 3.3.2 Change Prompt
+
+##### Context Requirements
+- TODO: detail here the requirement that produce the 'Purpose' section creation.
+- TODO: detail here the requirement that produce the 'Scope' section creation.
+- TODO: detail here the requirement that produce the 'Professional Personas' section creation.
+- TODO: detail here the requirement that produce the 'Behavior' section creation.
+
+##### Steps Requirements
+- TODO: detail here the requrement that produce the 'Step 1' on bullet-list.
+- TODO: detail here the requrement that produce the 'Step 2' on bullet-list.
+- TODO: continue detailing all reqirements that produce exacly each step of the prompt.
+
+
+#### 3.3.3 Check Prompt
+
+##### Context Requirements
+- TODO: detail here the requirement that produce the 'Purpose' section creation.
+- TODO: detail here the requirement that produce the 'Scope' section creation.
+- TODO: detail here the requirement that produce the 'Professional Personas' section creation.
+- TODO: detail here the requirement that produce the 'Behavior' section creation.
+
+##### Steps Requirements
+- TODO: detail here the requrement that produce the 'Step 1' on bullet-list.
+- TODO: detail here the requrement that produce the 'Step 2' on bullet-list.
+- TODO: continue detailing all reqirements that produce exacly each step of the prompt.
+
+
+#### 3.3.4 Cover Prompt
+
+##### Context Requirements
+- TODO: detail here the requirement that produce the 'Purpose' section creation.
+- TODO: detail here the requirement that produce the 'Scope' section creation.
+- TODO: detail here the requirement that produce the 'Professional Personas' section creation.
+- TODO: detail here the requirement that produce the 'Behavior' section creation.
+
+##### Steps Requirements
+- TODO: detail here the requrement that produce the 'Step 1' on bullet-list.
+- TODO: detail here the requrement that produce the 'Step 2' on bullet-list.
+- TODO: continue detailing all reqirements that produce exacly each step of the prompt.
+
+
+#### 3.3.5 Create Prompt
+
+##### Context Requirements
+- TODO: detail here the requirement that produce the 'Purpose' section creation.
+- TODO: detail here the requirement that produce the 'Scope' section creation.
+- TODO: detail here the requirement that produce the 'Professional Personas' section creation.
+- TODO: detail here the requirement that produce the 'Behavior' section creation.
+
+##### Steps Requirements
+- TODO: detail here the requrement that produce the 'Step 1' on bullet-list.
+- TODO: detail here the requrement that produce the 'Step 2' on bullet-list.
+- TODO: continue detailing all reqirements that produce exacly each step of the prompt.
+
+
+#### 3.3.6 Fix Prompt
+
+##### Context Requirements
+- TODO: detail here the requirement that produce the 'Purpose' section creation.
+- TODO: detail here the requirement that produce the 'Scope' section creation.
+- TODO: detail here the requirement that produce the 'Professional Personas' section creation.
+- TODO: detail here the requirement that produce the 'Behavior' section creation.
+
+##### Steps Requirements
+- TODO: detail here the requrement that produce the 'Step 1' on bullet-list.
+- TODO: detail here the requrement that produce the 'Step 2' on bullet-list.
+- TODO: continue detailing all reqirements that produce exacly each step of the prompt.
+
+
+#### 3.3.7 Implement Prompt
+
+##### Context Requirements
+- TODO: detail here the requirement that produce the 'Purpose' section creation.
+- TODO: detail here the requirement that produce the 'Scope' section creation.
+- TODO: detail here the requirement that produce the 'Professional Personas' section creation.
+- TODO: detail here the requirement that produce the 'Behavior' section creation.
+
+##### Steps Requirements
+- TODO: detail here the requrement that produce the 'Step 1' on bullet-list.
+- TODO: detail here the requrement that produce the 'Step 2' on bullet-list.
+- TODO: continue detailing all reqirements that produce exacly each step of the prompt.
+
+
+#### 3.3.8 New Prompt
+
+##### Context Requirements
+- TODO: detail here the requirement that produce the 'Purpose' section creation.
+- TODO: detail here the requirement that produce the 'Scope' section creation.
+- TODO: detail here the requirement that produce the 'Professional Personas' section creation.
+- TODO: detail here the requirement that produce the 'Behavior' section creation.
+
+##### Steps Requirements
+- TODO: detail here the requrement that produce the 'Step 1' on bullet-list.
+- TODO: detail here the requrement that produce the 'Step 2' on bullet-list.
+- TODO: continue detailing all reqirements that produce exacly each step of the prompt.
+
+
+#### 3.3.9 ReCreate Prompt
+
+##### Context Requirements
+- TODO: detail here the requirement that produce the 'Purpose' section creation.
+- TODO: detail here the requirement that produce the 'Scope' section creation.
+- TODO: detail here the requirement that produce the 'Professional Personas' section creation.
+- TODO: detail here the requirement that produce the 'Behavior' section creation.
+
+##### Steps Requirements
+- TODO: detail here the requrement that produce the 'Step 1' on bullet-list.
+- TODO: detail here the requrement that produce the 'Step 2' on bullet-list.
+- TODO: continue detailing all reqirements that produce exacly each step of the prompt.
+
+
+#### 3.3.10 Refactor Prompt
+
+##### Context Requirements
+- TODO: detail here the requirement that produce the 'Purpose' section creation.
+- TODO: detail here the requirement that produce the 'Scope' section creation.
+- TODO: detail here the requirement that produce the 'Professional Personas' section creation.
+- TODO: detail here the requirement that produce the 'Behavior' section creation.
+
+##### Steps Requirements
+- TODO: detail here the requrement that produce the 'Step 1' on bullet-list.
+- TODO: detail here the requrement that produce the 'Step 2' on bullet-list.
+- TODO: continue detailing all reqirements that produce exacly each step of the prompt.
+
+
+#### 3.3.11 References Prompt
+
+##### Context Requirements
+- TODO: detail here the requirement that produce the 'Purpose' section creation.
+- TODO: detail here the requirement that produce the 'Scope' section creation.
+- TODO: detail here the requirement that produce the 'Professional Personas' section creation.
+- TODO: detail here the requirement that produce the 'Behavior' section creation.
+
+##### Steps Requirements
+- TODO: detail here the requrement that produce the 'Step 1' on bullet-list.
+- TODO: detail here the requrement that produce the 'Step 2' on bullet-list.
+- TODO: continue detailing all reqirements that produce exacly each step of the prompt.
+
+
+#### 3.3.12 Renumber Prompt
+
+##### Context Requirements
+- TODO: detail here the requirement that produce the 'Purpose' section creation.
+- TODO: detail here the requirement that produce the 'Scope' section creation.
+- TODO: detail here the requirement that produce the 'Professional Personas' section creation.
+- TODO: detail here the requirement that produce the 'Behavior' section creation.
+
+##### Steps Requirements
+- TODO: detail here the requrement that produce the 'Step 1' on bullet-list.
+- TODO: detail here the requrement that produce the 'Step 2' on bullet-list.
+- TODO: continue detailing all reqirements that produce exacly each step of the prompt.
+
+
+##### Context Requirements
+- TODO: detail here the requirement that produce the 'Purpose' section creation.
+- TODO: detail here the requirement that produce the 'Scope' section creation.
+- TODO: detail here the requirement that produce the 'Professional Personas' section creation.
+- TODO: detail here the requirement that produce the 'Behavior' section creation.
+
+##### Steps Requirements
+- TODO: detail here the requrement that produce the 'Step 1' on bullet-list.
+- TODO: detail here the requrement that produce the 'Step 2' on bullet-list.
+- TODO: continue detailing all reqirements that produce exacly each step of the prompt.
+
+
+#### 3.3.13 Workflow Prompt
+
+##### Context Requirements
+- TODO: detail here the requirement that produce the 'Purpose' section creation.
+- TODO: detail here the requirement that produce the 'Scope' section creation.
+- TODO: detail here the requirement that produce the 'Professional Personas' section creation.
+- TODO: detail here the requirement that produce the 'Behavior' section creation.
+
+##### Steps Requirements
+- TODO: detail here the requrement that produce the 'Step 1' on bullet-list.
+- TODO: detail here the requrement that produce the 'Step 2' on bullet-list.
+- TODO: continue detailing all reqirements that produce exacly each step of the prompt.
+
+
+#### 3.3.14 Write Prompt
+
+##### Context Requirements
+- TODO: detail here the requirement that produce the 'Purpose' section creation.
+- TODO: detail here the requirement that produce the 'Scope' section creation.
+- TODO: detail here the requirement that produce the 'Professional Personas' section creation.
+- TODO: detail here the requirement that produce the 'Behavior' section creation.
+
+##### Steps Requirements
+- TODO: detail here the requrement that produce the 'Step 1' on bullet-list.
+- TODO: detail here the requrement that produce the 'Step 2' on bullet-list.
+- TODO: continue detailing all reqirements that produce exacly each step of the prompt.
+
+
