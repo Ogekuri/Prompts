@@ -2,7 +2,7 @@
 description: "Update the requirements and implement the corresponding changes"
 argument-hint: "Description of the requirements changes to implement"
 usage: >
-  Select this prompt if and only if the request requires changing existing requirements/behavior: you must edit/replace/remove existing requirement IDs in %%DOC_PATH%%/REQUIREMENTS.md (not just append), then implement the corresponding code/tests under %%SRC_PATHS%% and %%TEST_PATH%% with verification and traceability, and update %%DOC_PATH%%/WORKFLOW.md and %%DOC_PATH%%/REFERENCES.md. Do NOT select if the SRS must remain unchanged (use /req.fix, /req.refactor, /req.cover, or /req.implement). Do NOT select if the change is strictly additive/backwards-compatible and can be expressed only by appending new requirement IDs (use /req.new). Do NOT select for read-only auditing/triage (use /req.check or /req.analyze) or docs-only maintenance (use /req.workflow or /req.references).
+  Select this prompt if and only if the request requires changing existing requirements/behavior: you must edit/replace/remove existing requirement IDs in %%DOC_PATH%%/REQUIREMENTS.md (not just append), then implement the corresponding code/tests under %%SRC_PATHS%% and %%TEST_PATH%% with verification and traceability, and update %%DOC_PATH%%/WORKFLOW.md and %%DOC_PATH%%/REFERENCES.md. Do NOT select if the SRS must remain unchanged (use /req-fix, /req-refactor, /req-cover, or /req-implement). Do NOT select if the change is strictly additive/backwards-compatible and can be expressed only by appending new requirement IDs (use /req-new). Do NOT select for read-only auditing/triage (use /req-check or /req-analyze) or docs-only maintenance (use /req-workflow or /req-references).
 ---
 
 # Update the requirements and implement the corresponding changes
@@ -11,7 +11,7 @@ usage: >
 Evolve existing system behavior safely by first updating the normative SRS (`%%DOC_PATH%%/REQUIREMENTS.md`) to encode the requested change, then implementing and verifying the corresponding code/test deltas with strict traceability to requirement IDs so downstream LLM Agents can reason over the change deterministically.
 
 ## Scope
-In scope: patch-style edits to `%%DOC_PATH%%/REQUIREMENTS.md`, an implementation plan, code/test changes under %%SRC_PATHS%% and %%TEST_PATH%%, verification via the test suite, and updates to `%%DOC_PATH%%/WORKFLOW.md` and `%%DOC_PATH%%/REFERENCES.md`, ending with a clean git commit. Out of scope: work that keeps requirements unchanged (use `/req.fix`, `/req.refactor`, or `/req.cover`), and any implementation not justified by the updated requirements.
+In scope: patch-style edits to `%%DOC_PATH%%/REQUIREMENTS.md`, an implementation plan, code/test changes under %%SRC_PATHS%% and %%TEST_PATH%%, verification via the test suite, and updates to `%%DOC_PATH%%/WORKFLOW.md` and `%%DOC_PATH%%/REFERENCES.md`, ending with a clean git commit. Out of scope: work that keeps requirements unchanged (use `/req-fix`, `/req-refactor`, or `/req-cover`), and any implementation not justified by the updated requirements.
 
 
 ## Professional Personas
@@ -123,9 +123,9 @@ Create internally a *check-list* for the **Global Roadmap** including all the nu
 1. **CRITICAL**: Check GIT Status
    - Check GIT status. Confirm you are inside a clean git repo by executing `git rev-parse --is-inside-work-tree >/dev/null 2>&1 && test -z "$(git status --porcelain)" && { git symbolic-ref -q HEAD >/dev/null 2>&1 || git rev-parse --verify HEAD >/dev/null 2>&1; } || { printf '%s\n' 'ERROR: Git status unclear!'; }`. If it prints any text containing the word "ERROR", OUTPUT exactly "ERROR: Git status unclear!", and then terminate the execution.
 2. **CRITICAL**: Check `%%DOC_PATH%%/REQUIREMENTS.md`, `%%DOC_PATH%%/WORKFLOW.md` and `%%DOC_PATH%%/REFERENCES.md` file presence
-   - If the `%%DOC_PATH%%/REQUIREMENTS.md` file does NOT exist, OUTPUT exactly "ERROR: File %%DOC_PATH%%/REQUIREMENTS.md does not exist, generate it with the /req.write prompt!", and then terminate the execution.
-   - If the `%%DOC_PATH%%/WORKFLOW.md` file does NOT exist, OUTPUT exactly "ERROR: File %%DOC_PATH%%/WORKFLOW.md does not exist, generate it with the /req.workflow prompt!", and then terminate the execution.
-   - If the `%%DOC_PATH%%/REFERENCES.md` file does NOT exist, OUTPUT exactly "ERROR: File %%DOC_PATH%%/REFERENCES.md does not exist, generate it with the /req.references prompt!", and then terminate the execution.
+   - If the `%%DOC_PATH%%/REQUIREMENTS.md` file does NOT exist, OUTPUT exactly "ERROR: File %%DOC_PATH%%/REQUIREMENTS.md does not exist, generate it with the /req-write prompt!", and then terminate the execution.
+   - If the `%%DOC_PATH%%/WORKFLOW.md` file does NOT exist, OUTPUT exactly "ERROR: File %%DOC_PATH%%/WORKFLOW.md does not exist, generate it with the /req-workflow prompt!", and then terminate the execution.
+   - If the `%%DOC_PATH%%/REFERENCES.md` file does NOT exist, OUTPUT exactly "ERROR: File %%DOC_PATH%%/REFERENCES.md does not exist, generate it with the /req-references prompt!", and then terminate the execution.
 3. **CRITICAL**: Worktree Generation & Isolation
    - Generate a pseudo-random UUID v4 (or an equivalent unique alphanumeric tag) to identify the current operation, and refer to it as <EXECUTION_ID>. If available, use `uuidgen`.
    - Identify the current git branch with `git branch --show-current` and refer to it as <ORIGINAL_BRANCH>.

@@ -2,7 +2,7 @@
 description: "Implement minimal changes to cover uncovered existing requirements"
 argument-hint: "Optional: context to focus coverage work (can be empty)"
 usage: >
-  Select this prompt when specific uncovered requirement IDs already exist (typically identified by /req.check) and the goal is to implement the minimal deltas needed to satisfy those IDs WITHOUT changing %%DOC_PATH%%/REQUIREMENTS.md. Use for targeted gap-closure in an otherwise existing codebase (small/known missing surface), including adding/adjusting tests under %%TEST_PATH%%, verifying, updating %%DOC_PATH%%/WORKFLOW.md and %%DOC_PATH%%/REFERENCES.md, and committing. Do NOT select if you must change or add requirements (use /req.change or /req.new), if the request is primarily a defect fix relative to already-covered requirements (use /req.fix), or if the implementation is largely absent and needs end-to-end build-out from the SRS (use /req.implement).
+  Select this prompt when specific uncovered requirement IDs already exist (typically identified by /req-check) and the goal is to implement the minimal deltas needed to satisfy those IDs WITHOUT changing %%DOC_PATH%%/REQUIREMENTS.md. Use for targeted gap-closure in an otherwise existing codebase (small/known missing surface), including adding/adjusting tests under %%TEST_PATH%%, verifying, updating %%DOC_PATH%%/WORKFLOW.md and %%DOC_PATH%%/REFERENCES.md, and committing. Do NOT select if you must change or add requirements (use /req-change or /req-new), if the request is primarily a defect fix relative to already-covered requirements (use /req-fix), or if the implementation is largely absent and needs end-to-end build-out from the SRS (use /req-implement).
 ---
 
 # Implement minimal changes to cover uncovered existing requirements
@@ -11,7 +11,7 @@ usage: >
 Close coverage gaps by implementing the missing behaviors for uncovered requirement IDs in the existing codebase, so the implementation becomes fully compliant with the current SRS (`%%DOC_PATH%%/REQUIREMENTS.md`) without changing that SRS.
 
 ## Scope
-In scope: identify uncovered requirement IDs, implement minimal code changes under %%SRC_PATHS%%, add/adjust tests under %%TEST_PATH%% as needed, run verification, update `%%DOC_PATH%%/WORKFLOW.md` and `%%DOC_PATH%%/REFERENCES.md`, and commit. Out of scope: editing `%%DOC_PATH%%/REQUIREMENTS.md`, introducing new requirements/features, or performing large-scale rewrites (use `/req.implement` for “from scratch” rebuilds).
+In scope: identify uncovered requirement IDs, implement minimal code changes under %%SRC_PATHS%%, add/adjust tests under %%TEST_PATH%% as needed, run verification, update `%%DOC_PATH%%/WORKFLOW.md` and `%%DOC_PATH%%/REFERENCES.md`, and commit. Out of scope: editing `%%DOC_PATH%%/REQUIREMENTS.md`, introducing new requirements/features, or performing large-scale rewrites (use `/req-implement` for “from scratch” rebuilds).
 
 
 ## Professional Personas
@@ -123,9 +123,9 @@ Create internally a *check-list* for the **Global Roadmap** including all the nu
 1. **CRITICAL**: Check GIT Status
    - Check GIT status. Confirm you are inside a clean git repo by executing `git rev-parse --is-inside-work-tree >/dev/null 2>&1 && test -z "$(git status --porcelain)" && { git symbolic-ref -q HEAD >/dev/null 2>&1 || git rev-parse --verify HEAD >/dev/null 2>&1; } || { printf '%s\n' 'ERROR: Git status unclear!'; }`. If it prints any text containing the word "ERROR", OUTPUT exactly "ERROR: Git status unclear!", and then terminate the execution.
 2. **CRITICAL**: Check `%%DOC_PATH%%/REQUIREMENTS.md`, `%%DOC_PATH%%/WORKFLOW.md` and `%%DOC_PATH%%/REFERENCES.md` file presence
-   - If the `%%DOC_PATH%%/REQUIREMENTS.md` file does NOT exist, OUTPUT exactly "ERROR: File %%DOC_PATH%%/REQUIREMENTS.md does not exist, generate it with the /req.write prompt!", and then terminate the execution.
-   - If the `%%DOC_PATH%%/WORKFLOW.md` file does NOT exist, OUTPUT exactly "ERROR: File %%DOC_PATH%%/WORKFLOW.md does not exist, generate it with the /req.workflow prompt!", and then terminate the execution.
-   - If the `%%DOC_PATH%%/REFERENCES.md` file does NOT exist, OUTPUT exactly "ERROR: File %%DOC_PATH%%/REFERENCES.md does not exist, generate it with the /req.references prompt!", and then terminate the execution.
+   - If the `%%DOC_PATH%%/REQUIREMENTS.md` file does NOT exist, OUTPUT exactly "ERROR: File %%DOC_PATH%%/REQUIREMENTS.md does not exist, generate it with the /req-write prompt!", and then terminate the execution.
+   - If the `%%DOC_PATH%%/WORKFLOW.md` file does NOT exist, OUTPUT exactly "ERROR: File %%DOC_PATH%%/WORKFLOW.md does not exist, generate it with the /req-workflow prompt!", and then terminate the execution.
+   - If the `%%DOC_PATH%%/REFERENCES.md` file does NOT exist, OUTPUT exactly "ERROR: File %%DOC_PATH%%/REFERENCES.md does not exist, generate it with the /req-references prompt!", and then terminate the execution.
 3. **CRITICAL**: Worktree Generation & Isolation
    - Generate a pseudo-random UUID v4 (or an equivalent unique alphanumeric tag) to identify the current operation, and refer to it as <EXECUTION_ID>. If available, use `uuidgen`.
    - Identify the current git branch with `git branch --show-current` and refer to it as <ORIGINAL_BRANCH>.

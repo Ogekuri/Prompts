@@ -2,7 +2,7 @@
 description: "Implement source code from requirements (from scratch)"
 argument-hint: "No arguments utilized by the prompt logic"
 usage: >
-  Select this prompt when %%DOC_PATH%%/REQUIREMENTS.md is already authoritative and stable, but the codebase under %%SRC_PATHS%% is missing large parts of the required functionality (greenfield or major gaps) and you must build an end-to-end implementation (including creating new modules/files and tests under %%TEST_PATH%%) WITHOUT changing requirements. Do NOT select if only a small/known set of requirement IDs is uncovered in an otherwise working codebase (use /req.cover), if you need to modify or add requirements (use /req.change or /req.new), or if the task is a narrow defect fix or refactor (use /req.fix or /req.refactor). Do NOT select for auditing/triage (use /req.check or /req.analyze).
+  Select this prompt when %%DOC_PATH%%/REQUIREMENTS.md is already authoritative and stable, but the codebase under %%SRC_PATHS%% is missing large parts of the required functionality (greenfield or major gaps) and you must build an end-to-end implementation (including creating new modules/files and tests under %%TEST_PATH%%) WITHOUT changing requirements. Do NOT select if only a small/known set of requirement IDs is uncovered in an otherwise working codebase (use /req-cover), if you need to modify or add requirements (use /req-change or /req-new), or if the task is a narrow defect fix or refactor (use /req-fix or /req-refactor). Do NOT select for auditing/triage (use /req-check or /req-analyze).
 ---
 
 # Implement source code from requirements from scratch
@@ -11,7 +11,7 @@ usage: >
 Produce a working implementation from the normative SRS (`%%DOC_PATH%%/REQUIREMENTS.md`) by building missing functionality end-to-end (including “from scratch” where needed), so the codebase becomes fully compliant with the documented requirement IDs without changing those requirements.
 
 ## Scope
-In scope: read `%%DOC_PATH%%/REQUIREMENTS.md`, implement/introduce source under %%SRC_PATHS%% (including new modules/files), add tests under %%TEST_PATH%%, verify via the test suite, update `%%DOC_PATH%%/WORKFLOW.md` and `%%DOC_PATH%%/REFERENCES.md`, and commit. Out of scope: editing requirements or introducing features not present in the SRS (use `/req.change` or `/req.new` to evolve requirements first).
+In scope: read `%%DOC_PATH%%/REQUIREMENTS.md`, implement/introduce source under %%SRC_PATHS%% (including new modules/files), add tests under %%TEST_PATH%%, verify via the test suite, update `%%DOC_PATH%%/WORKFLOW.md` and `%%DOC_PATH%%/REFERENCES.md`, and commit. Out of scope: editing requirements or introducing features not present in the SRS (use `/req-change` or `/req-new` to evolve requirements first).
 
 
 ## Professional Personas
