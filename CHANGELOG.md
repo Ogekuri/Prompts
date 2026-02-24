@@ -1,6 +1,6 @@
 # Changelog
 
-## [0.0.2](https://github.com/Ogekuri/Prompts/releases/tag/v0.0.2) - 2026-02-24
+## [0.0.3](https://github.com/Ogekuri/Prompts/releases/tag/v0.0.3) - 2026-02-24
 ### ⛰️  Features
 - add workflow. *(core)*
 - add .place-holder files. *(core)*
@@ -20,6 +20,9 @@
 - initial commit. *(core)*
 
 ### 🐛  Bug Fixes
+- Fix .g.conf file. *(core)*
+- fix remove branch of worktree. *(core)*
+- update the workflow script. *(core)*
 - req. with req- *(core)*
 - minor fix on src/prompts/change.md. *(core)*
 - update docs/REQUIREMENTS.md. *(core)*
@@ -82,9 +85,13 @@
   - Add CTN-013 and CTN-014 to keep prompt/template governance rules only in docs/REQUIREMENTS.md.
   - Add TST-009 and TST-010 for governance and change-request traceability checks.
 
+### 📚  Documentation
+- add readme prompt to prompt catalog [useReq] *(prompts)*
+  - add `readme` prompt entry under Prompts and Agents\n- describe README alignment behavior from user-visible evidence
+
 
 # History
 
-- \[0.0.2\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.0.2
+- \[0.0.3\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.0.3
 
-[0.0.2]: https://github.com/Ogekuri/Prompts/releases/tag/v0.0.2
+[0.0.3]: https://github.com/Ogekuri/Prompts/releases/tag/v0.0.3
