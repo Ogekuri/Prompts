@@ -156,208 +156,241 @@ Proposed repository structure (max depth 3, depth 4 for `src/`):
 #### 3.3.1 Analyze Prompt
 
 ##### Context Requirements
-- TODO: detail here the requirement that produce the 'Purpose' section creation.
-- TODO: detail here the requirement that produce the 'Scope' section creation.
-- TODO: detail here the requirement that produce the 'Professional Personas' section creation.
-- TODO: detail here the requirement that produce the 'Behavior' section creation.
+- **ANZ-CTX-001**: MUST include the `## Purpose` section with exact text equality to the `## Purpose` section in `src/prompts/analyze.md`.
+- **ANZ-CTX-002**: MUST include the `## Scope` section with exact text equality to the `## Scope` section in `src/prompts/analyze.md`.
+- **ANZ-CTX-003**: MUST include the `## Professional Personas` section with exact text equality to the `## Professional Personas` section in `src/prompts/analyze.md`.
+- **ANZ-CTX-004**: MUST include the `## Behavior` section with exact text equality to the `## Behavior` section in `src/prompts/analyze.md`.
 
 ##### Steps Requirements
-- TODO: detail here the requrement that produce the 'Step 1' on bullet-list.
-- TODO: detail here the requrement that produce the 'Step 2' on bullet-list.
-- TODO: continue detailing all reqirements that produce exacly each step of the prompt.
-
+- **ANZ-STP-001**: MUST include Step 1 with exact text equality to Step 1 in `src/prompts/analyze.md`.
+- **ANZ-STP-002**: MUST include Step 2 with exact text equality to Step 2 in `src/prompts/analyze.md`.
 
 #### 3.3.2 Change Prompt
 
 ##### Context Requirements
-- TODO: detail here the requirement that produce the 'Purpose' section creation.
-- TODO: detail here the requirement that produce the 'Scope' section creation.
-- TODO: detail here the requirement that produce the 'Professional Personas' section creation.
-- TODO: detail here the requirement that produce the 'Behavior' section creation.
+- **CHG-CTX-001**: MUST include the `## Purpose` section with exact text equality to the `## Purpose` section in `src/prompts/change.md`.
+- **CHG-CTX-002**: MUST include the `## Scope` section with exact text equality to the `## Scope` section in `src/prompts/change.md`.
+- **CHG-CTX-003**: MUST include the `## Professional Personas` section with exact text equality to the `## Professional Personas` section in `src/prompts/change.md`.
+- **CHG-CTX-004**: MUST include the `## Behavior` section with exact text equality to the `## Behavior` section in `src/prompts/change.md`.
 
 ##### Steps Requirements
-- TODO: detail here the requrement that produce the 'Step 1' on bullet-list.
-- TODO: detail here the requrement that produce the 'Step 2' on bullet-list.
-- TODO: continue detailing all reqirements that produce exacly each step of the prompt.
-
+- **CHG-STP-001**: MUST include Step 1 with exact text equality to Step 1 in `src/prompts/change.md`.
+- **CHG-STP-002**: MUST include Step 2 with exact text equality to Step 2 in `src/prompts/change.md`.
+- **CHG-STP-003**: MUST include Step 3 with exact text equality to Step 3 in `src/prompts/change.md`.
+- **CHG-STP-004**: MUST include Step 4 with exact text equality to Step 4 in `src/prompts/change.md`.
+- **CHG-STP-005**: MUST include Step 5 with exact text equality to Step 5 in `src/prompts/change.md`.
+- **CHG-STP-006**: MUST include Step 6 with exact text equality to Step 6 in `src/prompts/change.md`.
+- **CHG-STP-007**: MUST include Step 7 with exact text equality to Step 7 in `src/prompts/change.md`.
+- **CHG-STP-008**: MUST include Step 8 with exact text equality to Step 8 in `src/prompts/change.md`.
+- **CHG-STP-009**: MUST include Step 9 with exact text equality to Step 9 in `src/prompts/change.md`.
+- **CHG-STP-010**: MUST include Step 10 with exact text equality to Step 10 in `src/prompts/change.md`.
+- **CHG-STP-011**: MUST include Step 11 with exact text equality to Step 11 in `src/prompts/change.md`.
 
 #### 3.3.3 Check Prompt
 
 ##### Context Requirements
-- TODO: detail here the requirement that produce the 'Purpose' section creation.
-- TODO: detail here the requirement that produce the 'Scope' section creation.
-- TODO: detail here the requirement that produce the 'Professional Personas' section creation.
-- TODO: detail here the requirement that produce the 'Behavior' section creation.
+- **CHK-CTX-001**: MUST include the `## Purpose` section with exact text equality to the `## Purpose` section in `src/prompts/check.md`.
+- **CHK-CTX-002**: MUST include the `## Scope` section with exact text equality to the `## Scope` section in `src/prompts/check.md`.
+- **CHK-CTX-003**: MUST include the `## Professional Personas` section with exact text equality to the `## Professional Personas` section in `src/prompts/check.md`.
+- **CHK-CTX-004**: MUST include the `## Behavior` section with exact text equality to the `## Behavior` section in `src/prompts/check.md`.
 
 ##### Steps Requirements
-- TODO: detail here the requrement that produce the 'Step 1' on bullet-list.
-- TODO: detail here the requrement that produce the 'Step 2' on bullet-list.
-- TODO: continue detailing all reqirements that produce exacly each step of the prompt.
-
+- **CHK-STP-001**: MUST include Step 1 with exact text equality to Step 1 in `src/prompts/check.md`.
+- **CHK-STP-002**: MUST include Step 2 with exact text equality to Step 2 in `src/prompts/check.md`.
+- **CHK-STP-003**: MUST include Step 3 with exact text equality to Step 3 in `src/prompts/check.md`.
 
 #### 3.3.4 Cover Prompt
 
 ##### Context Requirements
-- TODO: detail here the requirement that produce the 'Purpose' section creation.
-- TODO: detail here the requirement that produce the 'Scope' section creation.
-- TODO: detail here the requirement that produce the 'Professional Personas' section creation.
-- TODO: detail here the requirement that produce the 'Behavior' section creation.
+- **COV-CTX-001**: MUST include the `## Purpose` section with exact text equality to the `## Purpose` section in `src/prompts/cover.md`.
+- **COV-CTX-002**: MUST include the `## Scope` section with exact text equality to the `## Scope` section in `src/prompts/cover.md`.
+- **COV-CTX-003**: MUST include the `## Professional Personas` section with exact text equality to the `## Professional Personas` section in `src/prompts/cover.md`.
+- **COV-CTX-004**: MUST include the `## Behavior` section with exact text equality to the `## Behavior` section in `src/prompts/cover.md`.
 
 ##### Steps Requirements
-- TODO: detail here the requrement that produce the 'Step 1' on bullet-list.
-- TODO: detail here the requrement that produce the 'Step 2' on bullet-list.
-- TODO: continue detailing all reqirements that produce exacly each step of the prompt.
-
+- **COV-STP-001**: MUST include Step 1 with exact text equality to Step 1 in `src/prompts/cover.md`.
+- **COV-STP-002**: MUST include Step 2 with exact text equality to Step 2 in `src/prompts/cover.md`.
+- **COV-STP-003**: MUST include Step 3 with exact text equality to Step 3 in `src/prompts/cover.md`.
+- **COV-STP-004**: MUST include Step 4 with exact text equality to Step 4 in `src/prompts/cover.md`.
+- **COV-STP-005**: MUST include Step 5 with exact text equality to Step 5 in `src/prompts/cover.md`.
+- **COV-STP-006**: MUST include Step 6 with exact text equality to Step 6 in `src/prompts/cover.md`.
+- **COV-STP-007**: MUST include Step 7 with exact text equality to Step 7 in `src/prompts/cover.md`.
+- **COV-STP-008**: MUST include Step 8 with exact text equality to Step 8 in `src/prompts/cover.md`.
+- **COV-STP-009**: MUST include Step 9 with exact text equality to Step 9 in `src/prompts/cover.md`.
+- **COV-STP-010**: MUST include Step 10 with exact text equality to Step 10 in `src/prompts/cover.md`.
 
 #### 3.3.5 Create Prompt
 
 ##### Context Requirements
-- TODO: detail here the requirement that produce the 'Purpose' section creation.
-- TODO: detail here the requirement that produce the 'Scope' section creation.
-- TODO: detail here the requirement that produce the 'Professional Personas' section creation.
-- TODO: detail here the requirement that produce the 'Behavior' section creation.
+- **CRT-CTX-001**: MUST include the `## Purpose` section with exact text equality to the `## Purpose` section in `src/prompts/create.md`.
+- **CRT-CTX-002**: MUST include the `## Scope` section with exact text equality to the `## Scope` section in `src/prompts/create.md`.
+- **CRT-CTX-003**: MUST include the `## Professional Personas` section with exact text equality to the `## Professional Personas` section in `src/prompts/create.md`.
+- **CRT-CTX-004**: MUST include the `## Behavior` section with exact text equality to the `## Behavior` section in `src/prompts/create.md`.
 
 ##### Steps Requirements
-- TODO: detail here the requrement that produce the 'Step 1' on bullet-list.
-- TODO: detail here the requrement that produce the 'Step 2' on bullet-list.
-- TODO: continue detailing all reqirements that produce exacly each step of the prompt.
-
+- **CRT-STP-001**: MUST include Step 1 with exact text equality to Step 1 in `src/prompts/create.md`.
+- **CRT-STP-002**: MUST include Step 2 with exact text equality to Step 2 in `src/prompts/create.md`.
+- **CRT-STP-003**: MUST include Step 3 with exact text equality to Step 3 in `src/prompts/create.md`.
 
 #### 3.3.6 Fix Prompt
 
 ##### Context Requirements
-- TODO: detail here the requirement that produce the 'Purpose' section creation.
-- TODO: detail here the requirement that produce the 'Scope' section creation.
-- TODO: detail here the requirement that produce the 'Professional Personas' section creation.
-- TODO: detail here the requirement that produce the 'Behavior' section creation.
+- **FIX-CTX-001**: MUST include the `## Purpose` section with exact text equality to the `## Purpose` section in `src/prompts/fix.md`.
+- **FIX-CTX-002**: MUST include the `## Scope` section with exact text equality to the `## Scope` section in `src/prompts/fix.md`.
+- **FIX-CTX-003**: MUST include the `## Professional Personas` section with exact text equality to the `## Professional Personas` section in `src/prompts/fix.md`.
+- **FIX-CTX-004**: MUST include the `## Behavior` section with exact text equality to the `## Behavior` section in `src/prompts/fix.md`.
 
 ##### Steps Requirements
-- TODO: detail here the requrement that produce the 'Step 1' on bullet-list.
-- TODO: detail here the requrement that produce the 'Step 2' on bullet-list.
-- TODO: continue detailing all reqirements that produce exacly each step of the prompt.
-
+- **FIX-STP-001**: MUST include Step 1 with exact text equality to Step 1 in `src/prompts/fix.md`.
+- **FIX-STP-002**: MUST include Step 2 with exact text equality to Step 2 in `src/prompts/fix.md`.
+- **FIX-STP-003**: MUST include Step 3 with exact text equality to Step 3 in `src/prompts/fix.md`.
+- **FIX-STP-004**: MUST include Step 4 with exact text equality to Step 4 in `src/prompts/fix.md`.
+- **FIX-STP-005**: MUST include Step 5 with exact text equality to Step 5 in `src/prompts/fix.md`.
+- **FIX-STP-006**: MUST include Step 6 with exact text equality to Step 6 in `src/prompts/fix.md`.
+- **FIX-STP-007**: MUST include Step 7 with exact text equality to Step 7 in `src/prompts/fix.md`.
+- **FIX-STP-008**: MUST include Step 8 with exact text equality to Step 8 in `src/prompts/fix.md`.
+- **FIX-STP-009**: MUST include Step 9 with exact text equality to Step 9 in `src/prompts/fix.md`.
+- **FIX-STP-010**: MUST include Step 10 with exact text equality to Step 10 in `src/prompts/fix.md`.
 
 #### 3.3.7 Implement Prompt
 
 ##### Context Requirements
-- TODO: detail here the requirement that produce the 'Purpose' section creation.
-- TODO: detail here the requirement that produce the 'Scope' section creation.
-- TODO: detail here the requirement that produce the 'Professional Personas' section creation.
-- TODO: detail here the requirement that produce the 'Behavior' section creation.
+- **IMP-CTX-001**: MUST include the `## Purpose` section with exact text equality to the `## Purpose` section in `src/prompts/implement.md`.
+- **IMP-CTX-002**: MUST include the `## Scope` section with exact text equality to the `## Scope` section in `src/prompts/implement.md`.
+- **IMP-CTX-003**: MUST include the `## Professional Personas` section with exact text equality to the `## Professional Personas` section in `src/prompts/implement.md`.
+- **IMP-CTX-004**: MUST include the `## Behavior` section with exact text equality to the `## Behavior` section in `src/prompts/implement.md`.
 
 ##### Steps Requirements
-- TODO: detail here the requrement that produce the 'Step 1' on bullet-list.
-- TODO: detail here the requrement that produce the 'Step 2' on bullet-list.
-- TODO: continue detailing all reqirements that produce exacly each step of the prompt.
-
+- **IMP-STP-001**: MUST include Step 1 with exact text equality to Step 1 in `src/prompts/implement.md`.
+- **IMP-STP-002**: MUST include Step 2 with exact text equality to Step 2 in `src/prompts/implement.md`.
+- **IMP-STP-003**: MUST include Step 3 with exact text equality to Step 3 in `src/prompts/implement.md`.
+- **IMP-STP-004**: MUST include Step 4 with exact text equality to Step 4 in `src/prompts/implement.md`.
+- **IMP-STP-005**: MUST include Step 5 with exact text equality to Step 5 in `src/prompts/implement.md`.
+- **IMP-STP-006**: MUST include Step 6 with exact text equality to Step 6 in `src/prompts/implement.md`.
+- **IMP-STP-007**: MUST include Step 7 with exact text equality to Step 7 in `src/prompts/implement.md`.
+- **IMP-STP-008**: MUST include Step 8 with exact text equality to Step 8 in `src/prompts/implement.md`.
+- **IMP-STP-009**: MUST include Step 9 with exact text equality to Step 9 in `src/prompts/implement.md`.
+- **IMP-STP-010**: MUST include Step 10 with exact text equality to Step 10 in `src/prompts/implement.md`.
 
 #### 3.3.8 New Prompt
 
 ##### Context Requirements
-- TODO: detail here the requirement that produce the 'Purpose' section creation.
-- TODO: detail here the requirement that produce the 'Scope' section creation.
-- TODO: detail here the requirement that produce the 'Professional Personas' section creation.
-- TODO: detail here the requirement that produce the 'Behavior' section creation.
+- **NEW-CTX-001**: MUST include the `## Purpose` section with exact text equality to the `## Purpose` section in `src/prompts/new.md`.
+- **NEW-CTX-002**: MUST include the `## Scope` section with exact text equality to the `## Scope` section in `src/prompts/new.md`.
+- **NEW-CTX-003**: MUST include the `## Professional Personas` section with exact text equality to the `## Professional Personas` section in `src/prompts/new.md`.
+- **NEW-CTX-004**: MUST include the `## Behavior` section with exact text equality to the `## Behavior` section in `src/prompts/new.md`.
 
 ##### Steps Requirements
-- TODO: detail here the requrement that produce the 'Step 1' on bullet-list.
-- TODO: detail here the requrement that produce the 'Step 2' on bullet-list.
-- TODO: continue detailing all reqirements that produce exacly each step of the prompt.
-
+- **NEW-STP-001**: MUST include Step 1 with exact text equality to Step 1 in `src/prompts/new.md`.
+- **NEW-STP-002**: MUST include Step 2 with exact text equality to Step 2 in `src/prompts/new.md`.
+- **NEW-STP-003**: MUST include Step 3 with exact text equality to Step 3 in `src/prompts/new.md`.
+- **NEW-STP-004**: MUST include Step 4 with exact text equality to Step 4 in `src/prompts/new.md`.
+- **NEW-STP-005**: MUST include Step 5 with exact text equality to Step 5 in `src/prompts/new.md`.
+- **NEW-STP-006**: MUST include Step 6 with exact text equality to Step 6 in `src/prompts/new.md`.
+- **NEW-STP-007**: MUST include Step 7 with exact text equality to Step 7 in `src/prompts/new.md`.
+- **NEW-STP-008**: MUST include Step 8 with exact text equality to Step 8 in `src/prompts/new.md`.
+- **NEW-STP-009**: MUST include Step 9 with exact text equality to Step 9 in `src/prompts/new.md`.
+- **NEW-STP-010**: MUST include Step 10 with exact text equality to Step 10 in `src/prompts/new.md`.
+- **NEW-STP-011**: MUST include Step 11 with exact text equality to Step 11 in `src/prompts/new.md`.
 
 #### 3.3.9 ReCreate Prompt
 
 ##### Context Requirements
-- TODO: detail here the requirement that produce the 'Purpose' section creation.
-- TODO: detail here the requirement that produce the 'Scope' section creation.
-- TODO: detail here the requirement that produce the 'Professional Personas' section creation.
-- TODO: detail here the requirement that produce the 'Behavior' section creation.
+- **RCR-CTX-001**: MUST include the `## Purpose` section with exact text equality to the `## Purpose` section in `src/prompts/recreate.md`.
+- **RCR-CTX-002**: MUST include the `## Scope` section with exact text equality to the `## Scope` section in `src/prompts/recreate.md`.
+- **RCR-CTX-003**: MUST include the `## Professional Personas` section with exact text equality to the `## Professional Personas` section in `src/prompts/recreate.md`.
+- **RCR-CTX-004**: MUST include the `## Behavior` section with exact text equality to the `## Behavior` section in `src/prompts/recreate.md`.
 
 ##### Steps Requirements
-- TODO: detail here the requrement that produce the 'Step 1' on bullet-list.
-- TODO: detail here the requrement that produce the 'Step 2' on bullet-list.
-- TODO: continue detailing all reqirements that produce exacly each step of the prompt.
-
+- **RCR-STP-001**: MUST include Step 1 with exact text equality to Step 1 in `src/prompts/recreate.md`.
+- **RCR-STP-002**: MUST include Step 2 with exact text equality to Step 2 in `src/prompts/recreate.md`.
+- **RCR-STP-003**: MUST include Step 3 with exact text equality to Step 3 in `src/prompts/recreate.md`.
+- **RCR-STP-004**: MUST include Step 4 with exact text equality to Step 4 in `src/prompts/recreate.md`.
+- **RCR-STP-005**: MUST include Step 5 with exact text equality to Step 5 in `src/prompts/recreate.md`.
+- **RCR-STP-006**: MUST include Step 6 with exact text equality to Step 6 in `src/prompts/recreate.md`.
+- **RCR-STP-007**: MUST include Step 7 with exact text equality to Step 7 in `src/prompts/recreate.md`.
+- **RCR-STP-008**: MUST include Step 8 with exact text equality to Step 8 in `src/prompts/recreate.md`.
 
 #### 3.3.10 Refactor Prompt
 
 ##### Context Requirements
-- TODO: detail here the requirement that produce the 'Purpose' section creation.
-- TODO: detail here the requirement that produce the 'Scope' section creation.
-- TODO: detail here the requirement that produce the 'Professional Personas' section creation.
-- TODO: detail here the requirement that produce the 'Behavior' section creation.
+- **RFR-CTX-001**: MUST include the `## Purpose` section with exact text equality to the `## Purpose` section in `src/prompts/refactor.md`.
+- **RFR-CTX-002**: MUST include the `## Scope` section with exact text equality to the `## Scope` section in `src/prompts/refactor.md`.
+- **RFR-CTX-003**: MUST include the `## Professional Personas` section with exact text equality to the `## Professional Personas` section in `src/prompts/refactor.md`.
+- **RFR-CTX-004**: MUST include the `## Behavior` section with exact text equality to the `## Behavior` section in `src/prompts/refactor.md`.
 
 ##### Steps Requirements
-- TODO: detail here the requrement that produce the 'Step 1' on bullet-list.
-- TODO: detail here the requrement that produce the 'Step 2' on bullet-list.
-- TODO: continue detailing all reqirements that produce exacly each step of the prompt.
-
+- **RFR-STP-001**: MUST include Step 1 with exact text equality to Step 1 in `src/prompts/refactor.md`.
+- **RFR-STP-002**: MUST include Step 2 with exact text equality to Step 2 in `src/prompts/refactor.md`.
+- **RFR-STP-003**: MUST include Step 3 with exact text equality to Step 3 in `src/prompts/refactor.md`.
+- **RFR-STP-004**: MUST include Step 4 with exact text equality to Step 4 in `src/prompts/refactor.md`.
+- **RFR-STP-005**: MUST include Step 5 with exact text equality to Step 5 in `src/prompts/refactor.md`.
+- **RFR-STP-006**: MUST include Step 6 with exact text equality to Step 6 in `src/prompts/refactor.md`.
+- **RFR-STP-007**: MUST include Step 7 with exact text equality to Step 7 in `src/prompts/refactor.md`.
+- **RFR-STP-008**: MUST include Step 8 with exact text equality to Step 8 in `src/prompts/refactor.md`.
+- **RFR-STP-009**: MUST include Step 9 with exact text equality to Step 9 in `src/prompts/refactor.md`.
+- **RFR-STP-010**: MUST include Step 10 with exact text equality to Step 10 in `src/prompts/refactor.md`.
 
 #### 3.3.11 References Prompt
 
 ##### Context Requirements
-- TODO: detail here the requirement that produce the 'Purpose' section creation.
-- TODO: detail here the requirement that produce the 'Scope' section creation.
-- TODO: detail here the requirement that produce the 'Professional Personas' section creation.
-- TODO: detail here the requirement that produce the 'Behavior' section creation.
+- **REF-CTX-001**: MUST include the `## Purpose` section with exact text equality to the `## Purpose` section in `src/prompts/references.md`.
+- **REF-CTX-002**: MUST include the `## Scope` section with exact text equality to the `## Scope` section in `src/prompts/references.md`.
+- **REF-CTX-003**: MUST include the `## Professional Personas` section with exact text equality to the `## Professional Personas` section in `src/prompts/references.md`.
+- **REF-CTX-004**: MUST include the `## Behavior` section with exact text equality to the `## Behavior` section in `src/prompts/references.md`.
 
 ##### Steps Requirements
-- TODO: detail here the requrement that produce the 'Step 1' on bullet-list.
-- TODO: detail here the requrement that produce the 'Step 2' on bullet-list.
-- TODO: continue detailing all reqirements that produce exacly each step of the prompt.
-
+- **REF-STP-001**: MUST include Step 1 with exact text equality to Step 1 in `src/prompts/references.md`.
+- **REF-STP-002**: MUST include Step 2 with exact text equality to Step 2 in `src/prompts/references.md`.
+- **REF-STP-003**: MUST include Step 3 with exact text equality to Step 3 in `src/prompts/references.md`.
+- **REF-STP-004**: MUST include Step 4 with exact text equality to Step 4 in `src/prompts/references.md`.
+- **REF-STP-005**: MUST include Step 5 with exact text equality to Step 5 in `src/prompts/references.md`.
+- **REF-STP-006**: MUST include Step 6 with exact text equality to Step 6 in `src/prompts/references.md`.
 
 #### 3.3.12 Renumber Prompt
 
 ##### Context Requirements
-- TODO: detail here the requirement that produce the 'Purpose' section creation.
-- TODO: detail here the requirement that produce the 'Scope' section creation.
-- TODO: detail here the requirement that produce the 'Professional Personas' section creation.
-- TODO: detail here the requirement that produce the 'Behavior' section creation.
+- **RNB-CTX-001**: MUST include the `## Purpose` section with exact text equality to the `## Purpose` section in `src/prompts/renumber.md`.
+- **RNB-CTX-002**: MUST include the `## Scope` section with exact text equality to the `## Scope` section in `src/prompts/renumber.md`.
+- **RNB-CTX-003**: MUST include the `## Professional Personas` section with exact text equality to the `## Professional Personas` section in `src/prompts/renumber.md`.
+- **RNB-CTX-004**: MUST include the `## Behavior` section with exact text equality to the `## Behavior` section in `src/prompts/renumber.md`.
 
 ##### Steps Requirements
-- TODO: detail here the requrement that produce the 'Step 1' on bullet-list.
-- TODO: detail here the requrement that produce the 'Step 2' on bullet-list.
-- TODO: continue detailing all reqirements that produce exacly each step of the prompt.
-
-
-##### Context Requirements
-- TODO: detail here the requirement that produce the 'Purpose' section creation.
-- TODO: detail here the requirement that produce the 'Scope' section creation.
-- TODO: detail here the requirement that produce the 'Professional Personas' section creation.
-- TODO: detail here the requirement that produce the 'Behavior' section creation.
-
-##### Steps Requirements
-- TODO: detail here the requrement that produce the 'Step 1' on bullet-list.
-- TODO: detail here the requrement that produce the 'Step 2' on bullet-list.
-- TODO: continue detailing all reqirements that produce exacly each step of the prompt.
-
+- **RNB-STP-001**: MUST include Step 1 with exact text equality to Step 1 in `src/prompts/renumber.md`.
+- **RNB-STP-002**: MUST include Step 2 with exact text equality to Step 2 in `src/prompts/renumber.md`.
+- **RNB-STP-003**: MUST include Step 3 with exact text equality to Step 3 in `src/prompts/renumber.md`.
+- **RNB-STP-004**: MUST include Step 4 with exact text equality to Step 4 in `src/prompts/renumber.md`.
+- **RNB-STP-005**: MUST include Step 5 with exact text equality to Step 5 in `src/prompts/renumber.md`.
+- **RNB-STP-006**: MUST include Step 6 with exact text equality to Step 6 in `src/prompts/renumber.md`.
+- **RNB-STP-007**: MUST include Step 7 with exact text equality to Step 7 in `src/prompts/renumber.md`.
+- **RNB-STP-008**: MUST include Step 8 with exact text equality to Step 8 in `src/prompts/renumber.md`.
 
 #### 3.3.13 Workflow Prompt
 
 ##### Context Requirements
-- TODO: detail here the requirement that produce the 'Purpose' section creation.
-- TODO: detail here the requirement that produce the 'Scope' section creation.
-- TODO: detail here the requirement that produce the 'Professional Personas' section creation.
-- TODO: detail here the requirement that produce the 'Behavior' section creation.
+- **WFL-CTX-001**: MUST include the `## Purpose` section with exact text equality to the `## Purpose` section in `src/prompts/workflow.md`.
+- **WFL-CTX-002**: MUST include the `## Scope` section with exact text equality to the `## Scope` section in `src/prompts/workflow.md`.
+- **WFL-CTX-003**: MUST include the `## Professional Personas` section with exact text equality to the `## Professional Personas` section in `src/prompts/workflow.md`.
+- **WFL-CTX-004**: MUST include the `## Behavior` section with exact text equality to the `## Behavior` section in `src/prompts/workflow.md`.
 
 ##### Steps Requirements
-- TODO: detail here the requrement that produce the 'Step 1' on bullet-list.
-- TODO: detail here the requrement that produce the 'Step 2' on bullet-list.
-- TODO: continue detailing all reqirements that produce exacly each step of the prompt.
-
+- **WFL-STP-001**: MUST include Step 1 with exact text equality to Step 1 in `src/prompts/workflow.md`.
+- **WFL-STP-002**: MUST include Step 2 with exact text equality to Step 2 in `src/prompts/workflow.md`.
+- **WFL-STP-003**: MUST include Step 3 with exact text equality to Step 3 in `src/prompts/workflow.md`.
+- **WFL-STP-004**: MUST include Step 4 with exact text equality to Step 4 in `src/prompts/workflow.md`.
+- **WFL-STP-005**: MUST include Step 5 with exact text equality to Step 5 in `src/prompts/workflow.md`.
+- **WFL-STP-006**: MUST include Step 6 with exact text equality to Step 6 in `src/prompts/workflow.md`.
+- **WFL-STP-007**: MUST include Step 7 with exact text equality to Step 7 in `src/prompts/workflow.md`.
 
 #### 3.3.14 Write Prompt
 
 ##### Context Requirements
-- TODO: detail here the requirement that produce the 'Purpose' section creation.
-- TODO: detail here the requirement that produce the 'Scope' section creation.
-- TODO: detail here the requirement that produce the 'Professional Personas' section creation.
-- TODO: detail here the requirement that produce the 'Behavior' section creation.
+- **WRT-CTX-001**: MUST include the `## Purpose` section with exact text equality to the `## Purpose` section in `src/prompts/write.md`.
+- **WRT-CTX-002**: MUST include the `## Scope` section with exact text equality to the `## Scope` section in `src/prompts/write.md`.
+- **WRT-CTX-003**: MUST include the `## Professional Personas` section with exact text equality to the `## Professional Personas` section in `src/prompts/write.md`.
+- **WRT-CTX-004**: MUST include the `## Behavior` section with exact text equality to the `## Behavior` section in `src/prompts/write.md`.
 
 ##### Steps Requirements
-- TODO: detail here the requrement that produce the 'Step 1' on bullet-list.
-- TODO: detail here the requrement that produce the 'Step 2' on bullet-list.
-- TODO: continue detailing all reqirements that produce exacly each step of the prompt.
-
+- **WRT-STP-001**: MUST include Step 1 with exact text equality to Step 1 in `src/prompts/write.md`.
+- **WRT-STP-002**: MUST include Step 2 with exact text equality to Step 2 in `src/prompts/write.md`.
 
