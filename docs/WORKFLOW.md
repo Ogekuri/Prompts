@@ -12,7 +12,7 @@
   - No internal callable symbols are defined under `src/` or `.github/workflows/`; repository artifacts under `src/prompts/` are declarative Markdown workflow definitions.
 - External Boundaries:
   - Git CLI commands (`git worktree add`, `git checkout`, `git merge`, `git worktree remove`).
-  - Filesystem read/write operations over `docs/*.md` and `src/prompts/*.md`.
+  - Filesystem read/write operations over `README.md`, `docs/*.md`, and `src/prompts/*.md`.
 
 ## Communication Edges
 

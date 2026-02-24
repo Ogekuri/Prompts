@@ -14,5 +14,6 @@
 - `src/prompts/recreate.md`: Step 3 (worktree creation) and Step 7 (merge management).
 - `src/prompts/refactor.md`: Step 3 (worktree creation) and Step 9 (merge management).
 - `src/prompts/references.md`: Step 2 (worktree creation) and Step 5 (merge management).
+- `src/prompts/readme.md`: Step 2 (worktree creation) and Step 6 (merge management).
 - `src/prompts/renumber.md`: Step 3 (worktree creation) and Step 7 (merge management).
 - `src/prompts/workflow.md`: Step 2 (worktree creation) and Step 6 (merge management).
