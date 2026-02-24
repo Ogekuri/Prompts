@@ -404,13 +404,13 @@ Proposed repository structure (max depth 3, depth 4 for `src/`):
 - **RDM-CTX-002**: MUST define the `## Purpose` section to instruct: Maintain root `README.md` as the first user-facing guide by documenting only externally visible behavior derived from repository evidence.
 - **RDM-CTX-003**: MUST define the `## Scope` section to instruct: In scope: analyze user-visible implementation deltas under %%SRC_PATHS%% and update only root `README.md`; Out of scope: internal implementation details, requirements/workflow/references regeneration, source-code edits, and tests.
 - **RDM-CTX-004**: MUST define the `## Professional Personas` section to instruct: Act as a Senior System Engineer to locate externally visible behaviors; Act as a Business Analyst to map behavior to user outcomes; Act as a Senior Technical Writer to produce concise user-centric README content; Act as a QA Auditor for evidence-backed claims; Act as an Expert GitOps Engineer for isolated worktree and merge flow.
-- **RDM-CTX-005**: MUST define the `## Behavior` section to instruct: Analyze implementation evidence for user-visible changes (features, CLI flags/parameters, GUI UX, distributed APIs, configuration schema); verify current root `README.md` coverage; update gaps without adding internal logic details; keep all new or edited text in English.
+- **RDM-CTX-005**: MUST define the `## Behavior` section to instruct: Analyze implementation evidence for user-visible changes (features, CLI flags/parameters, GUI UX, distributed APIs, configuration schema); identify the exact root `README.md` sections impacted by analysis before editing; update only those sections; keep non-analysis documentary parts unchanged (headers, versioning, context/scope narratives, personal motivations, related projects, high-level graphics/descriptions); preserve existing structure and formatting when possible; keep all new or edited text in English.
 
 ##### Steps Requirements
 - **RDM-STP-001**: MUST define Step 1 to instruct: CRITICAL: Check GIT Status.
 - **RDM-STP-002**: MUST define Step 2 to instruct: CRITICAL: Worktree Generation & Isolation.
 - **RDM-STP-003**: MUST define Step 3 to instruct: Analyze user-visible implementation surface from %%SRC_PATHS%% and candidate related files.
-- **RDM-STP-004**: MUST define Step 4 to instruct: Validate and update root `README.md` against the detected user-visible implementation state.
+- **RDM-STP-004**: MUST define Step 4 to instruct: Identify exact root `README.md` sections impacted by detected user-visible implementation changes, then update only those sections while preserving unrelated content and existing structure/formatting whenever possible.
 - **RDM-STP-005**: MUST define Step 5 to instruct: CRITICAL: Stage & commit.
 - **RDM-STP-006**: MUST define Step 6 to instruct: CRITICAL: Merge Conflict Management.
 - **RDM-STP-007**: MUST define Step 7 to instruct: Present results.

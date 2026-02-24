@@ -17,3 +17,7 @@
 - `src/prompts/readme.md`: Step 2 (worktree creation) and Step 6 (merge management).
 - `src/prompts/renumber.md`: Step 3 (worktree creation) and Step 7 (merge management).
 - `src/prompts/workflow.md`: Step 2 (worktree creation) and Step 6 (merge management).
+
+## Prompt Behavior Updates
+
+- `src/prompts/readme.md`: Behavior and Step 4 now enforce section-scoped README edits, preserving non-analysis content and existing structure/format when possible.

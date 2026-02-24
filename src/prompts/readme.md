@@ -2,7 +2,7 @@
 description: "Write README.md from user-visible implementation evidence"
 argument-hint: "No arguments utilized by the prompt logic"
 usage: >
-  Select this prompt ONLY for docs-maintenance of root README.md: when user-visible behavior changed and you must align README with current implementation evidence. Analyze externally visible surfaces only (features, CLI parameters, GUI behavior, distributed APIs, configuration schema) and update README accordingly. Do NOT include internal implementation logic. Do NOT select if requirements, workflow, references, source code, or tests must change.
+  Select this prompt ONLY for docs-maintenance of root README.md: when user-visible behavior changed and you must align README with current implementation evidence. Analyze externally visible surfaces only (features, CLI parameters, GUI behavior, distributed APIs, configuration schema), identify affected README sections before editing, and update only those sections while preserving unrelated content/format. Do NOT include internal implementation logic. Do NOT select if requirements, workflow, references, source code, or tests must change.
 ---
 
 # Write README.md from user-visible implementation evidence
@@ -46,7 +46,9 @@ In scope: static analysis of user-visible behavior from %%SRC_PATHS%% and relate
 - Write root `README.md` in English.
 - Do not perform unrelated edits.
 - Analyze user-visible implementation changes, including new features, CLI parameters/options, GUI interactions, distributed APIs, and configuration-file schema updates when present.
-- Validate whether the current root `README.md` is aligned with implementation evidence; update only missing, outdated, or incorrect user-facing content.
+- Validate whether the current root `README.md` is aligned with implementation evidence; identify exact sections to update first, then update only missing, outdated, or incorrect user-facing content in those sections.
+- Keep non-analysis documentary sections unchanged, including document headers, versioning metadata, context/scope descriptions, personal motivations, related projects, and high-level conceptual or graphical descriptions that do not alter interface usage.
+- Preserve existing README structure and formatting patterns (section order, heading hierarchy, bullet/list style, table style) whenever possible.
 - Exclude internal implementation details, internal architecture logic, private symbols, and algorithm internals from `README.md`.
 - If `.venv/bin/python` exists in the project root, use it for Python executions (e.g., `PYTHONPATH=src .venv/bin/python -m pytest`, `PYTHONPATH=src .venv/bin/python -m <program name>`). Non-Python tooling should use the project's standard commands.
 - Use filesystem/shell tools to read/write/delete files as needed (e.g., `cat`, `sed`, `perl -pi`, `printf > file`, `rm -f`, ...), but only to read project files and to write/update root `README.md`. Avoid in-place edits on any other path. Prefer read-only commands for analysis.
@@ -143,10 +145,12 @@ Create internally a *check-list* for the **Global Roadmap** including all the nu
    - Derive a compact "README coverage list" of user-visible behavior that MUST appear in root `README.md`.
 4. Validate and update root `README.md`
    - Read the current root `README.md` and compare it with the README coverage list from Step 3.
-   - Update `README.md` so it reflects the current externally visible behavior and usage flows.
+   - Identify and list the exact `README.md` sections impacted by the detected user-visible implementation changes before editing.
+   - Update only the identified sections so `README.md` reflects the current externally visible behavior and usage flows.
+   - Keep all non-analysis documentary sections unchanged (e.g., headers, versioning, context/scope narratives, motivations, related projects, high-level graphics/descriptions not tied to interface behavior).
    - Keep content focused on user interaction, setup, commands, interfaces, and observable outputs.
    - Do NOT add internal implementation details, internal architecture, private symbol names, or algorithm internals.
-   - Preserve concise structure and onboarding clarity because `README.md` is the first document users read.
+   - Preserve the existing README structure and formatting whenever possible while applying the scoped updates.
 5. **CRITICAL**: Stage & commit
    - Show a summary of changes with `git diff` and `git diff --stat`.
    - Stage changes explicitly (prefer targeted add; avoid `git add -A` if it may include unintended files): `git add <file...>` (ensure to include only `README.md`).
