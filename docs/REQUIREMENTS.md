@@ -180,7 +180,7 @@ Proposed repository structure (max depth 3, depth 4 for `src/`):
 - **CHG-STP-004**: MUST define Step 4 to instruct: Generate and apply the Requirement Delta to change requirements.
 - **CHG-STP-005**: MUST define Step 5 to instruct: Generate Design Delta and implement the Implementation Delta according to the Requirement Delta.
 - **CHG-STP-006**: MUST define Step 6 to instruct: Generate Verification Delta by testing the implementation result and implementing needed bug fixes.
-- **CHG-STP-007**: MUST define Step 7 to instruct: Update `%%DOC_PATH%%/WORKFLOW.md` via targeted edits using the canonical WORKFLOWmd contract (same terminology, same schema, same call-trace rules).
+- **CHG-STP-007**: MUST define Step 7 to instruct: Update `%%DOC_PATH%%/WORKFLOW.md` via targeted edits using the canonical WORKFLOW document contract (same terminology, same schema, same call-trace rules).
 - **CHG-STP-008**: MUST define Step 8 to instruct: Update `%%DOC_PATH%%/REFERENCES.md` references file.
 - **CHG-STP-009**: MUST define Step 9 to instruct: CRITICAL: Stage & commit.
 - **CHG-STP-010**: MUST define Step 10 to instruct: CRITICAL: Merge Conflict Management.
@@ -213,7 +213,7 @@ Proposed repository structure (max depth 3, depth 4 for `src/`):
 - **COV-STP-003**: MUST define Step 3 to instruct: CRITICAL: Worktree Generation & Isolation.
 - **COV-STP-004**: MUST define Step 4 to instruct: Check requirements coverage, generate Design Delta and implement the Implementation Delta to cover uncovered requirements.
 - **COV-STP-005**: MUST define Step 5 to instruct: Generate Verification Delta by testing the implementation result and implementing needed bug fixes.
-- **COV-STP-006**: MUST define Step 6 to instruct: Update `%%DOC_PATH%%/WORKFLOW.md` via targeted edits using the canonical WORKFLOWmd contract (same terminology, same schema, same call-trace rules).
+- **COV-STP-006**: MUST define Step 6 to instruct: Update `%%DOC_PATH%%/WORKFLOW.md` via targeted edits using the canonical WORKFLOW document contract (same terminology, same schema, same call-trace rules).
 - **COV-STP-007**: MUST define Step 7 to instruct: Update `%%DOC_PATH%%/REFERENCES.md` references file.
 - **COV-STP-008**: MUST define Step 8 to instruct: CRITICAL: Stage & commit.
 - **COV-STP-009**: MUST define Step 9 to instruct: CRITICAL: Merge Conflict Management.
@@ -246,7 +246,7 @@ Proposed repository structure (max depth 3, depth 4 for `src/`):
 - **FIX-STP-003**: MUST define Step 3 to instruct: CRITICAL: Worktree Generation & Isolation.
 - **FIX-STP-004**: MUST define Step 4 to instruct: Read requirements, generate Design Delta and implement the Implementation Delta to fix the defect.
 - **FIX-STP-005**: MUST define Step 5 to instruct: Generate Verification Delta by testing the implementation result and implementing needed bug fixes.
-- **FIX-STP-006**: MUST define Step 6 to instruct: Update `%%DOC_PATH%%/WORKFLOW.md` via targeted edits using the canonical WORKFLOWmd contract (same terminology, same schema, same call-trace rules).
+- **FIX-STP-006**: MUST define Step 6 to instruct: Update `%%DOC_PATH%%/WORKFLOW.md` via targeted edits using the canonical WORKFLOW document contract (same terminology, same schema, same call-trace rules).
 - **FIX-STP-007**: MUST define Step 7 to instruct: Update `%%DOC_PATH%%/REFERENCES.md` references file.
 - **FIX-STP-008**: MUST define Step 8 to instruct: CRITICAL: Stage & commit.
 - **FIX-STP-009**: MUST define Step 9 to instruct: CRITICAL: Merge Conflict Management.
@@ -287,7 +287,7 @@ Proposed repository structure (max depth 3, depth 4 for `src/`):
 - **NEW-STP-004**: MUST define Step 4 to instruct: Generate and apply the Requirement Delta to cover new requirements.
 - **NEW-STP-005**: MUST define Step 5 to instruct: Generate Design Delta and implement the Implementation Delta according to the Requirement Delta.
 - **NEW-STP-006**: MUST define Step 6 to instruct: Generate Verification Delta by testing the implementation result and implementing needed bug fixes.
-- **NEW-STP-007**: MUST define Step 7 to instruct: Update `%%DOC_PATH%%/WORKFLOW.md` via targeted edits using the canonical WORKFLOWmd contract (same terminology, same schema, same call-trace rules).
+- **NEW-STP-007**: MUST define Step 7 to instruct: Update `%%DOC_PATH%%/WORKFLOW.md` via targeted edits using the canonical WORKFLOW document contract (same terminology, same schema, same call-trace rules).
 - **NEW-STP-008**: MUST define Step 8 to instruct: Update `%%DOC_PATH%%/REFERENCES.md` references file.
 - **NEW-STP-009**: MUST define Step 9 to instruct: CRITICAL: Stage & commit.
 - **NEW-STP-010**: MUST define Step 10 to instruct: CRITICAL: Merge Conflict Management.
@@ -325,7 +325,7 @@ Proposed repository structure (max depth 3, depth 4 for `src/`):
 - **RFR-STP-003**: MUST define Step 3 to instruct: CRITICAL: Worktree Generation & Isolation.
 - **RFR-STP-004**: MUST define Step 4 to instruct: Generate Design Delta and implement the Implementation Delta to implement the refactor.
 - **RFR-STP-005**: MUST define Step 5 to instruct: Generate Verification Delta by testing the implementation result and implementing needed bug fixes.
-- **RFR-STP-006**: MUST define Step 6 to instruct: Update `%%DOC_PATH%%/WORKFLOW.md` via targeted edits using the canonical WORKFLOWmd contract (same terminology, same schema, same call-trace rules).
+- **RFR-STP-006**: MUST define Step 6 to instruct: Update `%%DOC_PATH%%/WORKFLOW.md` via targeted edits using the canonical WORKFLOW document contract (same terminology, same schema, same call-trace rules).
 - **RFR-STP-007**: MUST define Step 7 to instruct: Update `%%DOC_PATH%%/REFERENCES.md` references file.
 - **RFR-STP-008**: MUST define Step 8 to instruct: CRITICAL: Stage & commit.
 - **RFR-STP-009**: MUST define Step 9 to instruct: CRITICAL: Merge Conflict Management.
