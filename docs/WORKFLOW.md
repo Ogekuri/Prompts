@@ -11,7 +11,7 @@
 - Internal Call-Trace Tree:
   - No internal callable symbols are defined under `src/` or `.github/workflows/`; repository artifacts under `src/prompts/` are declarative Markdown workflow definitions.
 - External Boundaries:
-  - Git CLI commands (`git worktree add`, `git checkout`, `git merge`, `git worktree remove`, `git branch -D`).
+  - Git/shell commands (`git worktree add`, `git checkout`, `git merge`, `git worktree remove`, `git branch -D`, `git show-ref --verify --quiet`, and `test ! -d ...`) used for creation, merge, cleanup, and cleanup verification.
   - Shell date command (`date +"%Y%m%d%H%M%S"`) used to generate `<EXECUTION_ID>` for worktree and branch naming.
   - Filesystem read/write operations over `README.md` (targeted section updates preserving unrelated structure/format when possible), `docs/*.md`, and `src/prompts/*.md`.
   - Prompt YAML metadata handling by external tooling, including bounded `usage` header values.
