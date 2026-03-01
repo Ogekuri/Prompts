@@ -73,7 +73,7 @@ When you need hard evidence from source code (APIs, entrypoints, data types, imp
 - Target specific files: use --files-find (standalone; --here is optional but harmless)
     - Syntax: req --here --files-find <TAG_FILTER> <NAME_REGEX> <FILE1> [FILE2 ...]
 ### Always enable line-numbered code when you plan to cite evidence
-Add --enable-line-numbers so code lines are prefixed as <n>:
+Add --enable-line-numbers so code lines are prefixed as "<n>:":
 - req --enable-line-numbers --find "<TAG_FILTER>" "<NAME_REGEX>"
 - req --here --enable-line-numbers --files-find "<TAG_FILTER>" "<NAME_REGEX>" <FILE...>
 ### TAGs and filters
