@@ -1,14 +1,23 @@
 # Changelog
 
-## [0.3.2](https://github.com/Ogekuri/Prompts/compare/v0.3.0..v0.3.2) - 2026-02-26
+## [0.4.0](https://github.com/Ogekuri/Prompts/compare/v0.3.0..v0.4.0) - 2026-03-01
 ### ⛰️  Features
 - Add src/.place-holder file.
 
 ### 🐛  Bug Fixes
+- Fix line numbers.
 - Replace userReq with useReq.
 - Fix .g.conf file.
 
 ### 🚜  Changes
+- align req-find syntax and line prefixes [useReq] *(prompts)*
+  - Update REQ-019 to codify req --find syntax semantics.
+  - Apply Source Construct Extraction wording updates across affected prompts.
+  - Set req --find examples without explicit --here, forbid --base wording, and use <n>: line prefix.
+- enforce worktree cleanup verification [useReq] *(prompts)*
+  - update REQ-019 with mandatory pre-step cleanup verification
+  - add merge-success verification command to all worktree-based prompts
+  - align WORKFLOW and REFERENCES docs with cleanup verification behavior
 - Update <EXECUTION_ID> generation.
 
 ## [0.3.0](https://github.com/Ogekuri/Prompts/compare/v0.2.0..v0.3.0) - 2026-02-24
@@ -114,9 +123,9 @@
 - \[0.1.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.1.0
 - \[0.2.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.2.0
 - \[0.3.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.3.0
-- \[0.3.2\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.3.2
+- \[0.4.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.4.0
 
 [0.1.0]: https://github.com/Ogekuri/Prompts/releases/tag/v0.1.0
 [0.2.0]: https://github.com/Ogekuri/Prompts/compare/v0.1.0..v0.2.0
 [0.3.0]: https://github.com/Ogekuri/Prompts/compare/v0.2.0..v0.3.0
-[0.3.2]: https://github.com/Ogekuri/Prompts/compare/v0.3.0..v0.3.2
+[0.4.0]: https://github.com/Ogekuri/Prompts/compare/v0.3.0..v0.4.0
