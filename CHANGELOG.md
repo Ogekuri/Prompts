@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.6.1](https://github.com/Ogekuri/Prompts/compare/v0.6.0..v0.6.1) - 2026-03-02
+### 🚜  Changes
+- BREAKING CHANGE: refactor Source Construct Extraction into Source Code Analysis Toolkit [useReq] *(prompts)*
+  - REQ-019 updated: Source Code Analysis Toolkit with four-pillar pipeline
+  - New section defines sequential analysis workflow: WORKFLOW.md (runtime model),
+  - REFERENCES.md (symbol index with Doxygen metadata), req --find/--files-find
+  - (code extraction), rg/git grep (supplementary search)
+  - Recommended 1->2->3->4 analysis workflow for token-efficient code analysis
+  - Replaced old section in 10 prompt files with identical canonical content
+  - Preserved all existing req --find/--files-find command reference details
+  - Added REFERENCES.md Doxygen field enumeration for LLM target identification
+
 ## [0.6.0](https://github.com/Ogekuri/Prompts/compare/v0.5.0..v0.6.0) - 2026-03-01
 ### 🐛  Bug Fixes
 - Minor fixes.
@@ -134,6 +146,7 @@
 - \[0.4.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.4.0
 - \[0.5.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.5.0
 - \[0.6.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.6.0
+- \[0.6.1\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.6.1
 
 [0.1.0]: https://github.com/Ogekuri/Prompts/releases/tag/v0.1.0
 [0.2.0]: https://github.com/Ogekuri/Prompts/compare/v0.1.0..v0.2.0
@@ -141,3 +154,4 @@
 [0.4.0]: https://github.com/Ogekuri/Prompts/compare/v0.3.0..v0.4.0
 [0.5.0]: https://github.com/Ogekuri/Prompts/compare/v0.4.0..v0.5.0
 [0.6.0]: https://github.com/Ogekuri/Prompts/compare/v0.5.0..v0.6.0
+[0.6.1]: https://github.com/Ogekuri/Prompts/compare/v0.6.0..v0.6.1
