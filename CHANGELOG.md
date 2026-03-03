@@ -1,7 +1,14 @@
 # Changelog
 
-## [0.6.1](https://github.com/Ogekuri/Prompts/compare/v0.6.0..v0.6.1) - 2026-03-02
+## [0.7.0](https://github.com/Ogekuri/Prompts/compare/v0.6.0..v0.7.0) - 2026-03-03
+### 🐛  Bug Fixes
+- Fix readme prompt.
+
 ### 🚜  Changes
+- enforce user-request extra README edits [useReq] *(readme-prompt)*
+  - Update RDM-CTX-005 and RDM-STP-004 to require explicit additional edits from [User Request](#users-request).
+  - Update src/prompts/readme.md Behavior and Step 4 to execute %%ARGS%%-driven additional edits using write.md-style user-request anchoring.
+  - Refresh WORKFLOW.md and REFERENCES.md for traceability.
 - BREAKING CHANGE: refactor Source Construct Extraction into Source Code Analysis Toolkit [useReq] *(prompts)*
   - REQ-019 updated: Source Code Analysis Toolkit with four-pillar pipeline
   - New section defines sequential analysis workflow: WORKFLOW.md (runtime model),
@@ -146,7 +153,7 @@
 - \[0.4.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.4.0
 - \[0.5.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.5.0
 - \[0.6.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.6.0
-- \[0.6.1\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.6.1
+- \[0.7.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.7.0
 
 [0.1.0]: https://github.com/Ogekuri/Prompts/releases/tag/v0.1.0
 [0.2.0]: https://github.com/Ogekuri/Prompts/compare/v0.1.0..v0.2.0
@@ -154,4 +161,4 @@
 [0.4.0]: https://github.com/Ogekuri/Prompts/compare/v0.3.0..v0.4.0
 [0.5.0]: https://github.com/Ogekuri/Prompts/compare/v0.4.0..v0.5.0
 [0.6.0]: https://github.com/Ogekuri/Prompts/compare/v0.5.0..v0.6.0
-[0.6.1]: https://github.com/Ogekuri/Prompts/compare/v0.6.0..v0.6.1
+[0.7.0]: https://github.com/Ogekuri/Prompts/compare/v0.6.0..v0.7.0
