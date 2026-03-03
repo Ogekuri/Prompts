@@ -1,6 +1,6 @@
 ---
 description: "Write README.md from user-visible implementation evidence"
-argument-hint: "No arguments utilized by the prompt logic"
+argument-hint: "Description of additional edits to perform on README.md file"
 usage: >
   Select this prompt ONLY for docs-maintenance of root README.md: when user-visible behavior changed and you must align README with current implementation evidence. Analyze externally visible surfaces only (features, CLI parameters, GUI behavior, distributed APIs, configuration schema), identify affected README sections before editing, and update only those sections while preserving unrelated content/format. Do NOT include internal implementation logic. Do NOT select if requirements, workflow, references, source code, or tests must change.
 ---
@@ -205,3 +205,6 @@ Create internally a *check-list* for the **Global Roadmap** including all the nu
    - If the merge fails or results in conflicts, do NOT remove the worktree directory and override the final line with EXACTLY "WARNING: README request completed with merge conflicting!".
 7. Present results
    - PRINT, in the response, the results in a clear, structured format suitable for analytical processing (lists of findings, file paths, and concise evidence). Use the fixed report schema: ## **Outcome**, ## **Requirement Delta**, ## **Design Delta**, ## **Implementation Delta**, ## **Verification Delta**, ## **Evidence**, ## **Assumptions**, ## **Next Workflow**. Final line MUST be exactly: STATUS: OK or STATUS: ERROR.
+
+<h2 id="users-request">User's Request</h2>
+%%ARGS%%
