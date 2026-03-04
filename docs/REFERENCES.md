@@ -26,6 +26,7 @@
 - `src/prompts/{analyze,change,check,cover,fix,implement,new,readme,recreate,refactor,references,renumber,workflow}.md`: Execution-context instructions now require `<EXECUTION_ID>` generation via `date +"%Y%m%d%H%M%S"` instead of UUID/`uuidgen`.
 - `src/prompts/{change,cover,fix,implement,new,refactor}.md`: Doxygen coverage directives now explicitly include objects and structures in the mandatory documented component set.
 - `src/prompts/workflow.md`: Professional Personas and Step 4 output-contract rules now require declaration file path references only in generated `docs/WORKFLOW.md`, excluding line numbers, line ranges, and internal file-reference pointers.
+- `src/prompts/{change,cover,fix,implement,new,refactor}.md`: WORKFLOW-update steps now explicitly require declaration file paths only and explicitly forbid line numbers, line ranges, and internal file-reference pointers during `docs/WORKFLOW.md` generation/updates.
 - `src/docs/Document_Source_Code_in_Doxygen_Style.md` and `.req/docs/Document_Source_Code_in_Doxygen_Style.md`: Canonical Doxygen guideline now explicitly includes objects and structures in mandatory component coverage.
 
 ## Requirement Updates
@@ -35,3 +36,5 @@
 - `docs/REQUIREMENTS.md`: Updated `RDM-CTX-005` and `RDM-STP-004` to require `readme.md` to execute explicit additional edits from [User Request](#users-request) (`%%ARGS%%`) in the same targeted README update pass.
 - `docs/REQUIREMENTS.md`: Updated `PRJ-002` to require prompt/template taxonomy alignment for Doxygen coverage directives.
 - `docs/REQUIREMENTS.md`: Updated `WFL-CTX-003` and `WFL-STP-004` to require workflow output evidence as declaration file paths only and to exclude line numbers, line ranges, and internal file-reference pointers.
+- `docs/REQUIREMENTS.md`: Updated `CHG-STP-007`, `COV-STP-006`, `FIX-STP-006`, `IMP-STP-006`, `NEW-STP-007`, and `RFR-STP-006` to require declaration file paths only and forbid line numbers, line ranges, and internal file-reference pointers during `docs/WORKFLOW.md` generation/updates.
+- `docs/WORKFLOW.md`: Updated `PROC:main` defining-file and entrypoint coverage to include the prompts whose steps update `docs/WORKFLOW.md`.

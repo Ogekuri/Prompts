@@ -1,6 +1,6 @@
 ## Execution Units Index
 
-- `PROC:main` | type: process | parent: none | role: prompt-workflow execution orchestrator for repository prompt artifacts | entrypoint: prompt frontmatter documents under `src/prompts/*.md` consumed by external runtime | defining files: `src/prompts/workflow.md`, `src/prompts/readme.md`
+- `PROC:main` | type: process | parent: none | role: prompt-workflow execution orchestrator for repository prompt artifacts | entrypoint: prompt frontmatter documents under `src/prompts/*.md` consumed by external runtime | defining files: `src/prompts/workflow.md`, `src/prompts/change.md`, `src/prompts/cover.md`, `src/prompts/fix.md`, `src/prompts/implement.md`, `src/prompts/new.md`, `src/prompts/refactor.md`, `src/prompts/readme.md`
 - `PROC:gha-check-branch` | type: process | parent: none | role: validates tagged commit ancestry and emits release-gate output | entrypoint: workflow `Release (markdown)` job `check-branch` | defining files: `.github/workflows/release-markdown.yml`
 - `PROC:gha-build-release` | type: process | parent: none | role: builds changelog and publishes GitHub release assets | entrypoint: workflow `Release (markdown)` job `build-release` | defining files: `.github/workflows/release-markdown.yml`
 
@@ -10,6 +10,7 @@
 
 - Entrypoint(s):
   - Prompt frontmatter declaration consumed by external runtime [`src/prompts/workflow.md`].
+  - Prompt frontmatter declarations consumed by external runtime [`src/prompts/change.md`, `src/prompts/cover.md`, `src/prompts/fix.md`, `src/prompts/implement.md`, `src/prompts/new.md`, `src/prompts/refactor.md`].
   - Prompt frontmatter declaration consumed by external runtime [`src/prompts/readme.md`].
 - Lifecycle/trigger:
   - Starts when an operator invokes the external prompt runtime with a selected prompt file.
