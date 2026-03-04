@@ -1,22 +1,66 @@
 ## Execution Units Index
 
-- `PROC:main` | type: process | role: prompt-workflow execution | entrypoint: external CLI invocation (`req ...`) | defining paths: `src/prompts/*.md`
+- `PROC:main` | type: process | parent: none | role: prompt-workflow execution orchestrator for repository prompt artifacts | entrypoint: prompt frontmatter documents under `src/prompts/*.md` consumed by external runtime | defining files: `src/prompts/workflow.md`, `src/prompts/readme.md`
+- `PROC:gha-check-branch` | type: process | parent: none | role: validates tagged commit ancestry and emits release-gate output | entrypoint: workflow `Release (markdown)` job `check-branch` | defining files: `.github/workflows/release-markdown.yml`
+- `PROC:gha-build-release` | type: process | parent: none | role: builds changelog and publishes GitHub release assets | entrypoint: workflow `Release (markdown)` job `build-release` | defining files: `.github/workflows/release-markdown.yml`
 
 ## Execution Units
 
 ### `PROC:main`
 
-- Entrypoint(s): external CLI invocation (`req ...`) that executes repository prompt workflows.
-- Lifecycle/trigger: starts on explicit operator command, executes selected prompt workflow steps, then exits.
+- Entrypoint(s):
+  - Prompt frontmatter declaration consumed by external runtime [`src/prompts/workflow.md:1-6`].
+  - Prompt frontmatter declaration consumed by external runtime [`src/prompts/readme.md:1-6`].
+- Lifecycle/trigger:
+  - Starts when an operator invokes the external prompt runtime with a selected prompt file.
+  - Executes the selected prompt steps; exits after workflow completion.
 - Internal Call-Trace Tree:
-  - No internal callable symbols are defined under `src/` or `.github/workflows/`; repository artifacts under `src/prompts/` are declarative Markdown workflow definitions.
+  - No internal functions detected under `src/` or `.github/workflows`.
 - External Boundaries:
-  - Git/shell commands (`git worktree add`, `git checkout`, `git merge`, `git worktree remove`, `git branch -D`, `git show-ref --verify --quiet`, and `test ! -d ...`) used for creation, merge, cleanup, and cleanup verification.
-  - Shell date command (`date +"%Y%m%d%H%M%S"`) used to generate `<EXECUTION_ID>` for worktree and branch naming.
-- Filesystem read/write operations over `README.md` (targeted section updates preserving unrelated structure/format and executing explicit additional edits from [User Request](#users-request) when provided), `docs/*.md`, `src/docs/*.md`, and `src/prompts/*.md`.
-  - Prompt YAML metadata handling by external tooling, including bounded `usage` header values.
-  - Test-runner boundaries used by defect-fix workflows, including preferred reproducer-test-first validation with conditional no-test fallback.
+  - External prompt runtime parses Markdown prompt artifacts and executes tool/shell instructions declared in prompt steps.
+- Thread Model:
+  - no explicit threads detected.
+
+### `PROC:gha-check-branch`
+
+- Entrypoint(s):
+  - Workflow trigger `on.push.tags: v[0-9]+.[0-9]+.[0-9]+` activates workflow run [`.github/workflows/release-markdown.yml:3-7`].
+  - Job definition `check-branch` on `ubuntu-latest` [`.github/workflows/release-markdown.yml:15-17`].
+- Lifecycle/trigger:
+  - Starts as first job in workflow graph.
+  - Performs checkout and branch-containment check for `${GITHUB_SHA}`.
+  - Writes `is_master` output to `$GITHUB_OUTPUT`; exits.
+- Internal Call-Trace Tree:
+  - No internal functions detected under `src/` or `.github/workflows`.
+- External Boundaries:
+  - `actions/checkout@v4` action execution [`.github/workflows/release-markdown.yml:20-23`].
+  - Shell + git boundary (`git fetch`, `git branch -r --contains`, `grep`) [`.github/workflows/release-markdown.yml:27-35`].
+  - GitHub Actions output-file boundary (`$GITHUB_OUTPUT`) [`.github/workflows/release-markdown.yml:31-34`].
+- Thread Model:
+  - no explicit threads detected.
+
+### `PROC:gha-build-release`
+
+- Entrypoint(s):
+  - Job definition `build-release` with dependency `needs: check-branch` and gate `if: needs.check-branch.outputs.is_master == 'true'` [`.github/workflows/release-markdown.yml:38-42`].
+- Lifecycle/trigger:
+  - Starts only after `PROC:gha-check-branch` completion and positive gate output.
+  - Performs checkout, changelog generation, and release publication.
+  - Exits after release action completes.
+- Internal Call-Trace Tree:
+  - No internal functions detected under `src/` or `.github/workflows`.
+- External Boundaries:
+  - `actions/checkout@v4` action execution [`.github/workflows/release-markdown.yml:45-48`].
+  - `mikepenz/release-changelog-builder-action@v6` boundary [`.github/workflows/release-markdown.yml:50-97`].
+  - `softprops/action-gh-release@v2` boundary [`.github/workflows/release-markdown.yml:98-110`].
+- Thread Model:
+  - no explicit threads detected.
 
 ## Communication Edges
 
-- None detected: no explicit multi-process or multi-thread communication mechanisms are defined under `src/` or `.github/workflows/`.
+- `EDGE:gha-check-branch->gha-build-release`
+  - direction: `PROC:gha-check-branch -> PROC:gha-build-release`
+  - mechanism: GitHub Actions job dependency (`needs`) + job output propagation
+  - endpoint/channel: `needs.check-branch.outputs.is_master`
+  - payload/data-shape: string enum (`"true" | "false"`) written via `$GITHUB_OUTPUT`
+  - evidence: `.github/workflows/release-markdown.yml:17-19`, `.github/workflows/release-markdown.yml:31-34`, `.github/workflows/release-markdown.yml:38-42`
