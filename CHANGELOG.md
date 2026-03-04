@@ -1,5 +1,25 @@
 # Changelog
 
+## [0.8.0](https://github.com/Ogekuri/Prompts/compare/v0.7.0..v0.8.0) - 2026-03-04
+### 🐛  Bug Fixes
+- Include .req directory to support worktree.
+
+### 🚜  Changes
+- enforce path-only update rules [useReq] *(workflow)*
+  - extend WORKFLOW-update step requirements across req-change/new/cover/fix/implement/refactor
+  - require declaration-file paths only and forbid line numbers/ranges/internal file pointers
+  - align workflow, implementation, references, and runtime-model docs
+- enforce path-only WORKFLOW references [useReq] *(workflow)*
+  - update WFL-CTX-003 and WFL-STP-004 requirements\n- update workflow prompt output contract to exclude line numbers/ranges\n- update WORKFLOW.md and REFERENCES.md for declaration-path-only references
+- align doxygen component coverage [useReq] *(prompts)*
+  - Update Doxygen coverage directives to explicitly include objects and structures.
+  - Sync source templates and req runtime docs with the same component taxonomy.
+  - Update PRJ-002, WORKFLOW.md, and REFERENCES.md for traceability.
+
+### 📚  Documentation
+- regenerate runtime model for prompt and release jobs [useReq] *(workflow)*
+  - Regenerate docs/WORKFLOW.md from src/ and .github/workflows static analysis.\n- Capture explicit GitHub Actions inter-job communication edge.
+
 ## [0.7.0](https://github.com/Ogekuri/Prompts/compare/v0.6.0..v0.7.0) - 2026-03-03
 ### 🐛  Bug Fixes
 - Fix readme prompt.
@@ -154,6 +174,7 @@
 - \[0.5.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.5.0
 - \[0.6.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.6.0
 - \[0.7.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.7.0
+- \[0.8.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.8.0
 
 [0.1.0]: https://github.com/Ogekuri/Prompts/releases/tag/v0.1.0
 [0.2.0]: https://github.com/Ogekuri/Prompts/compare/v0.1.0..v0.2.0
@@ -162,3 +183,4 @@
 [0.5.0]: https://github.com/Ogekuri/Prompts/compare/v0.4.0..v0.5.0
 [0.6.0]: https://github.com/Ogekuri/Prompts/compare/v0.5.0..v0.6.0
 [0.7.0]: https://github.com/Ogekuri/Prompts/compare/v0.6.0..v0.7.0
+[0.8.0]: https://github.com/Ogekuri/Prompts/compare/v0.7.0..v0.8.0
