@@ -9,8 +9,8 @@
 ### `PROC:main`
 
 - Entrypoint(s):
-  - Prompt frontmatter declaration consumed by external runtime [`src/prompts/workflow.md:1-6`].
-  - Prompt frontmatter declaration consumed by external runtime [`src/prompts/readme.md:1-6`].
+  - Prompt frontmatter declaration consumed by external runtime [`src/prompts/workflow.md`].
+  - Prompt frontmatter declaration consumed by external runtime [`src/prompts/readme.md`].
 - Lifecycle/trigger:
   - Starts when an operator invokes the external prompt runtime with a selected prompt file.
   - Executes the selected prompt steps; exits after workflow completion.
@@ -24,8 +24,8 @@
 ### `PROC:gha-check-branch`
 
 - Entrypoint(s):
-  - Workflow trigger `on.push.tags: v[0-9]+.[0-9]+.[0-9]+` activates workflow run [`.github/workflows/release-markdown.yml:3-7`].
-  - Job definition `check-branch` on `ubuntu-latest` [`.github/workflows/release-markdown.yml:15-17`].
+  - Workflow trigger `on.push.tags: v[0-9]+.[0-9]+.[0-9]+` activates workflow run [`.github/workflows/release-markdown.yml`].
+  - Job definition `check-branch` on `ubuntu-latest` [`.github/workflows/release-markdown.yml`].
 - Lifecycle/trigger:
   - Starts as first job in workflow graph.
   - Performs checkout and branch-containment check for `${GITHUB_SHA}`.
@@ -33,16 +33,16 @@
 - Internal Call-Trace Tree:
   - No internal functions detected under `src/` or `.github/workflows`.
 - External Boundaries:
-  - `actions/checkout@v4` action execution [`.github/workflows/release-markdown.yml:20-23`].
-  - Shell + git boundary (`git fetch`, `git branch -r --contains`, `grep`) [`.github/workflows/release-markdown.yml:27-35`].
-  - GitHub Actions output-file boundary (`$GITHUB_OUTPUT`) [`.github/workflows/release-markdown.yml:31-34`].
+  - `actions/checkout@v4` action execution [`.github/workflows/release-markdown.yml`].
+  - Shell + git boundary (`git fetch`, `git branch -r --contains`, `grep`) [`.github/workflows/release-markdown.yml`].
+  - GitHub Actions output-file boundary (`$GITHUB_OUTPUT`) [`.github/workflows/release-markdown.yml`].
 - Thread Model:
   - no explicit threads detected.
 
 ### `PROC:gha-build-release`
 
 - Entrypoint(s):
-  - Job definition `build-release` with dependency `needs: check-branch` and gate `if: needs.check-branch.outputs.is_master == 'true'` [`.github/workflows/release-markdown.yml:38-42`].
+  - Job definition `build-release` with dependency `needs: check-branch` and gate `if: needs.check-branch.outputs.is_master == 'true'` [`.github/workflows/release-markdown.yml`].
 - Lifecycle/trigger:
   - Starts only after `PROC:gha-check-branch` completion and positive gate output.
   - Performs checkout, changelog generation, and release publication.
@@ -50,9 +50,9 @@
 - Internal Call-Trace Tree:
   - No internal functions detected under `src/` or `.github/workflows`.
 - External Boundaries:
-  - `actions/checkout@v4` action execution [`.github/workflows/release-markdown.yml:45-48`].
-  - `mikepenz/release-changelog-builder-action@v6` boundary [`.github/workflows/release-markdown.yml:50-97`].
-  - `softprops/action-gh-release@v2` boundary [`.github/workflows/release-markdown.yml:98-110`].
+  - `actions/checkout@v4` action execution [`.github/workflows/release-markdown.yml`].
+  - `mikepenz/release-changelog-builder-action@v6` boundary [`.github/workflows/release-markdown.yml`].
+  - `softprops/action-gh-release@v2` boundary [`.github/workflows/release-markdown.yml`].
 - Thread Model:
   - no explicit threads detected.
 
@@ -63,4 +63,4 @@
   - mechanism: GitHub Actions job dependency (`needs`) + job output propagation
   - endpoint/channel: `needs.check-branch.outputs.is_master`
   - payload/data-shape: string enum (`"true" | "false"`) written via `$GITHUB_OUTPUT`
-  - evidence: `.github/workflows/release-markdown.yml:17-19`, `.github/workflows/release-markdown.yml:31-34`, `.github/workflows/release-markdown.yml:38-42`
+  - evidence: `.github/workflows/release-markdown.yml`

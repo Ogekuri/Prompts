@@ -25,6 +25,7 @@
 - `src/prompts/{change,cover,fix,implement,new,recreate,refactor,references,readme,renumber,workflow}.md`: Merge-success cleanup now chains worktree removal with temporary branch deletion and requires explicit verification that both artifacts were deleted before the next step.
 - `src/prompts/{analyze,change,check,cover,fix,implement,new,readme,recreate,refactor,references,renumber,workflow}.md`: Execution-context instructions now require `<EXECUTION_ID>` generation via `date +"%Y%m%d%H%M%S"` instead of UUID/`uuidgen`.
 - `src/prompts/{change,cover,fix,implement,new,refactor}.md`: Doxygen coverage directives now explicitly include objects and structures in the mandatory documented component set.
+- `src/prompts/workflow.md`: Professional Personas and Step 4 output-contract rules now require declaration file path references only in generated `docs/WORKFLOW.md`, excluding line numbers, line ranges, and internal file-reference pointers.
 - `src/docs/Document_Source_Code_in_Doxygen_Style.md` and `.req/docs/Document_Source_Code_in_Doxygen_Style.md`: Canonical Doxygen guideline now explicitly includes objects and structures in mandatory component coverage.
 
 ## Requirement Updates
@@ -33,3 +34,4 @@
 - `docs/REQUIREMENTS.md`: Added `REQ-027` requiring all prompt YAML `usage` values to be generated with a maximum length of 1024 characters.
 - `docs/REQUIREMENTS.md`: Updated `RDM-CTX-005` and `RDM-STP-004` to require `readme.md` to execute explicit additional edits from [User Request](#users-request) (`%%ARGS%%`) in the same targeted README update pass.
 - `docs/REQUIREMENTS.md`: Updated `PRJ-002` to require prompt/template taxonomy alignment for Doxygen coverage directives.
+- `docs/REQUIREMENTS.md`: Updated `WFL-CTX-003` and `WFL-STP-004` to require workflow output evidence as declaration file paths only and to exclude line numbers, line ranges, and internal file-reference pointers.
