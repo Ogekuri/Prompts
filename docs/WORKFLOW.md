@@ -13,7 +13,7 @@
 - External Boundaries:
   - Git/shell commands (`git worktree add`, `git checkout`, `git merge`, `git worktree remove`, `git branch -D`, `git show-ref --verify --quiet`, and `test ! -d ...`) used for creation, merge, cleanup, and cleanup verification.
   - Shell date command (`date +"%Y%m%d%H%M%S"`) used to generate `<EXECUTION_ID>` for worktree and branch naming.
-  - Filesystem read/write operations over `README.md` (targeted section updates preserving unrelated structure/format and executing explicit additional edits from [User Request](#users-request) when provided), `docs/*.md`, and `src/prompts/*.md`.
+- Filesystem read/write operations over `README.md` (targeted section updates preserving unrelated structure/format and executing explicit additional edits from [User Request](#users-request) when provided), `docs/*.md`, `src/docs/*.md`, and `src/prompts/*.md`.
   - Prompt YAML metadata handling by external tooling, including bounded `usage` header values.
   - Test-runner boundaries used by defect-fix workflows, including preferred reproducer-test-first validation with conditional no-test fallback.
 

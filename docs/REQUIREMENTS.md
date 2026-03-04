@@ -56,7 +56,7 @@ This project defines and maintains prompt and template artifacts used by the use
 
 ### 2.1 Project Functions
 - **PRJ-001**: MUST maintain prompt artifacts in `src/prompts/` for SRS-driven workflows.
-- **PRJ-002**: MUST maintain template artifacts in `src/docs/` as mandatory authoring guides.
+- **PRJ-002**: MUST maintain template artifacts in `src/docs/` as mandatory authoring guides and keep template taxonomy aligned with prompt-level Doxygen coverage directives.
 - **PRJ-003**: MUST define each prompt with a single primary workflow intent and deterministic output objective.
 - **PRJ-004**: MUST preserve the process order Requirements -> Design -> Implementation -> Verification when editing prompt instructions.
 
