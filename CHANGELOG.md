@@ -12,7 +12,7 @@
 ### 🚜  Changes
 - enforce bell on terminal outputs [useReq] *(prompts)*
   - Update DES-002, REQ-023, and REQ-025 for terminal output bell suffix requirements.
-  - Append \x07 to fixed terminal literals across prompt workflows (ERROR/WARNING/STATUS/no-op outputs).
+  - Append \\x07 to fixed terminal literals across prompt workflows (ERROR/WARNING/STATUS/no-op outputs).
   - Update WORKFLOW main prompt entrypoint coverage and REFERENCES change index.
 
 ## [0.8.0](https://github.com/Ogekuri/Prompts/compare/v0.7.0..v0.8.0) - 2026-03-04
