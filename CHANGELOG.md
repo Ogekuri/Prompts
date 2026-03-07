@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.9.0](https://github.com/Ogekuri/Prompts/compare/v0.8.0..v0.9.0) - 2026-03-07
+### ⛰️  Features
+- Update .req/models.json file.
+
+### 🐛  Bug Fixes
+- Fix $\( in prompts.
+- Fix error: Command blocked: contains dangerous shell expansion patterns (e.g., parameter transformation, indirect expansion, or nested command substitution) that could enable arbitrary code execution. Please rewrite the command without these expansion patterns.
+- Update .req/docs/Document_Source_Code_in_Doxygen_Style.md template.
+
+### 🚜  Changes
+- enforce bell on terminal outputs [useReq] *(prompts)*
+  - Update DES-002, REQ-023, and REQ-025 for terminal output bell suffix requirements.
+  - Append \x07 to fixed terminal literals across prompt workflows (ERROR/WARNING/STATUS/no-op outputs).
+  - Update WORKFLOW main prompt entrypoint coverage and REFERENCES change index.
+
 ## [0.8.0](https://github.com/Ogekuri/Prompts/compare/v0.7.0..v0.8.0) - 2026-03-04
 ### 🐛  Bug Fixes
 - Include .req directory to support worktree.
@@ -175,6 +190,7 @@
 - \[0.6.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.6.0
 - \[0.7.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.7.0
 - \[0.8.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.8.0
+- \[0.9.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.9.0
 
 [0.1.0]: https://github.com/Ogekuri/Prompts/releases/tag/v0.1.0
 [0.2.0]: https://github.com/Ogekuri/Prompts/compare/v0.1.0..v0.2.0
@@ -184,3 +200,4 @@
 [0.6.0]: https://github.com/Ogekuri/Prompts/compare/v0.5.0..v0.6.0
 [0.7.0]: https://github.com/Ogekuri/Prompts/compare/v0.6.0..v0.7.0
 [0.8.0]: https://github.com/Ogekuri/Prompts/compare/v0.7.0..v0.8.0
+[0.9.0]: https://github.com/Ogekuri/Prompts/compare/v0.8.0..v0.9.0
