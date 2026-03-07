@@ -53,20 +53,24 @@
       {
         "module": "Ruff"
       }
+    ],
+    "JavaScript": [
+      {
+        "module": "Command",
+        "cmd": "node",
+        "params": [
+          "--check"
+        ]
+      }
     ]
   },
-  "enable-models": false,
-  "enable-tools": false,
-  "enable-claude": true,
-  "enable-codex": true,
-  "enable-gemini": true,
-  "enable-github": true,
-  "enable-kiro": true,
-  "enable-opencode": true,
-  "enable-prompts": false,
-  "enable-agents": false,
-  "disable-skills": false,
-  "prompts-use-agents": false,
-  "legacy": false,
+  "providers": [
+    "claude:prompts",
+    "github:skills",
+    "codex:prompts",
+    "opencode:agents",
+    "gemini:prompts",
+    "kiro:agents"
+  ],
   "preserve-models": false
 }
