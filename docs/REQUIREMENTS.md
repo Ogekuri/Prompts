@@ -86,7 +86,7 @@ This project defines and maintains prompt and template artifacts used by the use
 
 ### 3.1 Design and Implementation
 - **DES-001**: MUST organize artifacts into dedicated prompt and template with explicit responsibilities.
-- **DES-002**: MUST standardize repeated operational instructions, including Git-state checks and completion or error messages, using identical wording across prompts and terminating each terminal output string with `\\x07`, except prompt-name specialization.
+- **DES-002**: MUST standardize repeated operational instructions, including Git-state checks and completion or error messages, using identical wording across prompts and forbidding bell-control output suffixes, except prompt-name specialization.
 - **DES-003**: MUST implement text-first interaction semantics and MUST NOT require GUI-specific behavior.
 - **DES-004**: MUST preserve reusable keyword tokens exactly so installation-time substitution remains valid.
 
@@ -139,14 +139,14 @@ Proposed repository structure (max depth 3, depth 4 for `src/`):
 - **REQ-022**: MUST be optimized for LLM-Agent.
 - **REQ-023**: MUST use identical canonical instruction phrasing for identical actions across prompts, outside explicitly prompt specifications, except where explicitly allowed below.
   - Workflow identity literals MAY vary where required to bind the emitting prompt (`/req-<name>`, commit-type prefix, workflow-specific title/scope text, and step labels tied to workflow intent).
-  - Workflow-scoped failure or warning strings MAY vary only in workflow-name specialization while preserving the same control action pattern (`OUTPUT exactly "<STRING>\\x07"`, then terminate or override final line as explicitly defined).
+  - Workflow-scoped failure or warning strings MAY vary only in workflow-name specialization while preserving the same control action pattern (`OUTPUT exactly "<STRING>"`, then terminate or override final line as explicitly defined).
   - Numeric bounds and scoped nouns MAY vary when they encode workflow-specific semantics (for example step-count cardinality and requirement-type nouns), while shared operational commands MUST remain byte-identical.
 - **REQ-024**: MUST avoid instructions that cause unnecessary token-heavy content, except where explicitly allowed below.
   - Mandatory compliance blocks MAY remain verbose when retained verbatim by policy (`Professional Personas`, `Execution Protocol`, `Execution Directives`, and `Steps`).
   - Canonical executable literals MAY remain fully expanded where determinism depends on exact text (shell commands, fixed report schema, fixed error strings, and WORKFLOW.md schema contracts).
   - High-detail enumerations MAY be used only when they constrain behavior and reduce ambiguity (supported tag sets, allowed temp/cache paths, and explicit termination-condition matrices).
 - **REQ-025**: MUST reject unauthorized chain-interrupt instructions outside explicitly defined workflow interruption points, except where explicitly allowed below.
-  - Authorized interruption points are only explicit Step branches that require exact-string output ending with `\\x07` and immediate stop/override (git-status failure, required-file absence, incompatibility guards, test-loop exhaustion, and no-op commit termination).
+  - Authorized interruption points are only explicit Step branches that require exact-string output without bell-control suffixes and immediate stop/override (git-status failure, required-file absence, incompatibility guards, test-loop exhaustion, and no-op commit termination).
   - Read-only or coverage workflows MAY emit a declared no-change terminal string when explicitly defined by that workflow step (for example "All requirements are already covered. No changes needed.").
   - Merge-conflict handling MAY override only the final status line with the predefined warning string, without adding new interruption branches.
 - **REQ-026**: MUST reject new hallucination-risk instructions, except where explicitly allowed below.

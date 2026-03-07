@@ -1,6 +1,6 @@
 ## Execution Units Index
 
-- `PROC:main` | type: process | parent: none | role: prompt-workflow execution orchestrator for repository prompt artifacts | entrypoint: prompt frontmatter documents under `src/prompts/*.md` consumed by external runtime | defining files: `src/prompts/analyze.md`, `src/prompts/change.md`, `src/prompts/check.md`, `src/prompts/cover.md`, `src/prompts/create.md`, `src/prompts/fix.md`, `src/prompts/implement.md`, `src/prompts/new.md`, `src/prompts/readme.md`, `src/prompts/recreate.md`, `src/prompts/refactor.md`, `src/prompts/references.md`, `src/prompts/renumber.md`, `src/prompts/workflow.md`, `src/prompts/write.md`
+- `PROC:main` | type: process | parent: none | role: prompt-workflow execution orchestrator for repository prompt artifacts with bell-free terminal output contracts | entrypoint: prompt frontmatter documents under `src/prompts/*.md` consumed by external runtime | defining files: `src/prompts/analyze.md`, `src/prompts/change.md`, `src/prompts/check.md`, `src/prompts/cover.md`, `src/prompts/create.md`, `src/prompts/fix.md`, `src/prompts/implement.md`, `src/prompts/new.md`, `src/prompts/readme.md`, `src/prompts/recreate.md`, `src/prompts/refactor.md`, `src/prompts/references.md`, `src/prompts/renumber.md`, `src/prompts/workflow.md`, `src/prompts/write.md`
 - `PROC:gha-check-branch` | type: process | parent: none | role: validates tagged commit ancestry and emits release-gate output | entrypoint: workflow `Release (markdown)` job `check-branch` | defining files: `.github/workflows/release-markdown.yml`
 - `PROC:gha-build-release` | type: process | parent: none | role: builds changelog and publishes GitHub release assets | entrypoint: workflow `Release (markdown)` job `build-release` | defining files: `.github/workflows/release-markdown.yml`
 
@@ -12,7 +12,7 @@
   - Prompt frontmatter declarations consumed by external runtime [`src/prompts/analyze.md`, `src/prompts/change.md`, `src/prompts/check.md`, `src/prompts/cover.md`, `src/prompts/create.md`, `src/prompts/fix.md`, `src/prompts/implement.md`, `src/prompts/new.md`, `src/prompts/readme.md`, `src/prompts/recreate.md`, `src/prompts/refactor.md`, `src/prompts/references.md`, `src/prompts/renumber.md`, `src/prompts/workflow.md`, `src/prompts/write.md`].
 - Lifecycle/trigger:
   - Starts when an operator invokes the external prompt runtime with a selected prompt file.
-  - Executes the selected prompt steps; exits after workflow completion.
+  - Executes the selected prompt steps with exact terminal strings that do not append bell-control suffixes; exits after workflow completion.
 - Internal Call-Trace Tree:
   - No internal functions detected under `src/` or `.github/workflows`.
 - External Boundaries:
