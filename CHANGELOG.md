@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.12.0](https://github.com/Ogekuri/Prompts/compare/v0.11.0..v0.12.0) - 2026-03-16
+### 🚜  Changes
+- use req --git-check for final clean check [useReq] *(prompts)*
+  - Update REQ-019 to require final cleanliness verification with req --git-check.
+  - Replace final step instructions in prompt set that used git status --porcelain.
+  - Align WORKFLOW and REFERENCES docs with the new verification command.
+- simplify git cleanup to worktree delete only [useReq] *(prompts)*
+  - Update requirement constraints for interruption cleanup paths.
+  - Remove rollback/revert git-state instructions from prompt failure branches.
+  - Keep only req --git-wt-delete <WORKTREE_NAME> as cleanup command.
+  - Align WORKFLOW and REFERENCES docs with new cleanup behavior.
+
 ## [0.11.0](https://github.com/Ogekuri/Prompts/compare/v0.10.0..v0.11.0) - 2026-03-16
 ### 🚜  Changes
 - exclude create-failure delete [useReq] *(worktree-cleanup)*
@@ -237,6 +249,7 @@
 - \[0.9.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.9.0
 - \[0.10.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.10.0
 - \[0.11.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.11.0
+- \[0.12.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.12.0
 
 [0.1.0]: https://github.com/Ogekuri/Prompts/releases/tag/v0.1.0
 [0.2.0]: https://github.com/Ogekuri/Prompts/compare/v0.1.0..v0.2.0
@@ -249,3 +262,4 @@
 [0.9.0]: https://github.com/Ogekuri/Prompts/compare/v0.8.0..v0.9.0
 [0.10.0]: https://github.com/Ogekuri/Prompts/compare/v0.9.0..v0.10.0
 [0.11.0]: https://github.com/Ogekuri/Prompts/compare/v0.10.0..v0.11.0
+[0.12.0]: https://github.com/Ogekuri/Prompts/compare/v0.11.0..v0.12.0
