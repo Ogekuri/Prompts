@@ -232,7 +232,7 @@ Create internally a *check-list* for the **Global Roadmap** including all the nu
          - Include main features added, requirements changes or implementation's summary on multi-line commit comment (maximum 10 lines).
          - Include main features added, requirements changes, or a bug-fix description adding a multi-line comment (maximum 10 lines).
          - Do not include the 'Co-authored-by' trailer or any AI attribution.
-   - Confirm the repo is clean with `git status --porcelain`. If it is NOT empty, override the final line with EXACTLY "WARNING: Change request completed with unclean git repository!".
+   - Confirm the repo is clean with `req --git-check`. If the command returns an error code or prints any text containing "ERROR", override the final line with EXACTLY "WARNING: Change request completed with unclean git repository!".
 10. **CRITICAL**: Merge Conflict Management
    - Return to the original repository directory (the sibling directory of the worktree).
    - Ensure you are on the original branch used before worktree creation by running `req --git-wt-exit`.
