@@ -166,7 +166,7 @@ Create internally a *check-list* for the **Global Roadmap** including all the nu
 2. **CRITICAL**: Worktree Generation & Isolation
    - Generate <WORKTREE_NAME> with `req --git-wt-name`.
    - Create and enter the dedicated isolated worktree with `req --git-wt-create <WORKTREE_NAME>`.
-   - If the command returns an error code or prints any text containing "ERROR", OUTPUT exactly "ERROR: Worktree generation failed!", and then delete the isolated worktree and branch with `req --git-wt-delete <WORKTREE_NAME>`, and then terminate the execution.
+   - If the command returns an error code or prints any text containing "ERROR", OUTPUT exactly "ERROR: Worktree generation failed!", and then terminate the execution.
 
 3. Static analysis: build the runtime model from %%SRC_PATHS%%
    - Analyze only files under %%SRC_PATHS%%; treat all files outside %%SRC_PATHS%% as out of scope and never document them.
