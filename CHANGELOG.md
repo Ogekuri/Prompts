@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.11.0](https://github.com/Ogekuri/Prompts/compare/v0.10.0..v0.11.0) - 2026-03-16
+### 🚜  Changes
+- exclude create-failure delete [useReq] *(worktree-cleanup)*
+  - Remove req --git-wt-delete from Worktree generation failed branches.
+  - Keep delete only for post-create early exits except create-failure, and never for pre-create/doc-check exits.
+- enforce pre-create delete guard [useReq] *(worktree-cleanup)*
+  - Clarify step-order constraint for req --git-wt-delete usage.
+  - Delete instruction is now forbidden before req --git-wt-create and in prompts without create step.
+  - Align WORKFLOW and REFERENCES documentation with the scoped rule.
+- scope cleanup to post-create exits [useReq] *(worktree-cleanup)*
+  - Keep req --git-wt-delete <WORKTREE_NAME> only for early-termination branches between worktree creation and merge-phase cleanup.
+- enforce early-exit worktree deletion [useReq] *(worktree-cleanup)*
+  - Update REQ-019 and REQ-025 for post-create early termination cleanup.
+  - Add req --git-wt-delete <WORKTREE_NAME> instruction to all affected prompt early exits.
+  - Sync WORKFLOW and REFERENCES docs with the new cleanup contract.
+
 ## [0.10.0](https://github.com/Ogekuri/Prompts/compare/v0.9.0..v0.10.0) - 2026-03-16
 ### ⛰️  Features
 - Update useReq files.
@@ -220,6 +236,7 @@
 - \[0.8.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.8.0
 - \[0.9.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.9.0
 - \[0.10.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.10.0
+- \[0.11.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.11.0
 
 [0.1.0]: https://github.com/Ogekuri/Prompts/releases/tag/v0.1.0
 [0.2.0]: https://github.com/Ogekuri/Prompts/compare/v0.1.0..v0.2.0
@@ -231,3 +248,4 @@
 [0.8.0]: https://github.com/Ogekuri/Prompts/compare/v0.7.0..v0.8.0
 [0.9.0]: https://github.com/Ogekuri/Prompts/compare/v0.8.0..v0.9.0
 [0.10.0]: https://github.com/Ogekuri/Prompts/compare/v0.9.0..v0.10.0
+[0.11.0]: https://github.com/Ogekuri/Prompts/compare/v0.10.0..v0.11.0
