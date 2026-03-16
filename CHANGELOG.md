@@ -1,5 +1,33 @@
 # Changelog
 
+## [0.10.0](https://github.com/Ogekuri/Prompts/compare/v0.9.0..v0.10.0) - 2026-03-16
+### ⛰️  Features
+- Update useReq files.
+
+### 🐛  Bug Fixes
+- Update .gitignore file.
+- Fix bell string.
+
+### 🚜  Changes
+- use req --git-wt-exit [useReq] *(prompts)*
+  - Specify req --git-wt-exit when returning to original branch after worktree usage.
+  - Update REQ-019 to include req --git-wt-exit in canonical req operation commands.
+  - Align Merge Conflict Management instructions across affected prompts.
+- prefer req project ops [useReq] *(prompts)*
+  - Refactor prompt workflows to use req utility for git/docs/worktree checks.
+  - Replace legacy <EXECUTION_ID>/<ORIGINAL_BRANCH>/<PROJECT_NAME> worktree naming with <WORKTREE_NAME> from req --git-wt-name.
+  - Consolidate worktree create/delete flow with req --git-wt-create and req --git-wt-delete error handling.
+  - Simplify docs and git checks using req --docs-check and req --git-check.
+  - Update REQ-019 canonical instruction requirement accordingly.
+- enforce LLM prompt-engineer persona [useReq] *(prompts)*
+  - Update REQ-022 to require Prompt Engineer and LLM Optimization Specialist persona.
+  - Insert the persona rule in Professional Personas for all prompt sources in src/prompts.
+  - No runtime workflow structure changes were required.
+- BREAKING CHANGE: remove bell suffix from terminal literals [useReq] *(prompts)*
+  - update DES-002/REQ-023/REQ-025 to require bell-free exact outputs
+  - remove \x07 suffix from all prompt fixed terminal strings
+  - update WORKFLOW/REFERENCES to reflect bell-free output contract
+
 ## [0.9.0](https://github.com/Ogekuri/Prompts/compare/v0.8.0..v0.9.0) - 2026-03-07
 ### ⛰️  Features
 - Update .req/models.json file.
@@ -12,7 +40,7 @@
 ### 🚜  Changes
 - enforce bell on terminal outputs [useReq] *(prompts)*
   - Update DES-002, REQ-023, and REQ-025 for terminal output bell suffix requirements.
-  - Append \\x07 to fixed terminal literals across prompt workflows (ERROR/WARNING/STATUS/no-op outputs).
+  - Append \x07 to fixed terminal literals across prompt workflows (ERROR/WARNING/STATUS/no-op outputs).
   - Update WORKFLOW main prompt entrypoint coverage and REFERENCES change index.
 
 ## [0.8.0](https://github.com/Ogekuri/Prompts/compare/v0.7.0..v0.8.0) - 2026-03-04
@@ -191,6 +219,7 @@
 - \[0.7.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.7.0
 - \[0.8.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.8.0
 - \[0.9.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.9.0
+- \[0.10.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.10.0
 
 [0.1.0]: https://github.com/Ogekuri/Prompts/releases/tag/v0.1.0
 [0.2.0]: https://github.com/Ogekuri/Prompts/compare/v0.1.0..v0.2.0
@@ -201,3 +230,4 @@
 [0.7.0]: https://github.com/Ogekuri/Prompts/compare/v0.6.0..v0.7.0
 [0.8.0]: https://github.com/Ogekuri/Prompts/compare/v0.7.0..v0.8.0
 [0.9.0]: https://github.com/Ogekuri/Prompts/compare/v0.8.0..v0.9.0
+[0.10.0]: https://github.com/Ogekuri/Prompts/compare/v0.9.0..v0.10.0
