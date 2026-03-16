@@ -12,7 +12,7 @@
   - Prompt frontmatter declarations consumed by external runtime [`src/prompts/analyze.md`, `src/prompts/change.md`, `src/prompts/check.md`, `src/prompts/cover.md`, `src/prompts/create.md`, `src/prompts/fix.md`, `src/prompts/implement.md`, `src/prompts/new.md`, `src/prompts/readme.md`, `src/prompts/recreate.md`, `src/prompts/refactor.md`, `src/prompts/references.md`, `src/prompts/renumber.md`, `src/prompts/workflow.md`, `src/prompts/write.md`].
 - Lifecycle/trigger:
   - Starts when an operator invokes the external prompt runtime with a selected prompt file.
-  - Executes the selected prompt steps with exact terminal strings that do not append bell-control suffixes; authorized early-termination branches after worktree creation include explicit `req --git-wt-delete <WORKTREE_NAME>` cleanup instruction before termination; exits after workflow completion.
+  - Executes the selected prompt steps with exact terminal strings that do not append bell-control suffixes; authorized early-termination branches after worktree creation include explicit `req --git-wt-delete <WORKTREE_NAME>` cleanup instruction before termination, while pre-create branches and prompts without worktree creation do not use `req --git-wt-delete <WORKTREE_NAME>`; exits after workflow completion.
 - Internal Call-Trace Tree:
   - No internal functions detected under `src/` or `.github/workflows`.
 - External Boundaries:
