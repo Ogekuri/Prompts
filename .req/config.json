@@ -7,6 +7,8 @@
     "scripts",
     ".github/workflows"
   ],
+  "base-path": "/home/ogekuri/Git/Prompts",
+  "git-path": "/home/ogekuri/Git/Prompts",
   "static-check": {
     "C": [
       {
