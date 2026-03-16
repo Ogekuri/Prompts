@@ -50,7 +50,7 @@ In scope: reproduce/triage the defect with concrete evidence and prefer a test-o
 - Only if creating that test is too costly under test guidelines, or defect isolation with one specific guideline-compliant test is not feasible, use fallback sequence: analyze and identify defect -> implement source fix -> verify resolution with explicit concrete evidence.
 - All newly written or edited content MUST be in English. Do NOT translate existing text outside the minimal change surface required by this workflow; if you detect non-English text elsewhere, report it in **Evidence** instead of rewriting it.
 - Prioritize backward compatibility. Do not introduce breaking changes; preserve existing interfaces, data formats, and features.
-- If maintaining compatibility would require migrations/auto-upgrades conversion logic, report the conflict instead of implementing, and then delete the isolated worktree and branch with `req --git-wt-delete <WORKTREE_NAME>`, and then terminate the execution.
+- If maintaining compatibility would require migrations/auto-upgrades conversion logic, report the conflict instead of implementing, and then terminate the execution.
 - If `.venv/bin/python` exists in the project root, use it for Python executions (e.g., `PYTHONPATH=src .venv/bin/python -m pytest`, `PYTHONPATH=src .venv/bin/python -m <program name>`). Non-Python tooling should use the project's standard commands.
 - Use filesystem/shell tools to read/write/delete files as needed (e.g., `cat`, `sed`, `perl -pi`, `printf > file`, `rm -f`, ...). Prefer read-only commands for analysis.
 
@@ -154,9 +154,9 @@ During the execution flow you MUST follow these directives:
 ## Steps
 Create internally a *check-list* for the **Global Roadmap** including all the numbered steps below: `1..10`, and start following the roadmap at the same time, executing the tool call of Step 1 (Check GIT Status). If a tool call is required in Step 1, invoke it immediately; otherwise proceed to Step 1 without additional commentary. Do not add extra intent-adjustment checks unless explicitly listed in the Steps section.
 1. **CRITICAL**: Check GIT Status
-   - Check GIT status with `req --git-check`. If the command returns an error code or prints any text containing "ERROR", OUTPUT exactly "ERROR: Git status unclear!", and then delete the isolated worktree and branch with `req --git-wt-delete <WORKTREE_NAME>`, and then terminate the execution.
+   - Check GIT status with `req --git-check`. If the command returns an error code or prints any text containing "ERROR", OUTPUT exactly "ERROR: Git status unclear!", and then terminate the execution.
 2. **CRITICAL**: Check `%%DOC_PATH%%/REQUIREMENTS.md`, `%%DOC_PATH%%/WORKFLOW.md` and `%%DOC_PATH%%/REFERENCES.md` file presence
-   - Check required docs presence with `req --docs-check`. If the command returns an error code or prints any text containing "ERROR", OUTPUT exactly "ERROR: Required docs check failed!", and then delete the isolated worktree and branch with `req --git-wt-delete <WORKTREE_NAME>`, and then terminate the execution.
+   - Check required docs presence with `req --docs-check`. If the command returns an error code or prints any text containing "ERROR", OUTPUT exactly "ERROR: Required docs check failed!", and then terminate the execution.
 3. **CRITICAL**: Worktree Generation & Isolation
    - Generate <WORKTREE_NAME> with `req --git-wt-name`.
    - Create and enter the dedicated isolated worktree with `req --git-wt-create <WORKTREE_NAME>`.

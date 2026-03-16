@@ -141,9 +141,9 @@ During the execution flow you MUST follow these directives:
 ## Steps
 Create internally a *check-list* for the **Global Roadmap** including all the numbered steps below: `1..8`, and start following the roadmap at the same time, following the instructions of Step 1 (Check GIT Status). Do not add extra intent-adjustment checks unless explicitly listed in the Steps section.
 1. **CRITICAL**: Check GIT Status
-   - Check GIT status with `req --git-check`. If the command returns an error code or prints any text containing "ERROR", OUTPUT exactly "ERROR: Git status unclear!", and then delete the isolated worktree and branch with `req --git-wt-delete <WORKTREE_NAME>`, and then terminate the execution.
+   - Check GIT status with `req --git-check`. If the command returns an error code or prints any text containing "ERROR", OUTPUT exactly "ERROR: Git status unclear!", and then terminate the execution.
 2. **CRITICAL**: Check `%%DOC_PATH%%/REQUIREMENTS.md`, `%%DOC_PATH%%/WORKFLOW.md` and `%%DOC_PATH%%/REFERENCES.md` file presence
-   - Check required docs presence with `req --docs-check`. If the command returns an error code or prints any text containing "ERROR", OUTPUT exactly "ERROR: Required docs check failed!", and then delete the isolated worktree and branch with `req --git-wt-delete <WORKTREE_NAME>`, and then terminate the execution.
+   - Check required docs presence with `req --docs-check`. If the command returns an error code or prints any text containing "ERROR", OUTPUT exactly "ERROR: Required docs check failed!", and then terminate the execution.
 3. **CRITICAL**: Worktree Generation & Isolation
    - Generate <WORKTREE_NAME> with `req --git-wt-name`.
    - Create and enter the dedicated isolated worktree with `req --git-wt-create <WORKTREE_NAME>`.
