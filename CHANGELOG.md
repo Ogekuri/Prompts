@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.13.0](https://github.com/Ogekuri/Prompts/compare/v0.12.0..v0.13.0) - 2026-03-17
+### 🐛  Bug Fixes
+- Fix python venv in prompts.
+- Remove .req dir.
+
+### 📚  Documentation
+- Update README.md document.
+
 ## [0.12.0](https://github.com/Ogekuri/Prompts/compare/v0.11.0..v0.12.0) - 2026-03-16
 ### 🚜  Changes
 - use req --git-check for final clean check [useReq] *(prompts)*
@@ -250,6 +258,7 @@
 - \[0.10.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.10.0
 - \[0.11.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.11.0
 - \[0.12.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.12.0
+- \[0.13.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.13.0
 
 [0.1.0]: https://github.com/Ogekuri/Prompts/releases/tag/v0.1.0
 [0.2.0]: https://github.com/Ogekuri/Prompts/compare/v0.1.0..v0.2.0
@@ -263,3 +272,4 @@
 [0.10.0]: https://github.com/Ogekuri/Prompts/compare/v0.9.0..v0.10.0
 [0.11.0]: https://github.com/Ogekuri/Prompts/compare/v0.10.0..v0.11.0
 [0.12.0]: https://github.com/Ogekuri/Prompts/compare/v0.11.0..v0.12.0
+[0.13.0]: https://github.com/Ogekuri/Prompts/compare/v0.12.0..v0.13.0
