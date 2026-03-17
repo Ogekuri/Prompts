@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.14.0](https://github.com/Ogekuri/Prompts/compare/v0.13.0..v0.14.0) - 2026-03-17
+### 🚜  Changes
+- use static-check-only verification [useReq] *(prompts)*
+  - Remove mandatory pytest/unit-test-suite execution requirements.
+  - Add REQ-028 to treat no-source static-check output as success.
+  - Align implementation prompts to static-analysis verification flow.
+  - Update WORKFLOW and REFERENCES traceability for the new policy.
+- enforce full-SRS verification in final audits [useReq] *(prompts)*
+  - update CHG-STP-006, NEW-STP-006, FIX-STP-005 for normative ALL-requirements audits
+  - align change/new/fix verification wording with progressive disclosure pattern
+  - update WORKFLOW and REFERENCES traceability for prompt behavior change
+
 ## [0.13.0](https://github.com/Ogekuri/Prompts/compare/v0.12.0..v0.13.0) - 2026-03-17
 ### 🐛  Bug Fixes
 - Fix python venv in prompts.
@@ -259,6 +271,7 @@
 - \[0.11.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.11.0
 - \[0.12.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.12.0
 - \[0.13.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.13.0
+- \[0.14.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.14.0
 
 [0.1.0]: https://github.com/Ogekuri/Prompts/releases/tag/v0.1.0
 [0.2.0]: https://github.com/Ogekuri/Prompts/compare/v0.1.0..v0.2.0
@@ -273,3 +286,4 @@
 [0.11.0]: https://github.com/Ogekuri/Prompts/compare/v0.10.0..v0.11.0
 [0.12.0]: https://github.com/Ogekuri/Prompts/compare/v0.11.0..v0.12.0
 [0.13.0]: https://github.com/Ogekuri/Prompts/compare/v0.12.0..v0.13.0
+[0.14.0]: https://github.com/Ogekuri/Prompts/compare/v0.13.0..v0.14.0
