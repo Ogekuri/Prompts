@@ -13,13 +13,18 @@
 - `src/prompts/implement.md`: Removed rollback/revert git-state cleanup instructions from failure branches; cleanup now uses only `req --git-wt-delete <WORKTREE_NAME>`.
 - `src/prompts/new.md`: Removed rollback/revert git-state cleanup instructions from failure branches; cleanup now uses only `req --git-wt-delete <WORKTREE_NAME>`.
 - `src/prompts/refactor.md`: Removed rollback/revert git-state cleanup instructions from failure branches; cleanup now uses only `req --git-wt-delete <WORKTREE_NAME>`.
+- `src/prompts/change.md`: Step 6 verification now audits ALL SRS requirements with progressive-disclosure evidence (`OK` pointer-only, `FAIL` full evidence) instead of only related requirements.
+- `src/prompts/new.md`: Step 6 verification now audits ALL SRS requirements with progressive-disclosure evidence (`OK` pointer-only, `FAIL` full evidence) instead of only related requirements.
+- `src/prompts/fix.md`: Step 5 verification now audits ALL SRS requirements with progressive-disclosure evidence (`OK` pointer-only, `FAIL` full evidence) instead of only related requirements.
 
 ## Requirement Updates
 
 - `docs/REQUIREMENTS.md`: Updated `REQ-019` to require final repository-cleanliness verification via `req --git-check` and to forbid `git status --porcelain` for that final check.
 - `docs/REQUIREMENTS.md`: Updated `REQ-019` to enforce exclusive early-termination cleanup via `req --git-wt-delete <WORKTREE_NAME>` after successful worktree creation and to forbid rollback/revert commands (`git restore .`, `git checkout .`, `git clean -fd`) in those branches.
 - `docs/REQUIREMENTS.md`: Updated `REQ-025` interruption rules to forbid rollback/revert git-state commands in authorized post-create interruption branches and require cleanup through `req --git-wt-delete <WORKTREE_NAME>` only.
+- `docs/REQUIREMENTS.md`: Updated `CHG-STP-006`, `NEW-STP-006`, and `FIX-STP-005` to normatively require full-SRS verification audits with progressive-disclosure evidence in final verification steps.
 
 ## Workflow Model Update
 
 - `docs/WORKFLOW.md`: Updated `PROC:main` lifecycle behavior to require final repository-cleanliness verification via `req --git-check` and encode exclusive worktree-delete cleanup with explicit prohibition of rollback/revert git-state commands in post-create early termination branches.
+- `docs/WORKFLOW.md`: Updated `PROC:main` lifecycle behavior to record global requirement-audit verification in `change`, `new`, and `fix` workflows with progressive-disclosure evidence.

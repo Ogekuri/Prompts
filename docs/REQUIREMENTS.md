@@ -186,7 +186,7 @@ Proposed repository structure (max depth 3, depth 4 for `src/`):
 - **CHG-STP-003**: MUST define Step 3 to instruct: CRITICAL: Worktree Generation & Isolation.
 - **CHG-STP-004**: MUST define Step 4 to instruct: Generate and apply the Requirement Delta to change requirements.
 - **CHG-STP-005**: MUST define Step 5 to instruct: Generate Design Delta and implement the Implementation Delta according to the Requirement Delta.
-- **CHG-STP-006**: MUST define Step 6 to instruct: Generate Verification Delta by testing the implementation result and implementing needed bug fixes.
+- **CHG-STP-006**: MUST define Step 6 to instruct: Generate Verification Delta by auditing ALL requirements with progressive-disclosure evidence (OK pointer-only, FAIL full), then testing implementation results and implementing needed bug fixes.
 - **CHG-STP-007**: MUST define Step 7 to instruct: Update `%%DOC_PATH%%/WORKFLOW.md` via targeted edits using the canonical WORKFLOW document contract (same terminology, same schema, same call-trace rules) and declaration file paths only, excluding line numbers, line ranges, and internal file-reference pointers.
 - **CHG-STP-008**: MUST define Step 8 to instruct: Update `%%DOC_PATH%%/REFERENCES.md` references file.
 - **CHG-STP-009**: MUST define Step 9 to instruct: CRITICAL: Stage & commit.
@@ -252,7 +252,7 @@ Proposed repository structure (max depth 3, depth 4 for `src/`):
 - **FIX-STP-002**: MUST define Step 2 to instruct: CRITICAL: Check `%%DOC_PATH%%/REQUIREMENTS.md`, `%%DOC_PATH%%/WORKFLOW.md` and `%%DOC_PATH%%/REFERENCES.md` file presence.
 - **FIX-STP-003**: MUST define Step 3 to instruct: CRITICAL: Worktree Generation & Isolation.
 - **FIX-STP-004**: MUST define Step 4 to instruct: Read requirements and execute a preferred test-oriented fix flow (analyze defect -> create one failing guideline-compliant reproducer test -> implement fix), using fallback analyze -> implement fix only when test creation is too costly or one-test isolation is not feasible.
-- **FIX-STP-005**: MUST define Step 5 to instruct: Generate Verification Delta by verifying defect resolution with the reproducer test and regression suite (preferred), or with explicit concrete evidence when fallback no-test flow was used.
+- **FIX-STP-005**: MUST define Step 5 to instruct: Generate Verification Delta by auditing ALL requirements with progressive-disclosure evidence (OK pointer-only, FAIL full), then verifying defect resolution with reproducer+regression (preferred) or explicit fallback no-test evidence.
 - **FIX-STP-006**: MUST define Step 6 to instruct: Update `%%DOC_PATH%%/WORKFLOW.md` via targeted edits using the canonical WORKFLOW document contract (same terminology, same schema, same call-trace rules) and declaration file paths only, excluding line numbers, line ranges, and internal file-reference pointers.
 - **FIX-STP-007**: MUST define Step 7 to instruct: Update `%%DOC_PATH%%/REFERENCES.md` references file.
 - **FIX-STP-008**: MUST define Step 8 to instruct: CRITICAL: Stage & commit.
@@ -293,7 +293,7 @@ Proposed repository structure (max depth 3, depth 4 for `src/`):
 - **NEW-STP-003**: MUST define Step 3 to instruct: CRITICAL: Worktree Generation & Isolation.
 - **NEW-STP-004**: MUST define Step 4 to instruct: Generate and apply the Requirement Delta to cover new requirements.
 - **NEW-STP-005**: MUST define Step 5 to instruct: Generate Design Delta and implement the Implementation Delta according to the Requirement Delta.
-- **NEW-STP-006**: MUST define Step 6 to instruct: Generate Verification Delta by testing the implementation result and implementing needed bug fixes.
+- **NEW-STP-006**: MUST define Step 6 to instruct: Generate Verification Delta by auditing ALL requirements with progressive-disclosure evidence (OK pointer-only, FAIL full), then testing implementation results and implementing needed bug fixes.
 - **NEW-STP-007**: MUST define Step 7 to instruct: Update `%%DOC_PATH%%/WORKFLOW.md` via targeted edits using the canonical WORKFLOW document contract (same terminology, same schema, same call-trace rules) and declaration file paths only, excluding line numbers, line ranges, and internal file-reference pointers.
 - **NEW-STP-008**: MUST define Step 8 to instruct: Update `%%DOC_PATH%%/REFERENCES.md` references file.
 - **NEW-STP-009**: MUST define Step 9 to instruct: CRITICAL: Stage & commit.
