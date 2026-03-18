@@ -23,8 +23,8 @@ In scope: static analysis of source under %%SRC_PATHS%% (and targeted tests only
 
 
 ## Pre-requisite: Execution Context
-- Generate <WORKTREE_NAME> with `req --git-wt-name` and use this identifier for all worktree operations in this workflow.
 - **CRITICAL**: All information declared in this `Pre-requisite: Execution Context` section MUST remain continuously available in the active execution context for the entire workflow and MUST NEVER be dropped, forgotten, or overwritten.
+- Generate <WORKTREE_NAME> with `req --git-wt-name` and use this identifier for all worktree operations in this workflow.
 
 
 ## Absolute Rules, Non-Negotiable
