@@ -1,5 +1,30 @@
 # Changelog
 
+## [0.16.0](https://github.com/Ogekuri/Prompts/compare/v0.15.0..v0.16.0) - 2026-03-18
+### 🐛  Bug Fixes
+- Update prompts.
+- derive only BASE_PATH for worktree exit [useReq] *(prompts)*
+  - Update merge-preparation instructions that execute cd <BASE_PATH> to derive only <BASE_PATH> with req --get-base-path.
+  - Remove unnecessary <GIT_PATH> derivation from prompt exit bullets and align WORKFLOW/REFERENCES documentation.
+
+### 🚜  Changes
+- scope worktree context to worktree prompts [useReq] *(prompts)*
+  - Update REQ-019 to require Pre-requisite/WORKTREE_NAME only where req --git-wt-create is used.
+  - Remove Pre-requisite: Execution Context from analyze and check prompts.
+  - Align WORKFLOW and REFERENCES docs with the new worktree-scoping rule.
+- normalize worktree path commands [useReq] *(prompts)*
+  - Replace req --base-path with req --get-base-path in operational prompt instructions.
+  - Update worktree entry to cd <GIT_PATH>/../<WORKTREE_NAME> and exit to cd <BASE_PATH> with conditional derivation commands.
+  - Add mandatory execution-context retention rule to Pre-requisite sections and align REQ-019/WORKFLOW/REFERENCES traceability.
+- add base/git path derivation in step 3 [useReq] *(prompts)*
+  - Update REQ-019 to include req --base-path and req --git-path in canonical worktree generation instructions.
+  - Standardize Step-3 bullets across prompt artifacts to derive <BASE_PATH> and <GIT_PATH> before req --git-wt-name.
+  - Update WORKFLOW and REFERENCES to preserve traceability for the new operational contract.
+- require explicit post-create cd [useReq] *(prompts)*
+  - Update REQ-019 to require cd ../<WORKTREE_NAME> after req --git-wt-create.
+  - Align all Step-3 worktree instructions to run explicit cd before next step.
+  - Refresh WORKFLOW and REFERENCES to encode the explicit directory-switch contract.
+
 ## [0.15.0](https://github.com/Ogekuri/Prompts/compare/v0.14.0..v0.15.0) - 2026-03-18
 ### 🚜  Changes
 - clarify worktree create chdir semantics [useReq] *(prompts)*
@@ -290,6 +315,7 @@
 - \[0.13.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.13.0
 - \[0.14.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.14.0
 - \[0.15.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.15.0
+- \[0.16.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.16.0
 
 [0.1.0]: https://github.com/Ogekuri/Prompts/releases/tag/v0.1.0
 [0.2.0]: https://github.com/Ogekuri/Prompts/compare/v0.1.0..v0.2.0
@@ -306,3 +332,4 @@
 [0.13.0]: https://github.com/Ogekuri/Prompts/compare/v0.12.0..v0.13.0
 [0.14.0]: https://github.com/Ogekuri/Prompts/compare/v0.13.0..v0.14.0
 [0.15.0]: https://github.com/Ogekuri/Prompts/compare/v0.14.0..v0.15.0
+[0.16.0]: https://github.com/Ogekuri/Prompts/compare/v0.15.0..v0.16.0
