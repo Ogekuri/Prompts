@@ -229,7 +229,7 @@ Create internally a *check-list* for the **Global Roadmap** including all the nu
    - Confirm the repo is clean with `req --git-check`. If the command returns an error code or prints any text containing "ERROR", override the final line with EXACTLY "WARNING: Defect fix completed with unclean git repository!".
 9.  **CRITICAL**: Merge Conflict Management
    - Return to the original repository directory (the sibling directory of the worktree).
-   - Ensure you are on the original branch used before worktree creation by deriving `<GIT_PATH>` with `req --git-path` if needed, deriving `<BASE_PATH>` with `req --get-base-path` if needed, and executing `cd <BASE_PATH>`.
+   - Ensure you are on the original branch used before worktree creation by deriving `<BASE_PATH>` with `req --get-base-path` if needed and executing `cd <BASE_PATH>`.
    - Merge the isolated branch into the original branch: `git merge <WORKTREE_NAME>`
    - If the merge completes successfully, delete the isolated worktree and branch with `req --git-wt-delete <WORKTREE_NAME>`; if the command returns an error code or prints any text containing "ERROR", OUTPUT exactly "ERROR: Worktree cleanup verification failed!", and then terminate the execution.
    - If the merge fails or results in conflicts, do NOT remove the worktree directory and override the final line with EXACTLY "WARNING: Defect fix completed with merge conflicting!".

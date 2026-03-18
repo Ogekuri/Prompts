@@ -8,7 +8,7 @@
 
 - `src/prompts/{change,cover,fix,implement,new,readme,recreate,refactor,references,renumber,workflow}.md`: Worktree-generation bullet now requires deriving `<BASE_PATH>` with `req --get-base-path` and `<GIT_PATH>` with `req --git-path` before generating `<WORKTREE_NAME>` with `req --git-wt-name`.
 - `src/prompts/{change,cover,fix,implement,new,readme,recreate,refactor,references,renumber,workflow}.md`: Worktree-enter instruction now requires `cd <GIT_PATH>/../<WORKTREE_NAME>` immediately after `req --git-wt-create <WORKTREE_NAME>`.
-- `src/prompts/{change,cover,fix,implement,new,readme,recreate,refactor,references,renumber,workflow}.md`: Merge-preparation instruction now requires deriving `<GIT_PATH>` and `<BASE_PATH>` when needed and executing `cd <BASE_PATH>` instead of `req --git-wt-exit`.
+- `src/prompts/{change,cover,fix,implement,new,readme,recreate,refactor,references,renumber,workflow}.md`: Merge-preparation instruction now requires deriving `<BASE_PATH>` when needed and executing `cd <BASE_PATH>` instead of `req --git-wt-exit`.
 - `src/prompts/{analyze,change,check,cover,fix,implement,new,readme,recreate,refactor,references,renumber,workflow}.md`: `Pre-requisite: Execution Context` now explicitly requires continuous retention of all listed context information and forbids dropping or forgetting context values.
 - `src/prompts/{change,cover,fix,implement,new,readme,recreate,refactor,references,renumber,workflow}.md`: Final repository-cleanliness verification step now uses `req --git-check` instead of `git status --porcelain`.
 - `src/prompts/change.md`: Removed rollback/revert git-state cleanup instructions from failure branches; cleanup now uses only `req --git-wt-delete <WORKTREE_NAME>`.
@@ -41,7 +41,7 @@
 ## Workflow Model Update
 
 - `docs/WORKFLOW.md`: Updated `PROC:main` lifecycle behavior to encode `<BASE_PATH>` derivation via `req --get-base-path` and `<GIT_PATH>` derivation via `req --git-path` before `req --git-wt-name`.
-- `docs/WORKFLOW.md`: Updated `PROC:main` lifecycle behavior to encode worktree-enter `cd <GIT_PATH>/../<WORKTREE_NAME>`, worktree-exit `cd <BASE_PATH>` (with conditional derivation), and mandatory retention of all `Pre-requisite: Execution Context` values.
+- `docs/WORKFLOW.md`: Updated `PROC:main` lifecycle behavior to encode worktree-enter `cd <GIT_PATH>/../<WORKTREE_NAME>`, worktree-exit `cd <BASE_PATH>` (with conditional `<BASE_PATH>` derivation), and mandatory retention of all `Pre-requisite: Execution Context` values.
 - `docs/WORKFLOW.md`: Updated `PROC:main` lifecycle behavior to require final repository-cleanliness verification via `req --git-check` and encode exclusive worktree-delete cleanup with explicit prohibition of rollback/revert git-state commands in post-create early termination branches.
 - `docs/WORKFLOW.md`: Updated `PROC:main` lifecycle behavior to record global requirement-audit verification in `change`, `new`, and `fix` workflows with progressive-disclosure evidence.
 - `docs/WORKFLOW.md`: Updated `PROC:main` lifecycle behavior to encode static-analysis verification, no-source static-check success handling, and conditional execution of existing unit-test suites via language-specific priority policy.
