@@ -26,6 +26,7 @@ In scope: read-only analysis of the above documents plus source under %%SRC_PATH
 
 ## Pre-requisite: Execution Context
 - Generate <WORKTREE_NAME> with `req --git-wt-name` and use this identifier for all worktree operations in this workflow.
+- **CRITICAL**: All information declared in this `Pre-requisite: Execution Context` section MUST remain continuously available in the active execution context for the entire workflow and MUST NEVER be dropped, forgotten, or overwritten.
 
 
 ## Absolute Rules, Non-Negotiable
