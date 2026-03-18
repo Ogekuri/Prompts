@@ -158,7 +158,7 @@ Create internally a *check-list* for the **Global Roadmap** including all the nu
 2. **CRITICAL**: Check `%%DOC_PATH%%/REQUIREMENTS.md`, `%%DOC_PATH%%/WORKFLOW.md` and `%%DOC_PATH%%/REFERENCES.md` file presence
    - Check required docs presence with `req --docs-check`. If the command returns an error code or prints any text containing "ERROR", OUTPUT exactly "ERROR: Required docs check failed!", and then terminate the execution.
 3. **CRITICAL**: Worktree Generation & Isolation
-   - Generate <WORKTREE_NAME> with `req --git-wt-name`.
+   - Derive <BASE_PATH> with `req --base-path`, <GIT_PATH> with `req --git-path`, and generate <WORKTREE_NAME> with `req --git-wt-name`.
    - Create the dedicated isolated worktree with `req --git-wt-create <WORKTREE_NAME>`, then execute `cd ../<WORKTREE_NAME>` before proceeding to the next step.
    - If the command returns an error code or prints any text containing "ERROR", OUTPUT exactly "ERROR: Worktree generation failed!", and then terminate the execution.
 

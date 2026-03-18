@@ -80,7 +80,7 @@ Create internally a *check-list* for the **Global Roadmap** including all the nu
 1. **CRITICAL**: Check GIT Status
    - Check GIT status with `req --git-check`. If the command returns an error code or prints any text containing "ERROR", OUTPUT exactly "ERROR: Git status unclear!", and then terminate the execution.
 2. **CRITICAL**: Worktree Generation & Isolation
-   - Generate <WORKTREE_NAME> with `req --git-wt-name`.
+   - Derive <BASE_PATH> with `req --base-path`, <GIT_PATH> with `req --git-path`, and generate <WORKTREE_NAME> with `req --git-wt-name`.
    - Create the dedicated isolated worktree with `req --git-wt-create <WORKTREE_NAME>`, then execute `cd ../<WORKTREE_NAME>` before proceeding to the next step.
    - If the command returns an error code or prints any text containing "ERROR", OUTPUT exactly "ERROR: Worktree generation failed!", and then terminate the execution.
 
