@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.15.0](https://github.com/Ogekuri/Prompts/compare/v0.14.0..v0.15.0) - 2026-03-18
+### 🚜  Changes
+- clarify worktree create chdir semantics [useReq] *(prompts)*
+  - Update REQ-019 to require explicit create-and-enter wording for req --git-wt-create.
+  - Align Step 3 instructions across prompt artifacts with explicit cd/chdir behavior.
+  - Update WORKFLOW and REFERENCES docs to reflect the new operational contract.
+- enforce reproducer-test-first bug fix flow [useReq] *(fix)*
+  - Update FIX requirement IDs and fix prompt behavior/steps.
+  - When relevant suites exist, require failing reproducer unit test before fix.
+  - Require explicit reproducer test pass evidence in verification.
+  - Align WORKFLOW and REFERENCES traceability with the new fix policy.
+- enforce conditional unit-test verification [useReq] *(prompts)*
+  - Update SRS requirement IDs for change/fix/new/cover/implement/refactor verification.
+  - Require running unit tests only when relevant suites already exist in repository.
+  - Define language-specific priority policy for selecting test commands.
+  - Align prompt verification steps and workflow/reference docs with new policy.
+
 ## [0.14.0](https://github.com/Ogekuri/Prompts/compare/v0.13.0..v0.14.0) - 2026-03-17
 ### 🚜  Changes
 - use static-check-only verification [useReq] *(prompts)*
@@ -272,6 +289,7 @@
 - \[0.12.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.12.0
 - \[0.13.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.13.0
 - \[0.14.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.14.0
+- \[0.15.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.15.0
 
 [0.1.0]: https://github.com/Ogekuri/Prompts/releases/tag/v0.1.0
 [0.2.0]: https://github.com/Ogekuri/Prompts/compare/v0.1.0..v0.2.0
@@ -287,3 +305,4 @@
 [0.12.0]: https://github.com/Ogekuri/Prompts/compare/v0.11.0..v0.12.0
 [0.13.0]: https://github.com/Ogekuri/Prompts/compare/v0.12.0..v0.13.0
 [0.14.0]: https://github.com/Ogekuri/Prompts/compare/v0.13.0..v0.14.0
+[0.15.0]: https://github.com/Ogekuri/Prompts/compare/v0.14.0..v0.15.0
