@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.18.0](https://github.com/Ogekuri/Prompts/compare/v0.17.0..v0.18.0) - 2026-03-30
+### 🚜  Changes
+- add incompatibility conflict-table output [useReq] *(fix)*
+  - Add FIX-STP-011 requirement for Step 4 incompatibility handling.
+  - Require fix prompt to emit 3-column conflict table before exact error output.
+  - Update WORKFLOW and REFERENCES to keep runtime/docs traceability aligned.
+
 ## [0.17.0](https://github.com/Ogekuri/Prompts/compare/v0.16.0..v0.17.0) - 2026-03-18
 ### 📚  Documentation
 - Update README.md title.
@@ -321,6 +328,7 @@
 - \[0.15.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.15.0
 - \[0.16.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.16.0
 - \[0.17.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.17.0
+- \[0.18.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.18.0
 
 [0.1.0]: https://github.com/Ogekuri/Prompts/releases/tag/v0.1.0
 [0.2.0]: https://github.com/Ogekuri/Prompts/compare/v0.1.0..v0.2.0
@@ -339,3 +347,4 @@
 [0.15.0]: https://github.com/Ogekuri/Prompts/compare/v0.14.0..v0.15.0
 [0.16.0]: https://github.com/Ogekuri/Prompts/compare/v0.15.0..v0.16.0
 [0.17.0]: https://github.com/Ogekuri/Prompts/compare/v0.16.0..v0.17.0
+[0.18.0]: https://github.com/Ogekuri/Prompts/compare/v0.17.0..v0.18.0
