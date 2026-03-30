@@ -259,6 +259,7 @@ Proposed repository structure (max depth 3, depth 4 for `src/`):
 - **FIX-STP-008**: MUST define Step 8 to instruct: CRITICAL: Stage & commit.
 - **FIX-STP-009**: MUST define Step 9 to instruct: CRITICAL: Merge Conflict Management.
 - **FIX-STP-010**: MUST define Step 10 to instruct: Present results.
+- **FIX-STP-011**: MUST define Step 4 incompatibility branch to output a three-column requirement-conflict table (`Requirement ID`, `Conflicting Excerpt`, `Conflict Reason + Interrupted Implementation Intent`) before emitting the exact error string and terminating.
 
 #### 3.3.7 Implement Prompt
 
