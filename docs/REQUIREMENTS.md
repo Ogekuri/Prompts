@@ -171,7 +171,7 @@ Proposed repository structure (max depth 3, depth 4 for `src/`):
 
 ##### Steps Requirements
 - **ANZ-STP-001**: MUST define Step 1 to instruct: CRITICAL: Check `%%DOC_PATH%%/REQUIREMENTS.md`, `%%DOC_PATH%%/WORKFLOW.md` and `%%DOC_PATH%%/REFERENCES.md` file presence.
-- **ANZ-STP-002**: MUST define Step 2 to instruct: Analyze the [User Request](#users-request) and present the analysis report.
+- **ANZ-STP-002**: MUST define Step 2 to instruct: Analyze the [User Request](#users-request) and present a human-readable analysis report using clear sentences and readable Markdown while preserving the fixed report schema and exact final status line.
 
 #### 3.3.2 Change Prompt
 
@@ -192,7 +192,7 @@ Proposed repository structure (max depth 3, depth 4 for `src/`):
 - **CHG-STP-008**: MUST define Step 8 to instruct: Update `%%DOC_PATH%%/REFERENCES.md` references file.
 - **CHG-STP-009**: MUST define Step 9 to instruct: CRITICAL: Stage & commit.
 - **CHG-STP-010**: MUST define Step 10 to instruct: CRITICAL: Merge Conflict Management.
-- **CHG-STP-011**: MUST define Step 11 to instruct: Present results.
+- **CHG-STP-011**: MUST define Step 11 to instruct: Present results for human readers using clear sentences and readable Markdown while preserving the fixed report schema and exact final status line.
 
 #### 3.3.3 Check Prompt
 
@@ -205,7 +205,7 @@ Proposed repository structure (max depth 3, depth 4 for `src/`):
 ##### Steps Requirements
 - **CHK-STP-001**: MUST define Step 1 to instruct: CRITICAL: Check `%%DOC_PATH%%/REQUIREMENTS.md`, `%%DOC_PATH%%/WORKFLOW.md` and `%%DOC_PATH%%/REFERENCES.md` file presence.
 - **CHK-STP-002**: MUST define Step 2 to instruct: Run static analysis (`req --here --static-check`), check requirements coverage and generate Implementation Delta.
-- **CHK-STP-003**: MUST define Step 3 to instruct: Present results and Implementation Delta.
+- **CHK-STP-003**: MUST define Step 3 to instruct: Present results and Implementation Delta for human readers using clear sentences and readable Markdown while preserving the fixed report schema and exact final status line.
 
 #### 3.3.4 Cover Prompt
 
@@ -225,7 +225,7 @@ Proposed repository structure (max depth 3, depth 4 for `src/`):
 - **COV-STP-007**: MUST define Step 7 to instruct: Update `%%DOC_PATH%%/REFERENCES.md` references file.
 - **COV-STP-008**: MUST define Step 8 to instruct: CRITICAL: Stage & commit.
 - **COV-STP-009**: MUST define Step 9 to instruct: CRITICAL: Merge Conflict Management.
-- **COV-STP-010**: MUST define Step 10 to instruct: Present results.
+- **COV-STP-010**: MUST define Step 10 to instruct: Present results for human readers using clear sentences and readable Markdown while preserving the fixed report schema and exact final status line.
 
 #### 3.3.5 Create Prompt
 
@@ -238,7 +238,7 @@ Proposed repository structure (max depth 3, depth 4 for `src/`):
 ##### Steps Requirements
 - **CRT-STP-001**: MUST define Step 1 to instruct: Generate the Software Requirements Specification.
 - **CRT-STP-002**: MUST define Step 2 to instruct: Validate the Software Requirements Specification.
-- **CRT-STP-003**: MUST define Step 3 to instruct: Present results.
+- **CRT-STP-003**: MUST define Step 3 to instruct: Present results for human readers using clear sentences and readable Markdown while preserving the fixed report schema and exact final status line.
 
 #### 3.3.6 Fix Prompt
 
@@ -258,7 +258,7 @@ Proposed repository structure (max depth 3, depth 4 for `src/`):
 - **FIX-STP-007**: MUST define Step 7 to instruct: Update `%%DOC_PATH%%/REFERENCES.md` references file.
 - **FIX-STP-008**: MUST define Step 8 to instruct: CRITICAL: Stage & commit.
 - **FIX-STP-009**: MUST define Step 9 to instruct: CRITICAL: Merge Conflict Management.
-- **FIX-STP-010**: MUST define Step 10 to instruct: Present results.
+- **FIX-STP-010**: MUST define Step 10 to instruct: Present results for human readers using clear sentences and readable Markdown while preserving the fixed report schema and exact final status line.
 - **FIX-STP-011**: MUST define Step 4 incompatibility branch to output a three-column requirement-conflict table (`Requirement ID`, `Conflicting Excerpt`, `Conflict Reason + Interrupted Implementation Intent`) before emitting the exact error string and terminating.
 
 #### 3.3.7 Implement Prompt
@@ -279,7 +279,7 @@ Proposed repository structure (max depth 3, depth 4 for `src/`):
 - **IMP-STP-007**: MUST define Step 7 to instruct: Update `%%DOC_PATH%%/REFERENCES.md` references file.
 - **IMP-STP-008**: MUST define Step 8 to instruct: CRITICAL: Stage & commit.
 - **IMP-STP-009**: MUST define Step 9 to instruct: CRITICAL: Merge Conflict Management.
-- **IMP-STP-010**: MUST define Step 10 to instruct: Present results.
+- **IMP-STP-010**: MUST define Step 10 to instruct: Present results for human readers using clear sentences and readable Markdown while preserving the fixed report schema and exact final status line.
 
 #### 3.3.8 New Prompt
 
@@ -300,7 +300,7 @@ Proposed repository structure (max depth 3, depth 4 for `src/`):
 - **NEW-STP-008**: MUST define Step 8 to instruct: Update `%%DOC_PATH%%/REFERENCES.md` references file.
 - **NEW-STP-009**: MUST define Step 9 to instruct: CRITICAL: Stage & commit.
 - **NEW-STP-010**: MUST define Step 10 to instruct: CRITICAL: Merge Conflict Management.
-- **NEW-STP-011**: MUST define Step 11 to instruct: Present results.
+- **NEW-STP-011**: MUST define Step 11 to instruct: Present results for human readers using clear sentences and readable Markdown while preserving the fixed report schema and exact final status line.
 
 #### 3.3.9 ReCreate Prompt
 
@@ -318,7 +318,7 @@ Proposed repository structure (max depth 3, depth 4 for `src/`):
 - **RCR-STP-005**: MUST define Step 5 to instruct: Validate the Software Requirements Specification.
 - **RCR-STP-006**: MUST define Step 6 to instruct: CRITICAL: Stage & commit.
 - **RCR-STP-007**: MUST define Step 7 to instruct: CRITICAL: Merge Conflict Management.
-- **RCR-STP-008**: MUST define Step 8 to instruct: Present results.
+- **RCR-STP-008**: MUST define Step 8 to instruct: Present results for human readers using clear sentences and readable Markdown while preserving the fixed report schema and exact final status line.
 
 #### 3.3.10 Refactor Prompt
 
@@ -338,7 +338,7 @@ Proposed repository structure (max depth 3, depth 4 for `src/`):
 - **RFR-STP-007**: MUST define Step 7 to instruct: Update `%%DOC_PATH%%/REFERENCES.md` references file.
 - **RFR-STP-008**: MUST define Step 8 to instruct: CRITICAL: Stage & commit.
 - **RFR-STP-009**: MUST define Step 9 to instruct: CRITICAL: Merge Conflict Management.
-- **RFR-STP-010**: MUST define Step 10 to instruct: Present results.
+- **RFR-STP-010**: MUST define Step 10 to instruct: Present results for human readers using clear sentences and readable Markdown while preserving the fixed report schema and exact final status line.
 
 #### 3.3.11 References Prompt
 
@@ -354,7 +354,7 @@ Proposed repository structure (max depth 3, depth 4 for `src/`):
 - **REF-STP-003**: MUST define Step 3 to instruct: Update `%%DOC_PATH%%/REFERENCES.md` references file.
 - **REF-STP-004**: MUST define Step 4 to instruct: CRITICAL: Stage & commit.
 - **REF-STP-005**: MUST define Step 5 to instruct: CRITICAL: Merge Conflict Management.
-- **REF-STP-006**: MUST define Step 6 to instruct: Present results.
+- **REF-STP-006**: MUST define Step 6 to instruct: Present results for human readers using clear sentences and readable Markdown while preserving the fixed report schema and exact final status line.
 
 #### 3.3.12 Renumber Prompt
 
@@ -372,7 +372,7 @@ Proposed repository structure (max depth 3, depth 4 for `src/`):
 - **RNB-STP-005**: MUST define Step 5 to instruct: Validate the Software Requirements Specification.
 - **RNB-STP-006**: MUST define Step 6 to instruct: CRITICAL: Stage & commit.
 - **RNB-STP-007**: MUST define Step 7 to instruct: CRITICAL: Merge Conflict Management.
-- **RNB-STP-008**: MUST define Step 8 to instruct: Present results.
+- **RNB-STP-008**: MUST define Step 8 to instruct: Present results for human readers using clear sentences and readable Markdown while preserving the fixed report schema and exact final status line.
 
 #### 3.3.13 Workflow Prompt
 
@@ -389,7 +389,7 @@ Proposed repository structure (max depth 3, depth 4 for `src/`):
 - **WFL-STP-004**: MUST define Step 4 to instruct: Generate and overwrite `%%DOC_PATH%%/WORKFLOW.md` document using declaration file paths only, excluding line numbers, line ranges, and internal file-reference pointers.
 - **WFL-STP-005**: MUST define Step 5 to instruct: CRITICAL: Stage & commit.
 - **WFL-STP-006**: MUST define Step 6 to instruct: CRITICAL: Merge Conflict Management.
-- **WFL-STP-007**: MUST define Step 7 to instruct: Present results.
+- **WFL-STP-007**: MUST define Step 7 to instruct: Present results for human readers using clear sentences and readable Markdown while preserving the fixed report schema and exact final status line.
 
 #### 3.3.14 Write Prompt
 
@@ -401,7 +401,7 @@ Proposed repository structure (max depth 3, depth 4 for `src/`):
 
 ##### Steps Requirements
 - **WRT-STP-001**: MUST define Step 1 to instruct: Generate the Software Requirements Specification.
-- **WRT-STP-002**: MUST define Step 2 to instruct: Present results.
+- **WRT-STP-002**: MUST define Step 2 to instruct: Present results for human readers using clear sentences and readable Markdown while preserving the fixed report schema and exact final status line.
 
 #### 3.3.15 Readme Prompt
 
@@ -419,4 +419,4 @@ Proposed repository structure (max depth 3, depth 4 for `src/`):
 - **RDM-STP-004**: MUST define Step 4 to instruct: Identify exact root `README.md` sections impacted by detected user-visible implementation changes and additional edits explicitly requested in [User Request](#users-request), then update only those sections while preserving unrelated content and existing structure/formatting whenever possible.
 - **RDM-STP-005**: MUST define Step 5 to instruct: CRITICAL: Stage & commit.
 - **RDM-STP-006**: MUST define Step 6 to instruct: CRITICAL: Merge Conflict Management.
-- **RDM-STP-007**: MUST define Step 7 to instruct: Present results.
+- **RDM-STP-007**: MUST define Step 7 to instruct: Present results for human readers using clear sentences and readable Markdown while preserving the fixed report schema and exact final status line.

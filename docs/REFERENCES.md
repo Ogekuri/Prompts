@@ -6,49 +6,23 @@
 
 ## Updated Prompt Artifacts
 
-- `src/prompts/{change,cover,fix,implement,new,readme,recreate,refactor,references,renumber,workflow}.md`: Worktree-generation bullet now requires deriving `<BASE_PATH>` with `req --get-base-path` and `<GIT_PATH>` with `req --git-path` before generating `<WORKTREE_NAME>` with `req --git-wt-name`.
-- `src/prompts/{change,cover,fix,implement,new,readme,recreate,refactor,references,renumber,workflow}.md`: Worktree-enter instruction now requires `cd <GIT_PATH>/../<WORKTREE_NAME>` immediately after `req --git-wt-create <WORKTREE_NAME>`.
-- `src/prompts/{change,cover,fix,implement,new,readme,recreate,refactor,references,renumber,workflow}.md`: Merge-preparation instruction now requires deriving `<BASE_PATH>` when needed and executing `cd <BASE_PATH>` instead of `req --git-wt-exit`.
-- `src/prompts/{change,cover,fix,implement,new,readme,recreate,refactor,references,renumber,workflow}.md`: `Pre-requisite: Execution Context` now explicitly requires continuous retention of all listed context information and forbids dropping or forgetting context values.
-- `src/prompts/{analyze,check}.md`: Removed `## Pre-requisite: Execution Context` because these prompts do not execute `req --git-wt-create <WORKTREE_NAME>`.
-- `src/prompts/{change,cover,fix,implement,new,readme,recreate,refactor,references,renumber,workflow}.md`: Final repository-cleanliness verification step now uses `req --git-check` instead of `git status --porcelain`.
-- `src/prompts/change.md`: Removed rollback/revert git-state cleanup instructions from failure branches; cleanup now uses only `req --git-wt-delete <WORKTREE_NAME>`.
-- `src/prompts/cover.md`: Removed rollback/revert git-state cleanup instructions from failure branches; cleanup now uses only `req --git-wt-delete <WORKTREE_NAME>`.
-- `src/prompts/fix.md`: Removed rollback/revert git-state cleanup instructions from failure branches; cleanup now uses only `req --git-wt-delete <WORKTREE_NAME>`.
-- `src/prompts/implement.md`: Removed rollback/revert git-state cleanup instructions from failure branches; cleanup now uses only `req --git-wt-delete <WORKTREE_NAME>`.
-- `src/prompts/new.md`: Removed rollback/revert git-state cleanup instructions from failure branches; cleanup now uses only `req --git-wt-delete <WORKTREE_NAME>`.
-- `src/prompts/refactor.md`: Removed rollback/revert git-state cleanup instructions from failure branches; cleanup now uses only `req --git-wt-delete <WORKTREE_NAME>`.
-- `src/prompts/change.md`: Step 6 verification now audits ALL SRS requirements with progressive-disclosure evidence (`OK` pointer-only, `FAIL` full evidence) instead of only related requirements.
-- `src/prompts/new.md`: Step 6 verification now audits ALL SRS requirements with progressive-disclosure evidence (`OK` pointer-only, `FAIL` full evidence) instead of only related requirements.
-- `src/prompts/fix.md`: Step 5 verification now audits ALL SRS requirements with progressive-disclosure evidence (`OK` pointer-only, `FAIL` full evidence) instead of only related requirements.
-- `src/prompts/{change,new,fix,cover,implement,refactor}.md`: Verification flow now executes existing unit-test suites during verification when relevant tests are present, using language-specific test-suite priority policy.
-- `src/prompts/fix.md`: Defect-fix flow now explicitly prefers creating one failing reproducer unit test (when relevant suites exist) before designing and implementing source changes, then requires explicit reproducer-pass evidence in verification.
-- `src/prompts/fix.md`: Step 4 incompatibility branch now requires a three-column requirement-conflict table (`Requirement ID`, `Conflicting Excerpt`, `Conflict Reason + Interrupted Implementation Intent`) before emitting the exact incompatibility error string.
-- `src/prompts/{change,new,fix,cover,implement,refactor,check}.md`: Verification flow now treats `Error: no source files found in configured directories.` from `req --here --static-check` as successful no-source completion.
+- `src/prompts/analyze.md`: Final analysis-report instruction now targets human readers with clear sentences and readable Markdown while preserving the fixed report schema and exact final status line.
+- `src/prompts/{change,cover,create,fix,implement,new,readme,recreate,refactor,references,renumber,workflow}.md`: Final results instruction now targets human readers with clear sentences and readable Markdown while preserving the fixed report schema and exact final status line.
+- `src/prompts/check.md`: Final requirements-check report instruction now targets human readers with clear sentences and readable Markdown while preserving the fixed report schema and exact final status line.
+- `src/prompts/write.md`: Final structured-summary instruction now targets human readers with clear sentences and readable Markdown while preserving the fixed report schema and exact final status line.
+
+## Runtime Skill Artifacts
+
+- `.github/skills/req-analyze/SKILL.md`: Final analysis-report instruction now targets human readers with clear sentences and readable Markdown while preserving the fixed report schema and exact final status line.
+- `.github/skills/{req-change,req-cover,req-create,req-fix,req-implement,req-new,req-readme,req-recreate,req-refactor,req-references,req-renumber,req-workflow,req-write}/SKILL.md`: Final results instruction now targets human readers with clear sentences and readable Markdown while preserving the fixed report schema and exact final status line.
+- `.github/skills/req-check/SKILL.md`: Final requirements-check report instruction now targets human readers with clear sentences and readable Markdown while preserving the fixed report schema and exact final status line.
 
 ## Requirement Updates
 
-- `docs/REQUIREMENTS.md`: Updated `REQ-019` to require `req --get-base-path` and `req --git-path` for deriving `<BASE_PATH>` and `<GIT_PATH>` before generating `<WORKTREE_NAME>`.
-- `docs/REQUIREMENTS.md`: Updated `REQ-019` to require `cd <GIT_PATH>/../<WORKTREE_NAME>` after `req --git-wt-create <WORKTREE_NAME>`.
-- `docs/REQUIREMENTS.md`: Updated `REQ-019` to replace worktree-exit instruction `req --git-wt-exit` with explicit `cd <BASE_PATH>` and conditional `<BASE_PATH>` derivation.
-- `docs/REQUIREMENTS.md`: Updated `REQ-019` to require explicit continuous retention of all `Pre-requisite: Execution Context` values for entire workflow execution.
-- `docs/REQUIREMENTS.md`: Updated `REQ-019` to require `## Pre-requisite: Execution Context` and `<WORKTREE_NAME>` generation only for prompts that execute `req --git-wt-create <WORKTREE_NAME>`, and to forbid that section/instructions in prompts without worktree creation.
-- `docs/REQUIREMENTS.md`: Updated `REQ-019` to require final repository-cleanliness verification via `req --git-check` and to forbid `git status --porcelain` for that final check.
-- `docs/REQUIREMENTS.md`: Updated `REQ-019` to enforce exclusive early-termination cleanup via `req --git-wt-delete <WORKTREE_NAME>` after successful worktree creation and to forbid rollback/revert commands (`git restore .`, `git checkout .`, `git clean -fd`) in those branches.
-- `docs/REQUIREMENTS.md`: Updated `REQ-025` interruption rules to forbid rollback/revert git-state commands in authorized post-create interruption branches and require cleanup through `req --git-wt-delete <WORKTREE_NAME>` only.
-- `docs/REQUIREMENTS.md`: Updated `CHG-STP-006`, `NEW-STP-006`, and `FIX-STP-005` to normatively require full-SRS verification audits with progressive-disclosure evidence in final verification steps.
-- `docs/REQUIREMENTS.md`: Updated change/cover/fix/implement/new/refactor scope and step requirements to require conditional execution of existing unit tests during verification using language-specific test-suite priority policy.
-- `docs/REQUIREMENTS.md`: Updated `FIX-CTX-002`, `FIX-CTX-004`, `FIX-STP-004`, and `FIX-STP-005` to require a preferred reproducer unit-test-first bug-fix approach when relevant suites exist, with explicit pass verification evidence.
-- `docs/REQUIREMENTS.md`: Added `FIX-STP-011` to require Step 4 incompatibility branches in `fix.md` to emit a three-column requirement-conflict table before exact-string termination.
-- `docs/REQUIREMENTS.md`: Added `REQ-028` to define `Error: no source files found in configured directories.` as a successful completion outcome for `req --here --static-check` in this repository.
+- `docs/REQUIREMENTS.md`: Updated `ANZ-STP-002` to require a human-readable analysis report that keeps the fixed report schema and exact final status line.
+- `docs/REQUIREMENTS.md`: Updated `CHG-STP-011`, `COV-STP-010`, `CRT-STP-003`, `FIX-STP-010`, `IMP-STP-010`, `NEW-STP-011`, `RCR-STP-008`, `RFR-STP-010`, `REF-STP-006`, `RNB-STP-008`, `WFL-STP-007`, `WRT-STP-002`, and `RDM-STP-007` to require human-readable final reports that keep the fixed report schema and exact final status line.
+- `docs/REQUIREMENTS.md`: Updated `CHK-STP-003` to require a human-readable requirements-check report and Implementation Delta that keep the fixed report schema and exact final status line.
 
 ## Workflow Model Update
 
-- `docs/WORKFLOW.md`: Updated `PROC:main` lifecycle behavior to encode `<BASE_PATH>` derivation via `req --get-base-path` and `<GIT_PATH>` derivation via `req --git-path` before `req --git-wt-name`.
-- `docs/WORKFLOW.md`: Updated `PROC:main` lifecycle behavior to encode worktree-enter `cd <GIT_PATH>/../<WORKTREE_NAME>`, worktree-exit `cd <BASE_PATH>` (with conditional `<BASE_PATH>` derivation), and mandatory retention of all `Pre-requisite: Execution Context` values.
-- `docs/WORKFLOW.md`: Updated `PROC:main` lifecycle behavior to encode that only prompts executing `req --git-wt-create <WORKTREE_NAME>` define `## Pre-requisite: Execution Context` and `<WORKTREE_NAME>` generation.
-- `docs/WORKFLOW.md`: Updated `PROC:main` lifecycle behavior to require final repository-cleanliness verification via `req --git-check` and encode exclusive worktree-delete cleanup with explicit prohibition of rollback/revert git-state commands in post-create early termination branches.
-- `docs/WORKFLOW.md`: Updated `PROC:main` lifecycle behavior to record global requirement-audit verification in `change`, `new`, and `fix` workflows with progressive-disclosure evidence.
-- `docs/WORKFLOW.md`: Updated `PROC:main` lifecycle behavior to encode static-analysis verification, no-source static-check success handling, and conditional execution of existing unit-test suites via language-specific priority policy.
-- `docs/WORKFLOW.md`: Updated `PROC:main` lifecycle behavior to encode defect-fix workflow preference for a reproducer unit-test-first sequence before source fixes when relevant suites exist.
-- `docs/WORKFLOW.md`: Updated `PROC:main` lifecycle behavior to encode Step 4 incompatibility-branch emission of the three-column requirement-conflict table before exact incompatibility termination in defect-fix workflow.
+- `docs/WORKFLOW.md`: Updated `PROC:main` lifecycle behavior to encode that final report instructions preserve the fixed report schema and exact final status line while explicitly targeting human readers with clear sentences and readable Markdown formatting.
