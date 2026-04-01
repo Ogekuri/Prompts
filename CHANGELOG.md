@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.20.0](https://github.com/Ogekuri/Prompts/compare/v0.19.0..v0.20.0) - 2026-04-01
+### 🚜  Changes
+- clarify non-GPG commit requirement [useReq] *(core)*
+  - update Stage & commit requirement IDs for non-GPG commit guidance\n- update affected prompt artifacts under src/prompts\n- refresh workflow and references documentation
+
 ## [0.19.0](https://github.com/Ogekuri/Prompts/compare/v0.18.0..v0.19.0) - 2026-04-01
 ### 🚜  Changes
 - clarify human-readable final reports [useReq] *(core)*
@@ -338,6 +343,7 @@
 - \[0.17.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.17.0
 - \[0.18.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.18.0
 - \[0.19.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.19.0
+- \[0.20.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.20.0
 
 [0.1.0]: https://github.com/Ogekuri/Prompts/releases/tag/v0.1.0
 [0.2.0]: https://github.com/Ogekuri/Prompts/compare/v0.1.0..v0.2.0
@@ -358,3 +364,4 @@
 [0.17.0]: https://github.com/Ogekuri/Prompts/compare/v0.16.0..v0.17.0
 [0.18.0]: https://github.com/Ogekuri/Prompts/compare/v0.17.0..v0.18.0
 [0.19.0]: https://github.com/Ogekuri/Prompts/compare/v0.18.0..v0.19.0
+[0.20.0]: https://github.com/Ogekuri/Prompts/compare/v0.19.0..v0.20.0
