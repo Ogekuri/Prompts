@@ -190,7 +190,7 @@ Proposed repository structure (max depth 3, depth 4 for `src/`):
 - **CHG-STP-006**: MUST define Step 6 to instruct: Generate Verification Delta by auditing ALL requirements with progressive-disclosure evidence (OK pointer-only, FAIL full), verifying static-analysis results, running existing unit tests with language-specific priority policy, and implementing needed bug fixes.
 - **CHG-STP-007**: MUST define Step 7 to instruct: Update `%%DOC_PATH%%/WORKFLOW.md` via targeted edits using the canonical WORKFLOW document contract (same terminology, same schema, same call-trace rules) and declaration file paths only, excluding line numbers, line ranges, and internal file-reference pointers.
 - **CHG-STP-008**: MUST define Step 8 to instruct: Update `%%DOC_PATH%%/REFERENCES.md` references file.
-- **CHG-STP-009**: MUST define Step 9 to instruct: CRITICAL: Stage & commit.
+- **CHG-STP-009**: MUST define Step 9 to instruct: CRITICAL: Stage & commit, including an explicit statement that a GPG-signed commit is not required.
 - **CHG-STP-010**: MUST define Step 10 to instruct: CRITICAL: Merge Conflict Management.
 - **CHG-STP-011**: MUST define Step 11 to instruct: Present results for human readers using clear sentences and readable Markdown while preserving the fixed report schema and exact final status line.
 
@@ -223,7 +223,7 @@ Proposed repository structure (max depth 3, depth 4 for `src/`):
 - **COV-STP-005**: MUST define Step 5 to instruct: Generate Verification Delta by running static analysis (`req --here --static-check`), executing existing unit tests with language-specific priority policy, and implementing needed bug fixes.
 - **COV-STP-006**: MUST define Step 6 to instruct: Update `%%DOC_PATH%%/WORKFLOW.md` via targeted edits using the canonical WORKFLOW document contract (same terminology, same schema, same call-trace rules) and declaration file paths only, excluding line numbers, line ranges, and internal file-reference pointers.
 - **COV-STP-007**: MUST define Step 7 to instruct: Update `%%DOC_PATH%%/REFERENCES.md` references file.
-- **COV-STP-008**: MUST define Step 8 to instruct: CRITICAL: Stage & commit.
+- **COV-STP-008**: MUST define Step 8 to instruct: CRITICAL: Stage & commit, including an explicit statement that a GPG-signed commit is not required.
 - **COV-STP-009**: MUST define Step 9 to instruct: CRITICAL: Merge Conflict Management.
 - **COV-STP-010**: MUST define Step 10 to instruct: Present results for human readers using clear sentences and readable Markdown while preserving the fixed report schema and exact final status line.
 
@@ -256,7 +256,7 @@ Proposed repository structure (max depth 3, depth 4 for `src/`):
 - **FIX-STP-005**: MUST define Step 5 to instruct: Generate Verification Delta by auditing ALL requirements with progressive-disclosure evidence (OK pointer-only, FAIL full), verifying defect resolution with requirement evidence plus `req --here --static-check`, running existing unit tests with language-specific priority policy, explicitly confirming reproducer-unit-test success when created, and implementing needed bug fixes.
 - **FIX-STP-006**: MUST define Step 6 to instruct: Update `%%DOC_PATH%%/WORKFLOW.md` via targeted edits using the canonical WORKFLOW document contract (same terminology, same schema, same call-trace rules) and declaration file paths only, excluding line numbers, line ranges, and internal file-reference pointers.
 - **FIX-STP-007**: MUST define Step 7 to instruct: Update `%%DOC_PATH%%/REFERENCES.md` references file.
-- **FIX-STP-008**: MUST define Step 8 to instruct: CRITICAL: Stage & commit.
+- **FIX-STP-008**: MUST define Step 8 to instruct: CRITICAL: Stage & commit, including an explicit statement that a GPG-signed commit is not required.
 - **FIX-STP-009**: MUST define Step 9 to instruct: CRITICAL: Merge Conflict Management.
 - **FIX-STP-010**: MUST define Step 10 to instruct: Present results for human readers using clear sentences and readable Markdown while preserving the fixed report schema and exact final status line.
 - **FIX-STP-011**: MUST define Step 4 incompatibility branch to output a three-column requirement-conflict table (`Requirement ID`, `Conflicting Excerpt`, `Conflict Reason + Interrupted Implementation Intent`) before emitting the exact error string and terminating.
@@ -277,7 +277,7 @@ Proposed repository structure (max depth 3, depth 4 for `src/`):
 - **IMP-STP-005**: MUST define Step 5 to instruct: Static analysis: build the runtime model from %%SRC_PATHS%%.
 - **IMP-STP-006**: MUST define Step 6 to instruct: Generate and overwrite `%%DOC_PATH%%/WORKFLOW.md` document using declaration file paths only, excluding line numbers, line ranges, and internal file-reference pointers.
 - **IMP-STP-007**: MUST define Step 7 to instruct: Update `%%DOC_PATH%%/REFERENCES.md` references file.
-- **IMP-STP-008**: MUST define Step 8 to instruct: CRITICAL: Stage & commit.
+- **IMP-STP-008**: MUST define Step 8 to instruct: CRITICAL: Stage & commit, including an explicit statement that a GPG-signed commit is not required.
 - **IMP-STP-009**: MUST define Step 9 to instruct: CRITICAL: Merge Conflict Management.
 - **IMP-STP-010**: MUST define Step 10 to instruct: Present results for human readers using clear sentences and readable Markdown while preserving the fixed report schema and exact final status line.
 
@@ -298,7 +298,7 @@ Proposed repository structure (max depth 3, depth 4 for `src/`):
 - **NEW-STP-006**: MUST define Step 6 to instruct: Generate Verification Delta by auditing ALL requirements with progressive-disclosure evidence (OK pointer-only, FAIL full), verifying static-analysis results, running existing unit tests with language-specific priority policy, and implementing needed bug fixes.
 - **NEW-STP-007**: MUST define Step 7 to instruct: Update `%%DOC_PATH%%/WORKFLOW.md` via targeted edits using the canonical WORKFLOW document contract (same terminology, same schema, same call-trace rules) and declaration file paths only, excluding line numbers, line ranges, and internal file-reference pointers.
 - **NEW-STP-008**: MUST define Step 8 to instruct: Update `%%DOC_PATH%%/REFERENCES.md` references file.
-- **NEW-STP-009**: MUST define Step 9 to instruct: CRITICAL: Stage & commit.
+- **NEW-STP-009**: MUST define Step 9 to instruct: CRITICAL: Stage & commit, including an explicit statement that a GPG-signed commit is not required.
 - **NEW-STP-010**: MUST define Step 10 to instruct: CRITICAL: Merge Conflict Management.
 - **NEW-STP-011**: MUST define Step 11 to instruct: Present results for human readers using clear sentences and readable Markdown while preserving the fixed report schema and exact final status line.
 
@@ -316,7 +316,7 @@ Proposed repository structure (max depth 3, depth 4 for `src/`):
 - **RCR-STP-003**: MUST define Step 3 to instruct: CRITICAL: Worktree Generation & Isolation.
 - **RCR-STP-004**: MUST define Step 4 to instruct: Generate the Software Requirements Specification.
 - **RCR-STP-005**: MUST define Step 5 to instruct: Validate the Software Requirements Specification.
-- **RCR-STP-006**: MUST define Step 6 to instruct: CRITICAL: Stage & commit.
+- **RCR-STP-006**: MUST define Step 6 to instruct: CRITICAL: Stage & commit, including an explicit statement that a GPG-signed commit is not required.
 - **RCR-STP-007**: MUST define Step 7 to instruct: CRITICAL: Merge Conflict Management.
 - **RCR-STP-008**: MUST define Step 8 to instruct: Present results for human readers using clear sentences and readable Markdown while preserving the fixed report schema and exact final status line.
 
@@ -336,7 +336,7 @@ Proposed repository structure (max depth 3, depth 4 for `src/`):
 - **RFR-STP-005**: MUST define Step 5 to instruct: Generate Verification Delta by running static analysis (`req --here --static-check`), executing existing unit tests with language-specific priority policy, and implementing needed bug fixes.
 - **RFR-STP-006**: MUST define Step 6 to instruct: Update `%%DOC_PATH%%/WORKFLOW.md` via targeted edits using the canonical WORKFLOW document contract (same terminology, same schema, same call-trace rules) and declaration file paths only, excluding line numbers, line ranges, and internal file-reference pointers.
 - **RFR-STP-007**: MUST define Step 7 to instruct: Update `%%DOC_PATH%%/REFERENCES.md` references file.
-- **RFR-STP-008**: MUST define Step 8 to instruct: CRITICAL: Stage & commit.
+- **RFR-STP-008**: MUST define Step 8 to instruct: CRITICAL: Stage & commit, including an explicit statement that a GPG-signed commit is not required.
 - **RFR-STP-009**: MUST define Step 9 to instruct: CRITICAL: Merge Conflict Management.
 - **RFR-STP-010**: MUST define Step 10 to instruct: Present results for human readers using clear sentences and readable Markdown while preserving the fixed report schema and exact final status line.
 
@@ -352,7 +352,7 @@ Proposed repository structure (max depth 3, depth 4 for `src/`):
 - **REF-STP-001**: MUST define Step 1 to instruct: CRITICAL: Check GIT Status.
 - **REF-STP-002**: MUST define Step 2 to instruct: CRITICAL: Worktree Generation & Isolation.
 - **REF-STP-003**: MUST define Step 3 to instruct: Update `%%DOC_PATH%%/REFERENCES.md` references file.
-- **REF-STP-004**: MUST define Step 4 to instruct: CRITICAL: Stage & commit.
+- **REF-STP-004**: MUST define Step 4 to instruct: CRITICAL: Stage & commit, including an explicit statement that a GPG-signed commit is not required.
 - **REF-STP-005**: MUST define Step 5 to instruct: CRITICAL: Merge Conflict Management.
 - **REF-STP-006**: MUST define Step 6 to instruct: Present results for human readers using clear sentences and readable Markdown while preserving the fixed report schema and exact final status line.
 
@@ -370,7 +370,7 @@ Proposed repository structure (max depth 3, depth 4 for `src/`):
 - **RNB-STP-003**: MUST define Step 3 to instruct: CRITICAL: Worktree Generation & Isolation.
 - **RNB-STP-004**: MUST define Step 4 to instruct: CRITICAL: Renumber requirement IDs in the Software Requirements Specification.
 - **RNB-STP-005**: MUST define Step 5 to instruct: Validate the Software Requirements Specification.
-- **RNB-STP-006**: MUST define Step 6 to instruct: CRITICAL: Stage & commit.
+- **RNB-STP-006**: MUST define Step 6 to instruct: CRITICAL: Stage & commit, including an explicit statement that a GPG-signed commit is not required.
 - **RNB-STP-007**: MUST define Step 7 to instruct: CRITICAL: Merge Conflict Management.
 - **RNB-STP-008**: MUST define Step 8 to instruct: Present results for human readers using clear sentences and readable Markdown while preserving the fixed report schema and exact final status line.
 
@@ -387,7 +387,7 @@ Proposed repository structure (max depth 3, depth 4 for `src/`):
 - **WFL-STP-002**: MUST define Step 2 to instruct: CRITICAL: Worktree Generation & Isolation.
 - **WFL-STP-003**: MUST define Step 3 to instruct: Static analysis: build the runtime model from %%SRC_PATHS%%.
 - **WFL-STP-004**: MUST define Step 4 to instruct: Generate and overwrite `%%DOC_PATH%%/WORKFLOW.md` document using declaration file paths only, excluding line numbers, line ranges, and internal file-reference pointers.
-- **WFL-STP-005**: MUST define Step 5 to instruct: CRITICAL: Stage & commit.
+- **WFL-STP-005**: MUST define Step 5 to instruct: CRITICAL: Stage & commit, including an explicit statement that a GPG-signed commit is not required.
 - **WFL-STP-006**: MUST define Step 6 to instruct: CRITICAL: Merge Conflict Management.
 - **WFL-STP-007**: MUST define Step 7 to instruct: Present results for human readers using clear sentences and readable Markdown while preserving the fixed report schema and exact final status line.
 
@@ -417,6 +417,6 @@ Proposed repository structure (max depth 3, depth 4 for `src/`):
 - **RDM-STP-002**: MUST define Step 2 to instruct: CRITICAL: Worktree Generation & Isolation.
 - **RDM-STP-003**: MUST define Step 3 to instruct: Analyze user-visible implementation surface from %%SRC_PATHS%% and candidate related files.
 - **RDM-STP-004**: MUST define Step 4 to instruct: Identify exact root `README.md` sections impacted by detected user-visible implementation changes and additional edits explicitly requested in [User Request](#users-request), then update only those sections while preserving unrelated content and existing structure/formatting whenever possible.
-- **RDM-STP-005**: MUST define Step 5 to instruct: CRITICAL: Stage & commit.
+- **RDM-STP-005**: MUST define Step 5 to instruct: CRITICAL: Stage & commit, including an explicit statement that a GPG-signed commit is not required.
 - **RDM-STP-006**: MUST define Step 6 to instruct: CRITICAL: Merge Conflict Management.
 - **RDM-STP-007**: MUST define Step 7 to instruct: Present results for human readers using clear sentences and readable Markdown while preserving the fixed report schema and exact final status line.

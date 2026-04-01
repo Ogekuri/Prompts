@@ -22,7 +22,9 @@
 - `docs/REQUIREMENTS.md`: Updated `ANZ-STP-002` to require a human-readable analysis report that keeps the fixed report schema and exact final status line.
 - `docs/REQUIREMENTS.md`: Updated `CHG-STP-011`, `COV-STP-010`, `CRT-STP-003`, `FIX-STP-010`, `IMP-STP-010`, `NEW-STP-011`, `RCR-STP-008`, `RFR-STP-010`, `REF-STP-006`, `RNB-STP-008`, `WFL-STP-007`, `WRT-STP-002`, and `RDM-STP-007` to require human-readable final reports that keep the fixed report schema and exact final status line.
 - `docs/REQUIREMENTS.md`: Updated `CHK-STP-003` to require a human-readable requirements-check report and Implementation Delta that keep the fixed report schema and exact final status line.
+- `docs/REQUIREMENTS.md`: Updated `CHG-STP-009`, `COV-STP-008`, `FIX-STP-008`, `IMP-STP-008`, `NEW-STP-009`, `RCR-STP-006`, `RFR-STP-008`, `REF-STP-004`, `RNB-STP-006`, `WFL-STP-005`, and `RDM-STP-005` so every Stage & commit step explicitly states that a GPG-signed commit is not required.
 
 ## Workflow Model Update
 
 - `docs/WORKFLOW.md`: Updated `PROC:main` lifecycle behavior to encode that final report instructions preserve the fixed report schema and exact final status line while explicitly targeting human readers with clear sentences and readable Markdown formatting.
+- `docs/WORKFLOW.md`: Updated `PROC:main` lifecycle behavior to encode that Stage & commit instructions explicitly state that a GPG-signed commit is not required.
