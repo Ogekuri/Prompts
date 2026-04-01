@@ -1,25 +1,23 @@
 ---
-description: "Write a WORKFLOW.md using the project's source code"
-argument-hint: "No arguments utilized by the prompt logic"
-usage: >
-  Select this prompt ONLY for docs-maintenance of %%DOC_PATH%%/WORKFLOW.md: when it is missing/outdated and you need to regenerate the runtime/workflow model (processes/threads, internal call-traces, communication edges) from evidence in %%SRC_PATHS%% and commit that doc change. Do NOT select if you will change requirements, source code, or tests; choose /req-change, /req-new, /req-fix, /req-refactor, /req-cover, /req-implement, /req-create, or /req-recreate as appropriate. Do NOT select for read-only analysis/audits (use /req-analyze or /req-check).
+name: req-readme
+description: "Select this prompt ONLY for docs-maintenance of root README.md: when user-visible behavior changed and you must align README with current implementation evidence. Analyze externally visible surfaces only (features, CLI parameters, GUI behavior, distributed APIs, configuration schema), identify affected README sections before editing, and update only those sections while preserving unrelated content/format. Do NOT include internal implementation logic. Do NOT select if requirements, workflow, references, source code, or tests must change."
 ---
 
-# Write a WORKFLOW.md using the project's source code
+# Write README.md from user-visible implementation evidence
 
 ## Purpose
-Maintain an LLM-oriented runtime/workflow model (`%%DOC_PATH%%/WORKFLOW.md`) derived from repository evidence so downstream LLM Agents can reason about execution units, communication edges, and internal call-traces during SRS-driven design/implementation.
+Maintain root `README.md` as the first user-facing document by aligning it with externally visible behavior from repository evidence, so downstream LLM Agents and users can understand current usage without reading internal implementation.
 
 ## Scope
-In scope: static analysis of source under %%SRC_PATHS%% to generate/overwrite only `%%DOC_PATH%%/WORKFLOW.md` in English only, following the mandated schema, then commit that doc change. Out of scope: changes to requirements, references, source code, or tests.
+In scope: static analysis of user-visible behavior from `src/`, `scripts/`, `.github/workflows/` and related runtime interfaces, then targeted updates to root `README.md` in English only, then commit that doc change. Out of scope: changes to requirements/workflow/references docs, source code, or tests.
 
 
 ## Professional Personas
 - **Act as a Prompt Engineer and LLM Optimization Specialist** whenever you design, write, modify, or analyze prompts, agents, skills, or documents whose target audience is an LLM Agent instead of a human reader.
-- **Act as a Senior System Engineer** when analyzing source code; your primary goal is to trace the execution flow (call stack) across files and modules, identifying exactly how data and control move from one function to another.
-- **Act as a Business Analyst** when cross-referencing code findings with `%%DOC_PATH%%/REQUIREMENTS.md` to ensure functional alignment.
-- **Act as a Technical Writer** when producing the final analysis report or workflow descriptions, ensuring clarity, technical precision, and structured formatting.
-- **Act as a QA Auditor** when reporting facts, requiring concrete evidence as declaration file paths only (excluding line numbers and line ranges) for every finding.
+- **Act as a Senior System Engineer** when analyzing source code and interfaces to identify externally visible behavior changes.
+- **Act as a Business Analyst** when mapping implementation behavior to user outcomes and usage expectations.
+- **Act as a Senior Technical Writer** when producing the final README text as concise, user-centric guidance for first-time readers.
+- **Act as a QA Auditor** when reporting facts, requiring concrete evidence (file paths, line numbers) for every user-visible claim.
 - **Act as an Expert GitOps Engineer** when executing git workflows, especially when creating/removing/managing git worktrees to isolate changes safely.
 
 
@@ -30,50 +28,42 @@ In scope: static analysis of source under %%SRC_PATHS%% to generate/overwrite on
 
 ## Absolute Rules, Non-Negotiable
 - **CRITICAL**: NEVER write, modify, edit, or delete files outside of the active git worktree directory, except under `/tmp`, and except for worktree operations executed through `req --git-wt-create <WORKTREE_NAME>` and `req --git-wt-delete <WORKTREE_NAME>`.
-- You can read, write, or edit `%%DOC_PATH%%/WORKFLOW.md`.
+- You can read, write, or edit `README.md`.
 - Treat static analysis as safe. Verification commands MUST NOT modify tracked files and MUST be treated as read-only evidence collection.
-- **CRITICAL**: Do not modify any project files except creating/updating `%%DOC_PATH%%/WORKFLOW.md`.
+- **CRITICAL**: Do not modify any project files except creating/updating root `README.md`.
 - **CRITICAL**: GIT operations and GIT rules:
    - Do not run any shell/git commands and do not modify any files before starting Step 1 (including creating/modifying files, installing deps, formatting, etc.): **CRITICAL**: Check GIT Status.
    - Step 1 may run only the git commands `git rev-parse --is-inside-work-tree`, `git rev-parse --verify HEAD`, `git status --porcelain`, and `git symbolic-ref -q HEAD` (plus minimal shell built-ins to combine their outputs into a single cleanliness check).
    - If the repository is NOT clean (modified files, staged changes, OR untracked files), exit immediately without changing anything.
    - At the end you MUST commit only the intended changes with a unique identifier and change description in the commit message.
    - Leave the working tree AND index clean (git `status --porcelain` must be empty).
-   - Do NOT “fix” a dirty repo by force (no `git reset --hard`, no `git clean -fd`, no stash) unless explicitly requested. If dirty: abort.
+   - Do NOT "fix" a dirty repo by force (no `git reset --hard`, no `git clean -fd`, no stash) unless explicitly requested. If dirty: abort.
 - **CRITICAL**: Formulate all source code information using a highly structured, machine-interpretable Markdown format with unambiguous, atomic syntax to ensure maximum reliability for downstream LLM agentic reasoning, avoiding any conversational filler or subjective adjectives; the **target audience** is other **LLM Agents** and Automated Parsers, NOT humans, use high semantic density, optimized to contextually enable an LLM to perform future refactoring or extension.
 
 ## Behavior
-- Write the `%%DOC_PATH%%/WORKFLOW.md` document in English.
+- Write root `README.md` in English.
 - Do not perform unrelated edits.
+- Analyze user-visible implementation changes, including new features, CLI parameters/options, GUI interactions, distributed APIs, and configuration-file schema updates when present.
+- Validate whether the current root `README.md` is aligned with implementation evidence; identify exact sections to update first, then update only missing, outdated, or incorrect user-facing content in those sections.
+- Parse [User Request](#users-request) (`$ARGUMENTS`) as explicit additional-edit directives, using the same anchor-based reference model used by `write.md`, and execute those directives in the same scoped README update pass.
+- Keep non-analysis documentary sections unchanged, including document headers, versioning metadata, context/scope descriptions, personal motivations, related projects, and high-level conceptual or graphical descriptions that do not alter interface usage.
+- Preserve existing README structure and formatting patterns (section order, heading hierarchy, bullet/list style, table style) whenever possible.
+- Exclude internal implementation details, internal architecture logic, private symbols, and algorithm internals from `README.md`.
 - Use the repository's existing language-specific environment/toolchain to execute code and tests; do NOT create new environments unless explicitly requested by the user. For Python, prefer Astral `uv` (`uv run`, `uvx`) when available, then fall back to the repository's existing `.venv` (if present). For other ecosystems (e.g., Node.js, Rust, C/C++), use the project's standard commands.
-- Use filesystem/shell tools to read/write/delete files as needed (e.g., `cat`, `sed`, `perl -pi`, `printf > file`, `rm -f`, ...), but only to read project files and to write/update `%%DOC_PATH%%/WORKFLOW.md`. Avoid in-place edits on any other path. Prefer read-only commands for analysis.
+- Use filesystem/shell tools to read/write/delete files as needed (e.g., `cat`, `sed`, `perl -pi`, `printf > file`, `rm -f`, ...), but only to read project files and to write/update root `README.md`. Avoid in-place edits on any other path. Prefer read-only commands for analysis.
 
 
 ## Canonical Terminology (MUST use these exact terms)
-- **Process**: an OS process execution unit (MUST include the main process).
-- **Thread**: an OS thread execution unit within a process.
-- **Execution Unit**: a Process or a Thread.
-- **Internal function**: a function/method defined in repository source under %%SRC_PATHS%% (only these can appear as call-trace nodes).
-- **External boundary**: any call/interaction whose target implementation is not defined under %%SRC_PATHS%% (libraries/frameworks/OS/network/DB/etc.). External boundaries MUST NOT appear as call-trace nodes.
-- **Communication Edge**: an explicit runtime interaction between two execution units (direction + mechanism + endpoint/channel + payload/data-shape reference).
+- **User-visible behavior**: any behavior directly observable by an end user through CLI, GUI, APIs, outputs, or configuration.
+- **External interface surface**: the exposed contract that users or integrators interact with (commands, flags, endpoints, UI elements, config schema).
+- **Internal implementation detail**: any internal class, function, module wiring, or algorithmic logic not required for end-user operation.
+- **README coverage item**: a user-visible behavior that MUST be represented in root `README.md` with actionable usage guidance.
 
-
-## WORKFLOW.md Output Contract (MUST preserve this schema)
-- The generated %%DOC_PATH%%/WORKFLOW.md MUST be parser-stable and token-efficient: fixed section order, atomic bullets, deterministic key names, and zero narrative filler.
-- The generated %%DOC_PATH%%/WORKFLOW.md MUST NOT include line numbers, line ranges, or internal file-reference pointers; it MUST include only declaration file paths for internal symbols.
-- The document MUST be structured as:
-  - `## Execution Units Index`
-  - `## Execution Units` (one subsection per execution unit ID)
-  - `## Communication Edges`
-- The model MUST cover:
-  - ALL processes and threads used at runtime (static analysis), including the main process.
-  - For EACH execution unit: a complete internal call-trace tree from entrypoint(s) down to internal leaf functions (internal functions only).
-  - ALL explicit communication/interconnection paths between execution units.
 
 ## Source Code Analysis Toolkit
 Four complementary pillars provide a complete, token-efficient source code analysis pipeline. Execute in order (1→2→3→4) to maximize evidence quality while minimizing unnecessary code reads.
 
-### 1. Runtime Model: `%%DOC_PATH%%/WORKFLOW.md`
+### 1. Runtime Model: `docs/WORKFLOW.md`
 Compact document — read in full. Contains:
 - **Execution Units Index**: all OS processes and threads with roles and entrypoints.
 - **Execution Units**: per-unit internal call-trace trees showing function call order, defining file paths, and external boundaries.
@@ -81,7 +71,7 @@ Compact document — read in full. Contains:
 
 Use to: identify which execution units (processes/threads) are involved, trace call-order through internal functions, understand data flow between components. Build a runtime mental model before reading any code.
 
-### 2. Symbol Index: `%%DOC_PATH%%/REFERENCES.md`
+### 2. Symbol Index: `docs/REFERENCES.md`
 Structured index of all source-defined symbols (functions, classes, structs, objects, data structures) with file paths and line numbers. Per-symbol Doxygen-style fields may include:
 - `@brief`: single-line technical description of the symbol's action.
 - `@details`: high-density algorithmic summary (LLM-optimized, not prose).
@@ -131,18 +121,18 @@ Add --enable-line-numbers (code lines prefixed as `<n>:`):
 Use for: string/pattern searches inside code bodies, cross-file references, configuration values, error messages, or any content not captured by construct-name-based extraction.
 
 ### Recommended Analysis Workflow
-1. **Read `%%DOC_PATH%%/WORKFLOW.md`** (full read) → identify execution units, call-trace paths, and function names relevant to the task.
-2. **Read `%%DOC_PATH%%/REFERENCES.md`** (full read or targeted search) → locate candidate symbols by name/description/`@satisfies`, obtain file paths and line ranges, understand function contracts.
+1. **Read `docs/WORKFLOW.md`** (full read) → identify execution units, call-trace paths, and function names relevant to the task.
+2. **Read `docs/REFERENCES.md`** (full read or targeted search) → locate candidate symbols by name/description/`@satisfies`, obtain file paths and line ranges, understand function contracts.
 3. **Extract code** via `req --find`/`req --files-find` → use symbol names from steps 1-2 as NAME_REGEX, file paths as --files-find targets; enable --enable-line-numbers when citing evidence.
 4. **Search code bodies** via `rg`/`git grep` → find patterns, references, or values not captured by construct-level extraction.
 
 
 ## Execution Protocol (Global vs Local)
 You must manage the execution flow using two distinct methods:
--  **Global Roadmap** (*check-list*): 
+-  **Global Roadmap** (*check-list*):
    - You MUST maintain a *check-list* internally with `7` Steps (one item per Step).
    - **Do NOT** use the *task-list tool* for this high-level roadmap.
--  **Local Sub-tasks** (Tool Usage): 
+-  **Local Sub-tasks** (Tool Usage):
    - If a *task-list tool* is available, use it **exclusively** to manage granular sub-tasks *within* a specific step (e.g., in Step X: "1. Edit file A", "2. Edit file B"; or in Step Y: "1. Fix test K", "2. Fix test L").
    - Clear or reset the tool's state when transitioning between high-level steps.
 
@@ -154,7 +144,7 @@ During the execution flow you MUST follow these directives:
    - Autonomous Resolution: If ambiguity is encountered, first disambiguate using repository evidence (requirements, code search, tests, logs). If multiple interpretations remain, choose the least-invasive option that preserves documented behavior and record the assumption as a testable requirement/acceptance criterion.
    - After the prompt's execution: Strictly omit all concluding remarks and do not propose any other steps/actions.
 - **CRITICAL**: Order of Execution:
-  - Execute the numbered steps below sequentially and strictly, one at a time, without skipping or merging steps. Create and maintain a *check-list* internally while executing the Steps. Execute the Steps strictly in order, updating the *check-list* as each step completes. 
+  - Execute the numbered steps below sequentially and strictly, one at a time, without skipping or merging steps. Create and maintain a *check-list* internally while executing the Steps. Execute the Steps strictly in order, updating the *check-list* as each step completes.
 - **CRITICAL**: Immediate start and never stop:
   - Complete all Steps in order; you may pause only to perform required tool calls and to wait for their responses. Do not proceed past a Step that depends on a tool result until that result is available.
   - Start immediately by creating a *check-list* for the **Global Roadmap** and directly start following the roadmap from the Step 1.
@@ -169,40 +159,26 @@ Create internally a *check-list* for the **Global Roadmap** including all the nu
    - Create the dedicated isolated worktree with `req --git-wt-create <WORKTREE_NAME>`, then execute `cd <GIT_PATH>/../<WORKTREE_NAME>` before proceeding to the next step.
    - If the command returns an error code or prints any text containing "ERROR", OUTPUT exactly "ERROR: Worktree generation failed!", and then terminate the execution.
 
-3. Static analysis: build the runtime model from %%SRC_PATHS%%
-   - Analyze only files under %%SRC_PATHS%%; treat all files outside %%SRC_PATHS%% as out of scope and never document them.
-   - Identify ALL execution units used at runtime:
-      - OS processes (MUST include the main process).
-      - OS threads (per process), including their entry functions/methods.
-      - If no explicit thread creation is present, record "no explicit threads detected" for that process.
-   - For EACH execution unit, derive entrypoint(s) and build a complete internal call-trace tree:
-      - Include ONLY internal functions as call-trace nodes (defined under %%SRC_PATHS%%).
-      - Do NOT include external boundaries (system/library/framework calls) as nodes; annotate them only as external boundaries where relevant.
-      - No maximum depth: expand until an internal leaf function or an external boundary is reached.
-   - Identify ALL explicit communication edges between execution units and record for each edge:
-      - Direction (source -> destination), mechanism (IPC/thread communication), endpoint/channel (queue/topic/path/socket/etc.), and payload/data-shape references.
-4. Generate and overwrite `%%DOC_PATH%%/WORKFLOW.md` document using declaration file paths only, excluding line numbers, line ranges, and internal file-reference pointers
-   - Read any existing `%%DOC_PATH%%/WORKFLOW.md` to preserve stable IDs and minimize unnecessary churn, then update it to strictly conform to the Output Contract above.
-   - Generate %%DOC_PATH%%/WORKFLOW.md in English only using deterministic, machine-interpretable Markdown with the required schema and stable field order.
-      - During generation/update, include declaration file paths only; MUST NOT include line numbers, line ranges, or internal file-reference pointers.
-      - `## Execution Units Index` (stable IDs)
-         - Use stable IDs: `PROC:main`, `PROC:<name>` for processes; `THR:<proc_id>#<name>` for threads.
-         - For each execution unit: ID, type (process/thread), parent process (for threads), role, entrypoint symbol(s), and defining file(s).
-      - `## Execution Units`
-         - One subsection per execution unit ID including:
-           - Entrypoint(s)
-           - Lifecycle/trigger (how it starts, stops, and loops/blocks)
-           - Internal Call-Trace Tree (internal functions only; no maximum depth)
-           - External Boundaries (file I/O, network, DB, external APIs, OS interaction)
-      - `## Communication Edges`
-         - List ALL `Communication Edge` items with direction + mechanism + endpoint/channel + payload/data-shape reference + declaration file path references only.
-   - Call-trace node format (MUST be consistent):
-      - `symbol_name(...)`: `<single-line role>` [`<defining filepath>`]
-         - `<optional: brief invariants/external boundaries>`
-         - `<child internal calls as nested bullet list, in call order>`
+3. Static analysis: detect user-visible implementation surface
+   - Analyze files under `src/`, `scripts/`, `.github/workflows/` and other directly related user-entry artifacts to identify externally visible changes:
+      - New or changed end-user features.
+      - CLI commands, options, arguments, flags, defaults, or examples.
+      - GUI workflows, screens, controls, labels, and interaction flows.
+      - Distributed API endpoints, request/response shapes, auth usage, and versioned contracts.
+      - Configuration file format, keys, defaults, constraints, and migration notes when present.
+   - Use repository evidence only; for each finding, collect file paths and line ranges.
+   - Derive a compact "README coverage list" of user-visible behavior that MUST appear in root `README.md`.
+4. Validate and update root `README.md`
+   - Read the current root `README.md` and compare it with the README coverage list from Step 3.
+   - Identify and list the exact `README.md` sections impacted by the detected user-visible implementation changes and explicit additional edits from [User Request](#users-request) before editing.
+   - Update only the identified sections so `README.md` reflects the current externally visible behavior and usage flows.
+   - Keep all non-analysis documentary sections unchanged (e.g., headers, versioning, context/scope narratives, motivations, related projects, high-level graphics/descriptions not tied to interface behavior).
+   - Keep content focused on user interaction, setup, commands, interfaces, and observable outputs.
+   - Do NOT add internal implementation details, internal architecture, private symbol names, or algorithm internals.
+   - Preserve the existing README structure and formatting whenever possible while applying the scoped updates.
 5. **CRITICAL**: Stage & commit
    - Show a summary of changes with `git diff` and `git diff --stat`.
-   - Stage changes explicitly (prefer targeted add; avoid `git add -A` if it may include unintended files): `git add <file...>` (ensure to include only `%%DOC_PATH%%/WORKFLOW.md`).
+   - Stage changes explicitly (prefer targeted add; avoid `git add -A` if it may include unintended files): `git add <file...>` (ensure to include only `README.md`).
    - Ensure there is something to commit with: `git diff --cached --quiet && echo "Nothing to commit. Aborting."`. If command output contains "Aborting", OUTPUT exactly "No changes to commit.", and then delete the isolated worktree and branch with `req --git-wt-delete <WORKTREE_NAME>`, and then terminate the execution.
    - Commit a structured commit message with: `git commit -m "docs(<COMPONENT>)<BREAKING>: <DESCRIPTION> [useReq]"`
       - Set `<COMPONENT>` to the most specific component, module, or function affected. If multiple areas are touched, choose the primary one. If you cannot identify a unique component, use `core`.
@@ -210,12 +186,15 @@ Create internally a *check-list* for the **Global Roadmap** including all the nu
       - Set `<BREAKING>` to `!` if a breaking change was implemented (a modification to an API, library, or system that breaks backward compatibility, causing dependent client applications or code to fail or behave incorrectly), set empty otherwise.
       - Include main features added, requirements changes, or a bug-fix description adding a multi-line comment (maximum 10 lines).
          - Do not include the 'Co-authored-by' trailer or any AI attribution. A GPG-signed commit is not required.
-   - Confirm the repo is clean with `req --git-check`. If the command returns an error code or prints any text containing "ERROR", override the final line with EXACTLY "WARNING: Workflow request completed with unclean git repository!".
+   - Confirm the repo is clean with `req --git-check`. If the command returns an error code or prints any text containing "ERROR", override the final line with EXACTLY "WARNING: README request completed with unclean git repository!".
 6. **CRITICAL**: Merge Conflict Management
    - Return to the original repository directory (the sibling directory of the worktree).
    - Ensure you are on the original branch used before worktree creation by deriving `<BASE_PATH>` with `req --get-base-path` if needed and executing `cd <BASE_PATH>`.
    - Merge the isolated branch into the original branch: `git merge <WORKTREE_NAME>`
    - If the merge completes successfully, delete the isolated worktree and branch with `req --git-wt-delete <WORKTREE_NAME>`; if the command returns an error code or prints any text containing "ERROR", OUTPUT exactly "ERROR: Worktree cleanup verification failed!", and then terminate the execution.
-   - If the merge fails or results in conflicts, do NOT remove the worktree directory and override the final line with EXACTLY "WARNING: Workflow request completed with merge conflicting!".
+   - If the merge fails or results in conflicts, do NOT remove the worktree directory and override the final line with EXACTLY "WARNING: README request completed with merge conflicting!".
 7. Present results
    - PRINT, in the response, the results for a human reader using clear, easily understandable sentences and readable Markdown formatting that highlight key findings, file paths, and concise evidence. Use the fixed report schema: ## **Outcome**, ## **Requirement Delta**, ## **Design Delta**, ## **Implementation Delta**, ## **Verification Delta**, ## **Evidence**, ## **Assumptions**, ## **Next Workflow**. Final line MUST be exactly: STATUS: OK or STATUS: ERROR.
+
+<h2 id="users-request">User's Request</h2>
+$ARGUMENTS

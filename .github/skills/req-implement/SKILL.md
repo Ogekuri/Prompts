@@ -1,23 +1,21 @@
 ---
-description: "Implement source code from requirements (from scratch)"
-argument-hint: "No arguments utilized by the prompt logic"
-usage: >
-  Select this prompt when %%DOC_PATH%%/REQUIREMENTS.md is already authoritative and stable, but the codebase under %%SRC_PATHS%% is missing large parts of the required functionality (greenfield or major gaps) and you must build an end-to-end implementation (including creating new modules/files and tests under %%TEST_PATH%%) WITHOUT changing requirements. Do NOT select if only a small/known set of requirement IDs is uncovered in an otherwise working codebase (use /req-cover), if you need to modify or add requirements (use /req-change or /req-new), or if the task is a narrow defect fix or refactor (use /req-fix or /req-refactor). Do NOT select for auditing/triage (use /req-check or /req-analyze).
+name: req-implement
+description: "Select this prompt when %%DOC_PATH%%/REQUIREMENTS.md is already authoritative and stable, but the codebase under %%SRC_PATHS%% is missing large parts of the required functionality (greenfield or major gaps) and you must build an end-to-end implementation (including creating new modules/files and tests under %%TEST_PATH%%) WITHOUT changing requirements. Do NOT select if only a small/known set of requirement IDs is uncovered in an otherwise working codebase (use /req-cover), if you need to modify or add requirements (use /req-change or /req-new), or if the task is a narrow defect fix or refactor (use /req-fix or /req-refactor). Do NOT select for auditing/triage (use /req-check or /req-analyze)."
 ---
 
 # Implement source code from requirements from scratch
 
 ## Purpose
-Produce a working implementation from the normative SRS (`%%DOC_PATH%%/REQUIREMENTS.md`) by building missing functionality end-to-end (including “from scratch” where needed), so the codebase becomes fully compliant with the documented requirement IDs without changing those requirements.
+Produce a working implementation from the normative SRS (`docs/REQUIREMENTS.md`) by building missing functionality end-to-end (including “from scratch” where needed), so the codebase becomes fully compliant with the documented requirement IDs without changing those requirements.
 
 ## Scope
-In scope: read `%%DOC_PATH%%/REQUIREMENTS.md`, implement/introduce source under %%SRC_PATHS%% (including new modules/files), add tests under %%TEST_PATH%%, verify via static analysis (`req --here --static-check`) and conditional execution of existing unit tests using language-specific test-suite priority policy, update `%%DOC_PATH%%/WORKFLOW.md` and `%%DOC_PATH%%/REFERENCES.md`, and commit. Out of scope: editing requirements or introducing features not present in the SRS (use `/req-change` or `/req-new` to evolve requirements first).
+In scope: read `docs/REQUIREMENTS.md`, implement/introduce source under `src/`, `scripts/`, `.github/workflows/` (including new modules/files), add tests under `tests/`, verify via static analysis (`req --here --static-check`) and conditional execution of existing unit tests using language-specific test-suite priority policy, update `docs/WORKFLOW.md` and `docs/REFERENCES.md`, and commit. Out of scope: editing requirements or introducing features not present in the SRS (use `/req-change` or `/req-new` to evolve requirements first).
 
 
 ## Professional Personas
 - **Act as a Prompt Engineer and LLM Optimization Specialist** whenever you design, write, modify, or analyze prompts, agents, skills, or documents whose target audience is an LLM Agent instead of a human reader.
 - **Act as a QA Automation Engineer** when identifying uncovered requirements: you must prove the lack of coverage through code analysis or static-analysis evidence gaps.
-- **Act as a Business Analyst** when mapping requirement IDs from `%%DOC_PATH%%/REQUIREMENTS.md` to observable behaviors.
+- **Act as a Business Analyst** when mapping requirement IDs from `docs/REQUIREMENTS.md` to observable behaviors.
 - **Act as a Senior System Architect** when generating the **Implementation Delta** and planning the coverage strategy: ensure the new implementation integrates perfectly with the existing architecture without regressions.
 - **Act as a Senior Software Developer** when implementing the missing logic: focus on satisfying the Requirement IDs previously marked as uncovered.
 - **Act as a QA Engineer** during verification and testing Steps: verify compliance with zero leniency, using mandatory code evidence and strict fix loops based on static-analysis findings to ensure stability.
@@ -31,7 +29,7 @@ In scope: read `%%DOC_PATH%%/REQUIREMENTS.md`, implement/introduce source under 
 
 ## Absolute Rules, Non-Negotiable
 - **CRITICAL**: NEVER write, modify, edit, or delete files outside of the active git worktree directory, except under `/tmp`, and except for worktree operations executed through `req --git-wt-create <WORKTREE_NAME>` and `req --git-wt-delete <WORKTREE_NAME>`.
-- You MUST read `%%DOC_PATH%%/REQUIREMENTS.md`, but you MUST NOT modify it in this workflow.
+- You MUST read `docs/REQUIREMENTS.md`, but you MUST NOT modify it in this workflow.
 - Treat static analysis as safe. Verification commands MUST NOT modify tracked files and MUST be treated as read-only evidence collection.
 - **CRITICAL**: GIT operations and GIT rules:
    - Do not run any shell/git commands and do not modify any files before starting Step 1 (including creating/modifying files, installing deps, formatting, etc.): **CRITICAL**: Check GIT Status.
@@ -44,9 +42,9 @@ In scope: read `%%DOC_PATH%%/REQUIREMENTS.md`, implement/introduce source under 
 - **CRITICAL**: Formulate all source code information using a highly structured, machine-interpretable Markdown format with unambiguous, atomic syntax to ensure maximum reliability for downstream LLM agentic reasoning, avoiding any conversational filler or subjective adjectives; the **target audience** is other **LLM Agents** and Automated Parsers, NOT humans, use high semantic density, optimized to contextually enable an LLM to perform future refactoring or extension.
   
 ## Behavior
-- Do not modify `%%DOC_PATH%%/REQUIREMENTS.md`.
+- Do not modify `docs/REQUIREMENTS.md`.
 - Always strictly respect requirements.
-- Use `%%DOC_PATH%%/REQUIREMENTS.md`, `%%DOC_PATH%%/WORKFLOW.md`, and `%%DOC_PATH%%/REFERENCES.md` as the primary technical inputs; keep decisions traceable to requirements and repository evidence.
+- Use `docs/REQUIREMENTS.md`, `docs/WORKFLOW.md`, and `docs/REFERENCES.md` as the primary technical inputs; keep decisions traceable to requirements and repository evidence.
 - All newly written or edited content MUST be in English. Do NOT translate existing text outside the minimal change surface required by this workflow; if you detect non-English text elsewhere, report it in **Evidence** instead of rewriting it.
 - Prioritize backward compatibility. Do not introduce breaking changes; preserve existing interfaces, data formats, and features. If maintaining compatibility would require migrations/auto-upgrades conversion logic, report the conflict instead of implementing, and then terminate the execution.
 - Use the repository's existing language-specific environment/toolchain to execute code and tests; do NOT create new environments unless explicitly requested by the user. For Python, prefer Astral `uv` (`uv run`, `uvx`) when available, then fall back to the repository's existing `.venv` (if present). For other ecosystems (e.g., Node.js, Rust, C/C++), use the project's standard commands.
@@ -86,15 +84,15 @@ Create internally a *check-list* for the **Global Roadmap** including all the nu
    - If the command returns an error code or prints any text containing "ERROR", OUTPUT exactly "ERROR: Worktree generation failed!", and then terminate the execution.
 
 3. Read requirements, generate **Design Delta** and implement the **Implementation Delta** to cover all requirements
-   - Read `%%DOC_PATH%%/REQUIREMENTS.md` and GENERATE a detailed **Implementation Delta** that covers all explicitly specified requirements, and explicitly list any requirement that cannot be implemented due to missing information or repository constraints. The **Implementation Delta** MUST be implementation-only: for each file, list exact developments (functions/classes created), and map each implementation to the requirement ID(s) it satisfies (no narrative summary).
+   - Read `docs/REQUIREMENTS.md` and GENERATE a detailed **Implementation Delta** that covers all explicitly specified requirements, and explicitly list any requirement that cannot be implemented due to missing information or repository constraints. The **Implementation Delta** MUST be implementation-only: for each file, list exact developments (functions/classes created), and map each implementation to the requirement ID(s) it satisfies (no narrative summary).
       - **ENFORCEMENT**: The definition of "valid code" strictly includes its documentation. You are mandatorily required to apply the Doxygen-LLM Standard defined in `.req/docs/Document_Source_Code_in_Doxygen_Style.md` to every single code component. Any code block generated without this specific documentation format is considered a compilation error and must be rejected/regenerated.
-      - Read %%GUIDELINES_FILES%% files and apply those **guidelines**; ensure the proposed code changes conform to those **guidelines**, and adjust the **Implementation Delta** if needed. Do not apply unrelated **guidelines**.
-   - Locate existing unit tests in %%TEST_PATH%% that map to implemented requirement IDs; include in the **Implementation Delta** the language-specific priority order for verification runs, and record test execution as N/A when no relevant unit tests exist.
+      - Read `guidelines/Google_C++_Style_Guide.md`, `guidelines/Google_Python_Style_Guide.md` files and apply those **guidelines**; ensure the proposed code changes conform to those **guidelines**, and adjust the **Implementation Delta** if needed. Do not apply unrelated **guidelines**.
+   - Locate existing unit tests in `tests/` that map to implemented requirement IDs; include in the **Implementation Delta** the language-specific priority order for verification runs, and record test execution as N/A when no relevant unit tests exist.
       - **CRITICAL**: All tests MUST implement these instructions: `.req/docs/HDT_Test_Authoring_Guide.md`.
-      - Read %%GUIDELINES_FILES%% files and apply those **guidelines**; ensure the proposed code changes conform to those **guidelines**, and adjust the **Implementation Delta** if needed. Do not apply unrelated **guidelines**.
+      - Read `guidelines/Google_C++_Style_Guide.md`, `guidelines/Google_Python_Style_Guide.md` files and apply those **guidelines**; ensure the proposed code changes conform to those **guidelines**, and adjust the **Implementation Delta** if needed. Do not apply unrelated **guidelines**.
    - IMPLEMENT the **Implementation Delta** in the source code (creating new files/directories if necessary) from scratch.
 4. Generate **Verification Delta** by verifying static-analysis results and implementing needed bug fixes
-   - Read ALL requirements from `%%DOC_PATH%%/REQUIREMENTS.md`, analyze them one by one, and cross-reference them with the source code to check requirements. For each requirement, use tools (e.g., `git grep`, `find`, `ls`) to locate the relevant source code files used as evidence, read only the identified files to verify compliance, and do not assume compliance without locating the specific code implementation.
+   - Read ALL requirements from `docs/REQUIREMENTS.md`, analyze them one by one, and cross-reference them with the source code to check requirements. For each requirement, use tools (e.g., `git grep`, `find`, `ls`) to locate the relevant source code files used as evidence, read only the identified files to verify compliance, and do not assume compliance without locating the specific code implementation.
       - For each requirement, report `OK` if satisfied or `FAIL` if not.
       - Do not mark a requirement as `OK` without code evidence; for `OK` items provide only a compact pointer (file path + symbol + line range). For each requirement, provide a concise evidence pointer (file path + symbol + line range) excerpts only for `FAIL` requirements or when requirement is architectural, structural, or negative (e.g., "MUST NOT ..."). For such high-level requirements, cite the specific file paths or directory structures that prove compliance. Line ranges MUST be obtained from tooling output (e.g., `nl -ba` / `sed -n`) and MUST NOT be estimated. If evidence is missing, you MUST report `FAIL`. Do not assume implicit behavior.
       - For every `FAIL`, provide evidence with a short explanation. Provide file path(s) and line numbers where possible.
@@ -107,21 +105,21 @@ Create internally a *check-list* for the **Global Roadmap** including all the nu
       - Fix the source code to resolve valid verification findings autonomously without asking for user intervention. Execute a strict fix loop: 1) analyze static-check output and unit-test failures (when tests ran), 2) determine root cause from evidence, 3) fix code, 4) re-run `req --here --static-check` and re-run the selected unit-test suites when applicable. Repeat up to 2 times. If static analysis still reports issues after the second attempt, report the failure, OUTPUT exactly "ERROR: Implement request failed due to inability to complete static analysis!", delete the isolated worktree and branch with `req --git-wt-delete <WORKTREE_NAME>`, and then terminate the execution.
       - Limitations: Do not introduce new features or change the architecture logic during this fix phase; if a fix requires substantial refactoring or requirements changes, report the failure, then OUTPUT exactly "ERROR: Implement request failed due to requirements incompatible with static-analysis constraints!", delete the isolated worktree and branch with `req --git-wt-delete <WORKTREE_NAME>`, and then terminate the execution.
       - Do NOT create or modify tests in this repository.
-5. Static analysis: build the runtime model from %%SRC_PATHS%%
-   - Analyze only files under %%SRC_PATHS%%; treat all files outside %%SRC_PATHS%% as out of scope and never document them.
+5. Static analysis: build the runtime model from `src/`, `scripts/`, `.github/workflows/`
+   - Analyze only files under `src/`, `scripts/`, `.github/workflows/`; treat all files outside `src/`, `scripts/`, `.github/workflows/` as out of scope and never document them.
    - Identify ALL execution units used at runtime:
       - OS processes (MUST include the main process).
       - OS threads (per process), including their entry functions/methods.
       - If no explicit thread creation is present, record "no explicit threads detected" for that process.
    - For EACH execution unit, derive entrypoint(s) and build a complete internal call-trace tree:
-      - Include ONLY internal functions as call-trace nodes (defined under %%SRC_PATHS%%).
+      - Include ONLY internal functions as call-trace nodes (defined under `src/`, `scripts/`, `.github/workflows/`).
       - Do NOT include external boundaries (system/library/framework calls) as nodes; annotate them only as external boundaries where relevant.
       - No maximum depth: expand until an internal leaf function or an external boundary is reached.
    - Identify ALL explicit communication edges between execution units and record for each edge:
       - Direction (source -> destination), mechanism (IPC/thread communication), endpoint/channel (queue/topic/path/socket/etc.), and payload/data-shape references.
-6. Generate and overwrite `%%DOC_PATH%%/WORKFLOW.md` document using declaration file paths only, excluding line numbers, line ranges, and internal file-reference pointers
-   - Read any existing `%%DOC_PATH%%/WORKFLOW.md` to preserve stable IDs and minimize unnecessary churn, then update it to strictly conform to the Output Contract above.
-   - Generate %%DOC_PATH%%/WORKFLOW.md in English only using deterministic, machine-interpretable Markdown with the required schema and stable field order.
+6. Generate and overwrite `docs/WORKFLOW.md` document using declaration file paths only, excluding line numbers, line ranges, and internal file-reference pointers
+   - Read any existing `docs/WORKFLOW.md` to preserve stable IDs and minimize unnecessary churn, then update it to strictly conform to the Output Contract above.
+   - Generate docs/WORKFLOW.md in English only using deterministic, machine-interpretable Markdown with the required schema and stable field order.
       - During generation/update, include declaration file paths only; MUST NOT include line numbers, line ranges, or internal file-reference pointers.
       - `## Execution Units Index` (stable IDs)
          - Use stable IDs: `PROC:main`, `PROC:<name>` for processes; `THR:<proc_id>#<name>` for threads.
@@ -138,8 +136,8 @@ Create internally a *check-list* for the **Global Roadmap** including all the nu
       - `symbol_name(...)`: `<single-line role>` [`<defining filepath>`]
          - `<optional: brief invariants/external boundaries>`
          - `<child internal calls as nested bullet list, in call order>`
-7. Update `%%DOC_PATH%%/REFERENCES.md` references file
-   -  Create/update the references file with `req --here --references >"%%DOC_PATH%%/REFERENCES.md"`
+7. Update `docs/REFERENCES.md` references file
+   -  Create/update the references file with `req --here --references >"docs/REFERENCES.md"`
 8. **CRITICAL**: Stage & commit
    - Show a summary of changes with `git diff` and `git diff --stat`.
    - Stage changes explicitly (prefer targeted add; avoid `git add -A` if it may include unintended files): `git add <file...>` (ensure to include all modified source code & test and WORKFLOW.md only if it was modified/created).

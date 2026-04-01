@@ -1,23 +1,21 @@
 ---
-description: "Deterministically renumber requirement IDs in the Software Requirements Specification without changing requirement text or order"
-argument-hint: "No arguments utilized by the prompt logic (English only)"
-usage: >
-  Select this prompt when %%DOC_PATH%%/REQUIREMENTS.md already exists and you must enforce a clean, progressive, deterministic requirement ID sequence in document order, WITHOUT changing any requirement text, headings, or ordering. Only IDs and internal requirement-ID cross-references may change; all requirement content after the ID MUST remain byte-identical. Output is only the updated SRS; source code, tests, %%DOC_PATH%%/WORKFLOW.md, and %%DOC_PATH%%/REFERENCES.md must not change.
+name: req-renumber
+description: "Select this prompt when %%DOC_PATH%%/REQUIREMENTS.md already exists and you must enforce a clean, progressive, deterministic requirement ID sequence in document order, WITHOUT changing any requirement text, headings, or ordering. Only IDs and internal requirement-ID cross-references may change; all requirement content after the ID MUST remain byte-identical. Output is only the updated SRS; source code, tests, %%DOC_PATH%%/WORKFLOW.md, and %%DOC_PATH%%/REFERENCES.md must not change."
 ---
 
 # Deterministically renumber requirement IDs in the Software Requirements Specification
 
 ## Purpose
-Deterministically renumber requirement IDs in `%%DOC_PATH%%/REQUIREMENTS.md` to produce a clean, progressive numbering scheme while preserving the exact requirement text and document order so downstream LLM Agents can rely on stable, sequential identifiers.
+Deterministically renumber requirement IDs in `docs/REQUIREMENTS.md` to produce a clean, progressive numbering scheme while preserving the exact requirement text and document order so downstream LLM Agents can rely on stable, sequential identifiers.
 
 ## Scope
-In scope: renumbering requirement identifiers in `%%DOC_PATH%%/REQUIREMENTS.md` in document order and updating internal cross-references to those identifiers, without modifying any requirement text, headings, or ordering. Out of scope: any changes to source code, tests, `%%DOC_PATH%%/WORKFLOW.md`, or `%%DOC_PATH%%/REFERENCES.md`.
+In scope: renumbering requirement identifiers in `docs/REQUIREMENTS.md` in document order and updating internal cross-references to those identifiers, without modifying any requirement text, headings, or ordering. Out of scope: any changes to source code, tests, `docs/WORKFLOW.md`, or `docs/REFERENCES.md`.
 
 
 ## Professional Personas
 - **Act as a Prompt Engineer and LLM Optimization Specialist** whenever you design, write, modify, or analyze prompts, agents, skills, or documents whose target audience is an LLM Agent instead of a human reader.
 - **Act as a Senior Technical Requirements Engineer** when analyzing source code to infer behavior: ensure every software requirement generated is atomic, unambiguous, and empirically testable.
-- **Act as a Technical Writer** when structuring the SRS document `%%DOC_PATH%%/REQUIREMENTS.md`: use RFC 2119 keywords exclusively (MUST, MUST NOT, SHOULD, SHOULD NOT, MAY) and never use "shall"; maintain a clean, hierarchical Markdown structure with a maximum depth of 3 levels.
+- **Act as a Technical Writer** when structuring the SRS document `docs/REQUIREMENTS.md`: use RFC 2119 keywords exclusively (MUST, MUST NOT, SHOULD, SHOULD NOT, MAY) and never use "shall"; maintain a clean, hierarchical Markdown structure with a maximum depth of 3 levels.
 - **Act as a Business Analyst** when verifying the "True State": ensure the draft accurately reflects implemented logic, including limitations or bugs.
 - **Act as an Expert GitOps Engineer** when executing git workflows, especially when creating/removing/managing git worktrees to isolate changes safely.
 
@@ -29,9 +27,9 @@ In scope: renumbering requirement identifiers in `%%DOC_PATH%%/REQUIREMENTS.md` 
 
 ## Absolute Rules, Non-Negotiable
 - **CRITICAL**: NEVER write, modify, edit, or delete files outside of the active git worktree directory, except under `/tmp`, and except for worktree operations executed through `req --git-wt-create <WORKTREE_NAME>` and `req --git-wt-delete <WORKTREE_NAME>`.
-- You can read, write, or edit `%%DOC_PATH%%/REQUIREMENTS.md`.
+- You can read, write, or edit `docs/REQUIREMENTS.md`.
 - Treat static analysis as safe. Verification commands MUST NOT modify tracked files and MUST be treated as read-only evidence collection.
-- **CRITICAL**: Do not modify any project files except creating/updating `%%DOC_PATH%%/REQUIREMENTS.md`.
+- **CRITICAL**: Do not modify any project files except creating/updating `docs/REQUIREMENTS.md`.
 - **CRITICAL**: Do NOT generate or modify source code or source-code documentation in this workflow. Only create/update the requirements document(s) explicitly in scope.
 - **CRITICAL**: Do NOT add, delete, split, merge, or edit requirement content; only change requirement IDs and requirement-ID cross-references.
 - **CRITICAL**: NEVER add requirements to the SRS regarding how comments are handled (added/edited/deleted) within the source code, including the format, style, or language to be used, even if explicitly requested.
@@ -41,7 +39,7 @@ In scope: renumbering requirement identifiers in `%%DOC_PATH%%/REQUIREMENTS.md` 
 - Do not perform unrelated edits.
 - Do NOT change any requirement content or document structure; only change requirement IDs and requirement-ID cross-references.
 - Use the repository's existing language-specific environment/toolchain to execute code and tests; do NOT create new environments unless explicitly requested by the user. For Python, prefer Astral `uv` (`uv run`, `uvx`) when available, then fall back to the repository's existing `.venv` (if present). For other ecosystems (e.g., Node.js, Rust, C/C++), use the project's standard commands.
-- Use filesystem/shell tools to read/write/delete files as needed (e.g., `cat`, `sed`, `perl -pi`, `printf > file`, `rm -f`, ...), but only to read project files and to write/update `%%DOC_PATH%%/REQUIREMENTS.md`. Avoid in-place edits on any other path. Prefer read-only commands for analysis.
+- Use filesystem/shell tools to read/write/delete files as needed (e.g., `cat`, `sed`, `perl -pi`, `printf > file`, `rm -f`, ...), but only to read project files and to write/update `docs/REQUIREMENTS.md`. Avoid in-place edits on any other path. Prefer read-only commands for analysis.
 
 
 ## Execution Protocol (Global vs Local)
@@ -71,7 +69,7 @@ During the execution flow you MUST follow these directives:
 Create internally a *check-list* for the **Global Roadmap** including all the numbered steps below: `1..8`, and start following the roadmap at the same time, following the instructions of Step 1. Do not add extra intent-adjustment checks unless explicitly listed in the Steps section.
 1. **CRITICAL**: Check GIT Status
    - Check GIT status with `req --git-check`. If the command returns an error code or prints any text containing "ERROR", OUTPUT exactly "ERROR: Git status unclear!", and then terminate the execution.
-2. **CRITICAL**: Check `%%DOC_PATH%%/REQUIREMENTS.md`, `%%DOC_PATH%%/WORKFLOW.md` and `%%DOC_PATH%%/REFERENCES.md` file presence
+2. **CRITICAL**: Check `docs/REQUIREMENTS.md`, `docs/WORKFLOW.md` and `docs/REFERENCES.md` file presence
    - Check required docs presence with `req --docs-check`. If the command returns an error code or prints any text containing "ERROR", OUTPUT exactly "ERROR: Required docs check failed!", and then terminate the execution.
 3. **CRITICAL**: Worktree Generation & Isolation
    - Derive <BASE_PATH> with `req --get-base-path`, derive <GIT_PATH> with `req --git-path`, and generate <WORKTREE_NAME> with `req --git-wt-name` using literal `req` commands executed sequentially without shell composition.
@@ -79,26 +77,26 @@ Create internally a *check-list* for the **Global Roadmap** including all the nu
    - If the command returns an error code or prints any text containing "ERROR", OUTPUT exactly "ERROR: Worktree generation failed!", and then terminate the execution.
 
 4. **CRITICAL**: Renumber requirement IDs in the **Software Requirements Specification**
-   - Read the **Software Requirements Specification** document `%%DOC_PATH%%/REQUIREMENTS.md`.
+   - Read the **Software Requirements Specification** document `docs/REQUIREMENTS.md`.
    - Determine the existing requirement ID scheme, if any (prefix + numeric width). If multiple schemes exist, select the most common one as the canonical output scheme; if no clear scheme exists, use `REQ-001`, `REQ-002`, ... as the output scheme.
    - Renumber requirements in strict document order (top-to-bottom, as they appear in the file) to a progressive sequence starting at 1.
       - You MUST NOT modify any requirement text after `:`, any headings, any ordering, or any non-ID content.
       - You MUST NOT add, delete, split, merge, or reorganize requirements.
       - You MUST ensure the final set of requirement IDs is unique and strictly progressive (no gaps) in the chosen scheme.
    - Update every internal cross-reference to requirement identifiers so that references still point to the correct renumbered requirement.
-      - Cross-references MUST be updated wherever requirement IDs are referenced in `%%DOC_PATH%%/REQUIREMENTS.md`.
+      - Cross-references MUST be updated wherever requirement IDs are referenced in `docs/REQUIREMENTS.md`.
       - If an internal reference points to a non-existent requirement (before or after renumbering), treat this as an error and report it.
    - Produce and include in the final report an explicit old-ID → new-ID mapping in document order.
-   - Save changes by overwriting `%%DOC_PATH%%/REQUIREMENTS.md` with only the ID and cross-reference updates applied.
+   - Save changes by overwriting `docs/REQUIREMENTS.md` with only the ID and cross-reference updates applied.
 5. Validate the **Software Requirements Specification**
-   - Review `%%DOC_PATH%%/REQUIREMENTS.md` and validate the renumbering invariants:
+   - Review `docs/REQUIREMENTS.md` and validate the renumbering invariants:
       - Only requirement IDs and requirement-ID cross-references changed; all other text is identical.
       - Requirement IDs are unique and strictly progressive in document order.
       - All internal cross-references point to an existing renumbered requirement ID.
       - Report `OK` if the invariants hold. Report `FAIL` if any invariant is violated.
 6. **CRITICAL**: Stage & commit
    - Show a summary of changes with `git diff` and `git diff --stat`.
-   - Stage changes explicitly (prefer targeted add; avoid `git add -A` if it may include unintended files): `git add <file...>` (ensure to include only `%%DOC_PATH%%/REQUIREMENTS.md`).
+   - Stage changes explicitly (prefer targeted add; avoid `git add -A` if it may include unintended files): `git add <file...>` (ensure to include only `docs/REQUIREMENTS.md`).
    - Ensure there is something to commit with: `git diff --cached --quiet && echo "Nothing to commit. Aborting."`. If command output contains "Aborting", OUTPUT exactly "No changes to commit.", and then delete the isolated worktree and branch with `req --git-wt-delete <WORKTREE_NAME>`, and then terminate the execution.
    - Commit a structured commit message with: `git commit -m "docs(<COMPONENT>)<BREAKING>: <DESCRIPTION> [useReq]"`
       - Set `<COMPONENT>` to the most specific component, module, or function affected. If multiple areas are touched, choose the primary one. If you cannot identify a unique component, use `core`.

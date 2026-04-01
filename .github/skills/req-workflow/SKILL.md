@@ -1,23 +1,21 @@
 ---
-description: "Write a WORKFLOW.md using the project's source code"
-argument-hint: "No arguments utilized by the prompt logic"
-usage: >
-  Select this prompt ONLY for docs-maintenance of %%DOC_PATH%%/WORKFLOW.md: when it is missing/outdated and you need to regenerate the runtime/workflow model (processes/threads, internal call-traces, communication edges) from evidence in %%SRC_PATHS%% and commit that doc change. Do NOT select if you will change requirements, source code, or tests; choose /req-change, /req-new, /req-fix, /req-refactor, /req-cover, /req-implement, /req-create, or /req-recreate as appropriate. Do NOT select for read-only analysis/audits (use /req-analyze or /req-check).
+name: req-workflow
+description: "Select this prompt ONLY for docs-maintenance of %%DOC_PATH%%/WORKFLOW.md: when it is missing/outdated and you need to regenerate the runtime/workflow model (processes/threads, internal call-traces, communication edges) from evidence in %%SRC_PATHS%% and commit that doc change. Do NOT select if you will change requirements, source code, or tests; choose /req-change, /req-new, /req-fix, /req-refactor, /req-cover, /req-implement, /req-create, or /req-recreate as appropriate. Do NOT select for read-only analysis/audits (use /req-analyze or /req-check)."
 ---
 
 # Write a WORKFLOW.md using the project's source code
 
 ## Purpose
-Maintain an LLM-oriented runtime/workflow model (`%%DOC_PATH%%/WORKFLOW.md`) derived from repository evidence so downstream LLM Agents can reason about execution units, communication edges, and internal call-traces during SRS-driven design/implementation.
+Maintain an LLM-oriented runtime/workflow model (`docs/WORKFLOW.md`) derived from repository evidence so downstream LLM Agents can reason about execution units, communication edges, and internal call-traces during SRS-driven design/implementation.
 
 ## Scope
-In scope: static analysis of source under %%SRC_PATHS%% to generate/overwrite only `%%DOC_PATH%%/WORKFLOW.md` in English only, following the mandated schema, then commit that doc change. Out of scope: changes to requirements, references, source code, or tests.
+In scope: static analysis of source under `src/`, `scripts/`, `.github/workflows/` to generate/overwrite only `docs/WORKFLOW.md` in English only, following the mandated schema, then commit that doc change. Out of scope: changes to requirements, references, source code, or tests.
 
 
 ## Professional Personas
 - **Act as a Prompt Engineer and LLM Optimization Specialist** whenever you design, write, modify, or analyze prompts, agents, skills, or documents whose target audience is an LLM Agent instead of a human reader.
 - **Act as a Senior System Engineer** when analyzing source code; your primary goal is to trace the execution flow (call stack) across files and modules, identifying exactly how data and control move from one function to another.
-- **Act as a Business Analyst** when cross-referencing code findings with `%%DOC_PATH%%/REQUIREMENTS.md` to ensure functional alignment.
+- **Act as a Business Analyst** when cross-referencing code findings with `docs/REQUIREMENTS.md` to ensure functional alignment.
 - **Act as a Technical Writer** when producing the final analysis report or workflow descriptions, ensuring clarity, technical precision, and structured formatting.
 - **Act as a QA Auditor** when reporting facts, requiring concrete evidence as declaration file paths only (excluding line numbers and line ranges) for every finding.
 - **Act as an Expert GitOps Engineer** when executing git workflows, especially when creating/removing/managing git worktrees to isolate changes safely.
@@ -30,9 +28,9 @@ In scope: static analysis of source under %%SRC_PATHS%% to generate/overwrite on
 
 ## Absolute Rules, Non-Negotiable
 - **CRITICAL**: NEVER write, modify, edit, or delete files outside of the active git worktree directory, except under `/tmp`, and except for worktree operations executed through `req --git-wt-create <WORKTREE_NAME>` and `req --git-wt-delete <WORKTREE_NAME>`.
-- You can read, write, or edit `%%DOC_PATH%%/WORKFLOW.md`.
+- You can read, write, or edit `docs/WORKFLOW.md`.
 - Treat static analysis as safe. Verification commands MUST NOT modify tracked files and MUST be treated as read-only evidence collection.
-- **CRITICAL**: Do not modify any project files except creating/updating `%%DOC_PATH%%/WORKFLOW.md`.
+- **CRITICAL**: Do not modify any project files except creating/updating `docs/WORKFLOW.md`.
 - **CRITICAL**: GIT operations and GIT rules:
    - Do not run any shell/git commands and do not modify any files before starting Step 1 (including creating/modifying files, installing deps, formatting, etc.): **CRITICAL**: Check GIT Status.
    - Step 1 may run only the git commands `git rev-parse --is-inside-work-tree`, `git rev-parse --verify HEAD`, `git status --porcelain`, and `git symbolic-ref -q HEAD` (plus minimal shell built-ins to combine their outputs into a single cleanliness check).
@@ -43,24 +41,24 @@ In scope: static analysis of source under %%SRC_PATHS%% to generate/overwrite on
 - **CRITICAL**: Formulate all source code information using a highly structured, machine-interpretable Markdown format with unambiguous, atomic syntax to ensure maximum reliability for downstream LLM agentic reasoning, avoiding any conversational filler or subjective adjectives; the **target audience** is other **LLM Agents** and Automated Parsers, NOT humans, use high semantic density, optimized to contextually enable an LLM to perform future refactoring or extension.
 
 ## Behavior
-- Write the `%%DOC_PATH%%/WORKFLOW.md` document in English.
+- Write the `docs/WORKFLOW.md` document in English.
 - Do not perform unrelated edits.
 - Use the repository's existing language-specific environment/toolchain to execute code and tests; do NOT create new environments unless explicitly requested by the user. For Python, prefer Astral `uv` (`uv run`, `uvx`) when available, then fall back to the repository's existing `.venv` (if present). For other ecosystems (e.g., Node.js, Rust, C/C++), use the project's standard commands.
-- Use filesystem/shell tools to read/write/delete files as needed (e.g., `cat`, `sed`, `perl -pi`, `printf > file`, `rm -f`, ...), but only to read project files and to write/update `%%DOC_PATH%%/WORKFLOW.md`. Avoid in-place edits on any other path. Prefer read-only commands for analysis.
+- Use filesystem/shell tools to read/write/delete files as needed (e.g., `cat`, `sed`, `perl -pi`, `printf > file`, `rm -f`, ...), but only to read project files and to write/update `docs/WORKFLOW.md`. Avoid in-place edits on any other path. Prefer read-only commands for analysis.
 
 
 ## Canonical Terminology (MUST use these exact terms)
 - **Process**: an OS process execution unit (MUST include the main process).
 - **Thread**: an OS thread execution unit within a process.
 - **Execution Unit**: a Process or a Thread.
-- **Internal function**: a function/method defined in repository source under %%SRC_PATHS%% (only these can appear as call-trace nodes).
-- **External boundary**: any call/interaction whose target implementation is not defined under %%SRC_PATHS%% (libraries/frameworks/OS/network/DB/etc.). External boundaries MUST NOT appear as call-trace nodes.
+- **Internal function**: a function/method defined in repository source under `src/`, `scripts/`, `.github/workflows/` (only these can appear as call-trace nodes).
+- **External boundary**: any call/interaction whose target implementation is not defined under `src/`, `scripts/`, `.github/workflows/` (libraries/frameworks/OS/network/DB/etc.). External boundaries MUST NOT appear as call-trace nodes.
 - **Communication Edge**: an explicit runtime interaction between two execution units (direction + mechanism + endpoint/channel + payload/data-shape reference).
 
 
 ## WORKFLOW.md Output Contract (MUST preserve this schema)
-- The generated %%DOC_PATH%%/WORKFLOW.md MUST be parser-stable and token-efficient: fixed section order, atomic bullets, deterministic key names, and zero narrative filler.
-- The generated %%DOC_PATH%%/WORKFLOW.md MUST NOT include line numbers, line ranges, or internal file-reference pointers; it MUST include only declaration file paths for internal symbols.
+- The generated docs/WORKFLOW.md MUST be parser-stable and token-efficient: fixed section order, atomic bullets, deterministic key names, and zero narrative filler.
+- The generated docs/WORKFLOW.md MUST NOT include line numbers, line ranges, or internal file-reference pointers; it MUST include only declaration file paths for internal symbols.
 - The document MUST be structured as:
   - `## Execution Units Index`
   - `## Execution Units` (one subsection per execution unit ID)
@@ -73,7 +71,7 @@ In scope: static analysis of source under %%SRC_PATHS%% to generate/overwrite on
 ## Source Code Analysis Toolkit
 Four complementary pillars provide a complete, token-efficient source code analysis pipeline. Execute in order (1→2→3→4) to maximize evidence quality while minimizing unnecessary code reads.
 
-### 1. Runtime Model: `%%DOC_PATH%%/WORKFLOW.md`
+### 1. Runtime Model: `docs/WORKFLOW.md`
 Compact document — read in full. Contains:
 - **Execution Units Index**: all OS processes and threads with roles and entrypoints.
 - **Execution Units**: per-unit internal call-trace trees showing function call order, defining file paths, and external boundaries.
@@ -81,7 +79,7 @@ Compact document — read in full. Contains:
 
 Use to: identify which execution units (processes/threads) are involved, trace call-order through internal functions, understand data flow between components. Build a runtime mental model before reading any code.
 
-### 2. Symbol Index: `%%DOC_PATH%%/REFERENCES.md`
+### 2. Symbol Index: `docs/REFERENCES.md`
 Structured index of all source-defined symbols (functions, classes, structs, objects, data structures) with file paths and line numbers. Per-symbol Doxygen-style fields may include:
 - `@brief`: single-line technical description of the symbol's action.
 - `@details`: high-density algorithmic summary (LLM-optimized, not prose).
@@ -131,8 +129,8 @@ Add --enable-line-numbers (code lines prefixed as `<n>:`):
 Use for: string/pattern searches inside code bodies, cross-file references, configuration values, error messages, or any content not captured by construct-name-based extraction.
 
 ### Recommended Analysis Workflow
-1. **Read `%%DOC_PATH%%/WORKFLOW.md`** (full read) → identify execution units, call-trace paths, and function names relevant to the task.
-2. **Read `%%DOC_PATH%%/REFERENCES.md`** (full read or targeted search) → locate candidate symbols by name/description/`@satisfies`, obtain file paths and line ranges, understand function contracts.
+1. **Read `docs/WORKFLOW.md`** (full read) → identify execution units, call-trace paths, and function names relevant to the task.
+2. **Read `docs/REFERENCES.md`** (full read or targeted search) → locate candidate symbols by name/description/`@satisfies`, obtain file paths and line ranges, understand function contracts.
 3. **Extract code** via `req --find`/`req --files-find` → use symbol names from steps 1-2 as NAME_REGEX, file paths as --files-find targets; enable --enable-line-numbers when citing evidence.
 4. **Search code bodies** via `rg`/`git grep` → find patterns, references, or values not captured by construct-level extraction.
 
@@ -169,21 +167,21 @@ Create internally a *check-list* for the **Global Roadmap** including all the nu
    - Create the dedicated isolated worktree with `req --git-wt-create <WORKTREE_NAME>`, then execute `cd <GIT_PATH>/../<WORKTREE_NAME>` before proceeding to the next step.
    - If the command returns an error code or prints any text containing "ERROR", OUTPUT exactly "ERROR: Worktree generation failed!", and then terminate the execution.
 
-3. Static analysis: build the runtime model from %%SRC_PATHS%%
-   - Analyze only files under %%SRC_PATHS%%; treat all files outside %%SRC_PATHS%% as out of scope and never document them.
+3. Static analysis: build the runtime model from `src/`, `scripts/`, `.github/workflows/`
+   - Analyze only files under `src/`, `scripts/`, `.github/workflows/`; treat all files outside `src/`, `scripts/`, `.github/workflows/` as out of scope and never document them.
    - Identify ALL execution units used at runtime:
       - OS processes (MUST include the main process).
       - OS threads (per process), including their entry functions/methods.
       - If no explicit thread creation is present, record "no explicit threads detected" for that process.
    - For EACH execution unit, derive entrypoint(s) and build a complete internal call-trace tree:
-      - Include ONLY internal functions as call-trace nodes (defined under %%SRC_PATHS%%).
+      - Include ONLY internal functions as call-trace nodes (defined under `src/`, `scripts/`, `.github/workflows/`).
       - Do NOT include external boundaries (system/library/framework calls) as nodes; annotate them only as external boundaries where relevant.
       - No maximum depth: expand until an internal leaf function or an external boundary is reached.
    - Identify ALL explicit communication edges between execution units and record for each edge:
       - Direction (source -> destination), mechanism (IPC/thread communication), endpoint/channel (queue/topic/path/socket/etc.), and payload/data-shape references.
-4. Generate and overwrite `%%DOC_PATH%%/WORKFLOW.md` document using declaration file paths only, excluding line numbers, line ranges, and internal file-reference pointers
-   - Read any existing `%%DOC_PATH%%/WORKFLOW.md` to preserve stable IDs and minimize unnecessary churn, then update it to strictly conform to the Output Contract above.
-   - Generate %%DOC_PATH%%/WORKFLOW.md in English only using deterministic, machine-interpretable Markdown with the required schema and stable field order.
+4. Generate and overwrite `docs/WORKFLOW.md` document using declaration file paths only, excluding line numbers, line ranges, and internal file-reference pointers
+   - Read any existing `docs/WORKFLOW.md` to preserve stable IDs and minimize unnecessary churn, then update it to strictly conform to the Output Contract above.
+   - Generate docs/WORKFLOW.md in English only using deterministic, machine-interpretable Markdown with the required schema and stable field order.
       - During generation/update, include declaration file paths only; MUST NOT include line numbers, line ranges, or internal file-reference pointers.
       - `## Execution Units Index` (stable IDs)
          - Use stable IDs: `PROC:main`, `PROC:<name>` for processes; `THR:<proc_id>#<name>` for threads.
@@ -202,7 +200,7 @@ Create internally a *check-list* for the **Global Roadmap** including all the nu
          - `<child internal calls as nested bullet list, in call order>`
 5. **CRITICAL**: Stage & commit
    - Show a summary of changes with `git diff` and `git diff --stat`.
-   - Stage changes explicitly (prefer targeted add; avoid `git add -A` if it may include unintended files): `git add <file...>` (ensure to include only `%%DOC_PATH%%/WORKFLOW.md`).
+   - Stage changes explicitly (prefer targeted add; avoid `git add -A` if it may include unintended files): `git add <file...>` (ensure to include only `docs/WORKFLOW.md`).
    - Ensure there is something to commit with: `git diff --cached --quiet && echo "Nothing to commit. Aborting."`. If command output contains "Aborting", OUTPUT exactly "No changes to commit.", and then delete the isolated worktree and branch with `req --git-wt-delete <WORKTREE_NAME>`, and then terminate the execution.
    - Commit a structured commit message with: `git commit -m "docs(<COMPONENT>)<BREAKING>: <DESCRIPTION> [useReq]"`
       - Set `<COMPONENT>` to the most specific component, module, or function affected. If multiple areas are touched, choose the primary one. If you cannot identify a unique component, use `core`.

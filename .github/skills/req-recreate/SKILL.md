@@ -1,23 +1,21 @@
 ---
-description: "Reorganize and update the Software Requirements Specification based on source code analysis (preserve requirement IDs)"
-argument-hint: "No arguments utilized by the prompt logic (English only)"
-usage: >
-  Select this prompt when %%DOC_PATH%%/REQUIREMENTS.md already exists but must be rebuilt into a clean structure based on evidence from code under %%SRC_PATHS%%, while preserving all existing requirement IDs (no renumbering). Requirements may be reorganized, moved, grouped, and clarified, and new requirements may be added only with NEW non-colliding IDs appended beyond the existing ID space. Output is only the rewritten SRS (English); source code, tests, %%DOC_PATH%%/WORKFLOW.md, and %%DOC_PATH%%/REFERENCES.md must not change. Do NOT select for incremental requirement edits or behavior changes (use /req-change or /req-new), for drafting SRS from user request only (use /req-write), or for implementation/fixing/refactoring work (use /req-fix, /req-refactor, /req-cover, /req-implement).
+name: req-recreate
+description: "Select this prompt when %%DOC_PATH%%/REQUIREMENTS.md already exists but must be rebuilt into a clean structure based on evidence from code under %%SRC_PATHS%%, while preserving all existing requirement IDs (no renumbering). Requirements may be reorganized, moved, grouped, and clarified, and new requirements may be added only with NEW non-colliding IDs appended beyond the existing ID space. Output is only the rewritten SRS (English); source code, tests, %%DOC_PATH%%/WORKFLOW.md, and %%DOC_PATH%%/REFERENCES.md must not change. Do NOT select for incremental requirement edits or behavior changes (use /req-change or /req-new), for drafting SRS from user request only (use /req-write), or for implementation/fixing/refactoring work (use /req-fix, /req-refactor, /req-cover, /req-implement)."
 ---
 
 # Reorganize and update the Software Requirements Specification draft based on source code analysis
 
 ## Purpose
-Rebuild and reorganize the SRS (`%%DOC_PATH%%/REQUIREMENTS.md`) from repository evidence while preserving all existing requirement IDs so downstream LLM Agents can rely on a clean structure and stable traceability when driving subsequent design/implementation work.
+Rebuild and reorganize the SRS (`docs/REQUIREMENTS.md`) from repository evidence while preserving all existing requirement IDs so downstream LLM Agents can rely on a clean structure and stable traceability when driving subsequent design/implementation work.
 
 ## Scope
-In scope: static analysis of source under %%SRC_PATHS%% (and targeted tests only as evidence when needed) to rewrite `%%DOC_PATH%%/REQUIREMENTS.md` in English, allowing reorganization and additions, but forbidding any renumbering/renaming of existing requirement IDs. Out of scope: any changes to source code, tests, `%%DOC_PATH%%/WORKFLOW.md`, or `%%DOC_PATH%%/REFERENCES.md`.
+In scope: static analysis of source under `src/`, `scripts/`, `.github/workflows/` (and targeted tests only as evidence when needed) to rewrite `docs/REQUIREMENTS.md` in English, allowing reorganization and additions, but forbidding any renumbering/renaming of existing requirement IDs. Out of scope: any changes to source code, tests, `docs/WORKFLOW.md`, or `docs/REFERENCES.md`.
 
 
 ## Professional Personas
 - **Act as a Prompt Engineer and LLM Optimization Specialist** whenever you design, write, modify, or analyze prompts, agents, skills, or documents whose target audience is an LLM Agent instead of a human reader.
 - **Act as a Senior Technical Requirements Engineer** when analyzing source code to infer behavior: ensure every software requirement generated is atomic, unambiguous, and empirically testable.
-- **Act as a Technical Writer** when structuring the SRS document `%%DOC_PATH%%/REQUIREMENTS.md`: use RFC 2119 keywords exclusively (MUST, MUST NOT, SHOULD, SHOULD NOT, MAY) and never use "shall"; maintain a clean, hierarchical Markdown structure with a maximum depth of 3 levels.
+- **Act as a Technical Writer** when structuring the SRS document `docs/REQUIREMENTS.md`: use RFC 2119 keywords exclusively (MUST, MUST NOT, SHOULD, SHOULD NOT, MAY) and never use "shall"; maintain a clean, hierarchical Markdown structure with a maximum depth of 3 levels.
 - **Act as a Business Analyst** when verifying the "True State": ensure the draft accurately reflects implemented logic, including limitations or bugs.
 - **Act as an Expert GitOps Engineer** when executing git workflows, especially when creating/removing/managing git worktrees to isolate changes safely.
 
@@ -29,9 +27,9 @@ In scope: static analysis of source under %%SRC_PATHS%% (and targeted tests only
 
 ## Absolute Rules, Non-Negotiable
 - **CRITICAL**: NEVER write, modify, edit, or delete files outside of the active git worktree directory, except under `/tmp`, and except for worktree operations executed through `req --git-wt-create <WORKTREE_NAME>` and `req --git-wt-delete <WORKTREE_NAME>`.
-- You can read, write, or edit `%%DOC_PATH%%/REQUIREMENTS.md`.
+- You can read, write, or edit `docs/REQUIREMENTS.md`.
 - Treat static analysis as safe. Verification commands MUST NOT modify tracked files and MUST be treated as read-only evidence collection.
-- **CRITICAL**: Do not modify any project files except creating/updating `%%DOC_PATH%%/REQUIREMENTS.md`.
+- **CRITICAL**: Do not modify any project files except creating/updating `docs/REQUIREMENTS.md`.
 - **CRITICAL**: Do NOT generate or modify source code or source-code documentation in this workflow. Only create/update the requirements document(s) explicitly in scope.
 - **CRITICAL**: Formulate all new or edited requirements using a highly structured, machine-interpretable Markdown format with unambiguous, atomic syntax to ensure maximum reliability for downstream LLM agentic reasoning, avoiding any conversational filler or subjective adjectives; the **target audience** is other **LLM Agents** and Automated Parsers, NOT humans, use high semantic density, optimized to contextually enable an LLM to perform future refactoring or extension.
 - **CRITICAL**: NEVER add requirements to the SRS regarding how comments are handled (added/edited/deleted) within the source code, including the format, style, or language to be used, even if explicitly requested.
@@ -40,19 +38,19 @@ In scope: static analysis of source under %%SRC_PATHS%% (and targeted tests only
 - Write the document in English.
 - Do not perform unrelated edits.
 - Use the repository's existing language-specific environment/toolchain to execute code and tests; do NOT create new environments unless explicitly requested by the user. For Python, prefer Astral `uv` (`uv run`, `uvx`) when available, then fall back to the repository's existing `.venv` (if present). For other ecosystems (e.g., Node.js, Rust, C/C++), use the project's standard commands.
-- Use filesystem/shell tools to read/write/delete files as needed (e.g., `cat`, `sed`, `perl -pi`, `printf > file`, `rm -f`, ...), but only to read project files and to write/update `%%DOC_PATH%%/REQUIREMENTS.md`. Avoid in-place edits on any other path. Prefer read-only commands for analysis.
+- Use filesystem/shell tools to read/write/delete files as needed (e.g., `cat`, `sed`, `perl -pi`, `printf > file`, `rm -f`, ...), but only to read project files and to write/update `docs/REQUIREMENTS.md`. Avoid in-place edits on any other path. Prefer read-only commands for analysis.
 
 
 ## WORKFLOW.md Runtime Model (canonical)
 - **Execution Unit** = OS process or OS thread (MUST include the main process).
-- **Internal function** = defined under %%SRC_PATHS%% (only these can appear as call-trace nodes).
-- **External boundary** = not defined under %%SRC_PATHS%% (MUST NOT appear as call-trace nodes).
-- `%%DOC_PATH%%/WORKFLOW.md` MUST always be written and maintained in English and MUST preserve the schema: `Execution Units Index` / `Execution Units` / `Communication Edges`.
+- **Internal function** = defined under `src/`, `scripts/`, `.github/workflows/` (only these can appear as call-trace nodes).
+- **External boundary** = not defined under `src/`, `scripts/`, `.github/workflows/` (MUST NOT appear as call-trace nodes).
+- `docs/WORKFLOW.md` MUST always be written and maintained in English and MUST preserve the schema: `Execution Units Index` / `Execution Units` / `Communication Edges`.
 
 ## Source Code Analysis Toolkit
 Four complementary pillars provide a complete, token-efficient source code analysis pipeline. Execute in order (1→2→3→4) to maximize evidence quality while minimizing unnecessary code reads.
 
-### 1. Runtime Model: `%%DOC_PATH%%/WORKFLOW.md`
+### 1. Runtime Model: `docs/WORKFLOW.md`
 Compact document — read in full. Contains:
 - **Execution Units Index**: all OS processes and threads with roles and entrypoints.
 - **Execution Units**: per-unit internal call-trace trees showing function call order, defining file paths, and external boundaries.
@@ -60,7 +58,7 @@ Compact document — read in full. Contains:
 
 Use to: identify which execution units (processes/threads) are involved, trace call-order through internal functions, understand data flow between components. Build a runtime mental model before reading any code.
 
-### 2. Symbol Index: `%%DOC_PATH%%/REFERENCES.md`
+### 2. Symbol Index: `docs/REFERENCES.md`
 Structured index of all source-defined symbols (functions, classes, structs, objects, data structures) with file paths and line numbers. Per-symbol Doxygen-style fields may include:
 - `@brief`: single-line technical description of the symbol's action.
 - `@details`: high-density algorithmic summary (LLM-optimized, not prose).
@@ -110,8 +108,8 @@ Add --enable-line-numbers (code lines prefixed as `<n>:`):
 Use for: string/pattern searches inside code bodies, cross-file references, configuration values, error messages, or any content not captured by construct-name-based extraction.
 
 ### Recommended Analysis Workflow
-1. **Read `%%DOC_PATH%%/WORKFLOW.md`** (full read) → identify execution units, call-trace paths, and function names relevant to the task.
-2. **Read `%%DOC_PATH%%/REFERENCES.md`** (full read or targeted search) → locate candidate symbols by name/description/`@satisfies`, obtain file paths and line ranges, understand function contracts.
+1. **Read `docs/WORKFLOW.md`** (full read) → identify execution units, call-trace paths, and function names relevant to the task.
+2. **Read `docs/REFERENCES.md`** (full read or targeted search) → locate candidate symbols by name/description/`@satisfies`, obtain file paths and line ranges, understand function contracts.
 3. **Extract code** via `req --find`/`req --files-find` → use symbol names from steps 1-2 as NAME_REGEX, file paths as --files-find targets; enable --enable-line-numbers when citing evidence.
 4. **Search code bodies** via `rg`/`git grep` → find patterns, references, or values not captured by construct-level extraction.
 
@@ -143,7 +141,7 @@ During the execution flow you MUST follow these directives:
 Create internally a *check-list* for the **Global Roadmap** including all the numbered steps below: `1..8`, and start following the roadmap at the same time, following the instructions of Step 1 (Check GIT Status). Do not add extra intent-adjustment checks unless explicitly listed in the Steps section.
 1. **CRITICAL**: Check GIT Status
    - Check GIT status with `req --git-check`. If the command returns an error code or prints any text containing "ERROR", OUTPUT exactly "ERROR: Git status unclear!", and then terminate the execution.
-2. **CRITICAL**: Check `%%DOC_PATH%%/REQUIREMENTS.md`, `%%DOC_PATH%%/WORKFLOW.md` and `%%DOC_PATH%%/REFERENCES.md` file presence
+2. **CRITICAL**: Check `docs/REQUIREMENTS.md`, `docs/WORKFLOW.md` and `docs/REFERENCES.md` file presence
    - Check required docs presence with `req --docs-check`. If the command returns an error code or prints any text containing "ERROR", OUTPUT exactly "ERROR: Required docs check failed!", and then terminate the execution.
 3. **CRITICAL**: Worktree Generation & Isolation
    - Derive <BASE_PATH> with `req --get-base-path`, derive <GIT_PATH> with `req --git-path`, and generate <WORKTREE_NAME> with `req --git-wt-name` using literal `req` commands executed sequentially without shell composition.
@@ -152,7 +150,7 @@ Create internally a *check-list* for the **Global Roadmap** including all the nu
 
 4. Generate the **Software Requirements Specification**
    - Read the template at `.req/docs/Requirements_Template.md` and apply its guidelines to the requirement draft.
-   - Read the **Software Requirements Specification** document `%%DOC_PATH%%/REQUIREMENTS.md` and extract a complete, explicit list of atomic requirements.
+   - Read the **Software Requirements Specification** document `docs/REQUIREMENTS.md` and extract a complete, explicit list of atomic requirements.
       - Preserve every requirement’s original intent; do not delete any requirement.
       - **ID preservation**: If a requirement already has an ID, you MUST keep that exact ID unchanged.
       - **No renumbering**: You MUST NOT renumber, rename, or otherwise change any pre-existing requirement ID, even if requirements are moved between sections or rewritten for clarity.
@@ -166,7 +164,7 @@ Create internally a *check-list* for the **Global Roadmap** including all the nu
         - Keep the document’s top-level sections in the same order.
         - Within the most appropriate document’s section(s), create subsections/sub-subsections (still respecting the max depth) to represent the chosen groupings.
    - Verify full coverage of the input requirements after reorganization.
-      - Perform a strict one-to-one coverage check: every requirement ID present in the input `%%DOC_PATH%%/REQUIREMENTS.md` MUST appear exactly once in the saved output document.
+      - Perform a strict one-to-one coverage check: every requirement ID present in the input `docs/REQUIREMENTS.md` MUST appear exactly once in the saved output document.
       - You MUST NOT merge multiple input requirement IDs into a single output requirement line; each input ID must remain its own requirement line.
       - If any requirement was rewritten for clarity, you MUST ensure the rewrite is meaning-preserving and the requirement ID remains unchanged.
       - Target <= 35 words per requirement; split any compound behavior into separate IDs. If any compound requirement is split into multiple atomic requirements, the original requirement ID MUST remain attached to exactly one of the split requirements, and all additional split requirements MUST receive NEW non-colliding IDs appended beyond the existing ID space.
@@ -175,7 +173,7 @@ Create internally a *check-list* for the **Global Roadmap** including all the nu
    - Do NOT add per-section "Scope/Grouping" requirements.
    - Ensure every requirement remains atomic and testable after reorganization; split compound statements rather than adding meta-requirements.
    - Keep document-authoring rules only in the dedicated section (no duplication).
-   - Read `%%DOC_PATH%%/WORKFLOW.md` and `%%DOC_PATH%%/REFERENCES.md`, then analyze the project's main existing source code in %%SRC_PATHS%% directories, ignoring unit test source code, documentation automation source code, and any companion scripts (e.g., launching scripts, environment management scripts, example scripts, ...), to identify very important functionalities, critical behaviors, or logic that are implemented but NOT currently documented in the input requirements.
+   - Read `docs/WORKFLOW.md` and `docs/REFERENCES.md`, then analyze the project's main existing source code in `src/`, `scripts/`, `.github/workflows/` directories, ignoring unit test source code, documentation automation source code, and any companion scripts (e.g., launching scripts, environment management scripts, example scripts, ...), to identify very important functionalities, critical behaviors, or logic that are implemented but NOT currently documented in the input requirements.
       - Add missing requirements to the reorganized draft and place them into the appropriate section/subsection (respecting the max 3-level hierarchy).
       - All added requirements MUST receive NEW non-colliding IDs appended beyond the existing ID space; new IDs MUST NOT collide with any existing ID in the document.
       - Requirements for the output:
@@ -183,7 +181,7 @@ Create internally a *check-list* for the **Global Roadmap** including all the nu
         - Describe any text-based UI and/or GUI functionality implemented.
         - Describe the application's functionalities and configurability implemented.
         - Describe any critical behaviors or important logic.
-        - Include the project’s file/folder structure (tree view) with a sensible depth limit (max depth 3, or 4 for %%SRC_PATHS%% directories) and exclude large/generated directories (e.g., `node_modules/`, `dist/`, `build/`, `target/`, `.venv/`, `.git/`).
+        - Include the project’s file/folder structure (tree view) with a sensible depth limit (max depth 3, or 4 for `src/`, `scripts/`, `.github/workflows/` directories) and exclude large/generated directories (e.g., `node_modules/`, `dist/`, `build/`, `target/`, `.venv/`, `.git/`).
         - Only report performance optimizations if there is explicit evidence (e.g., comments, benchmarks, complexity-relevant changes, profiling notes, or clearly optimized code patterns). Otherwise, state ‘No explicit performance optimizations identified’.
       - Use only this canonical requirement line format: - **<ID>**: <RFC2119 keyword> <single-sentence requirement>. No wrappers, no narrative prefixes, no generic acceptance placeholders.
       - Ensure every requirement is atomic, unambiguous, and formatted for maximum testability using RFC 2119 keywords (MUST, MUST NOT, SHOULD, SHOULD NOT, MAY)
@@ -193,7 +191,7 @@ Create internally a *check-list* for the **Global Roadmap** including all the nu
       - If evidence is weak or ambiguous (e.g., based solely on naming conventions or commented-out code), strictly exclude the requirement to avoid documenting non-existent features.
       - When describing existing functionality, describe the actual implementation logic, not the implied intent based on function names. If the code implies a feature but implements it partially, describe the partial state.
    - Update or edit every requirement that specifies the document’s writing language, replacing it consistently with the **English language**, without changing any other constraints or the requirement’s intended meaning.
-   - Overwrite the **Software Requirements Specification** document at `%%DOC_PATH%%/REQUIREMENTS.md`.   
+   - Overwrite the **Software Requirements Specification** document at `docs/REQUIREMENTS.md`.   
 	      - Ensure every requirement remains atomic, single-sentence, and testable (target <= 35 words per requirement). If acceptance criteria/procedures are needed, express them as separate requirement IDs (prefer `TST-` test requirements), not as multi-sentence sub-bullets under a single requirement.
       - Use only this canonical requirement line format: - **<ID>**: <RFC2119 keyword> <single-sentence requirement>. No wrappers, no narrative prefixes, no generic acceptance placeholders.
       - Ensure every requirement is atomic, unambiguous, and formatted for maximum testability using RFC 2119 keywords (MUST, MUST NOT, SHOULD, SHOULD NOT, MAY)
@@ -207,13 +205,13 @@ Create internally a *check-list* for the **Global Roadmap** including all the nu
       - If the input document contains duplicate IDs, preserve the first occurrence and assign NEW non-colliding IDs to subsequent duplicates (treating them as appended IDs), and update any now-ambiguous internal references as needed.
       - You MUST preserve internal cross-references to requirement IDs; update references only when you created NEW IDs (due to splits/collisions) or when you introduce references to newly added requirements.
 5. Validate the **Software Requirements Specification**
-   - Review `%%DOC_PATH%%/REQUIREMENTS.md`. If previously read and present in context, use that content; otherwise read the file and cross-reference with the source code.
+   - Review `docs/REQUIREMENTS.md`. If previously read and present in context, use that content; otherwise read the file and cross-reference with the source code.
       - Verify that the drafted requirements **accurately reflect the actual code behavior** (True State).
       - If the code contains obvious bugs or partial implementations, ensure the requirement draft explicitly notes these limitations.
       - Report `OK` if the draft accurately describes the code (even if the code is buggy). Report `FAIL` only if the draft makes assertions that are not present or contradicted by the source code.
 6. **CRITICAL**: Stage & commit
    - Show a summary of changes with `git diff` and `git diff --stat`.
-   - Stage changes explicitly (prefer targeted add; avoid `git add -A` if it may include unintended files): `git add <file...>` (ensure to include only `%%DOC_PATH%%/REQUIREMENTS.md`).
+   - Stage changes explicitly (prefer targeted add; avoid `git add -A` if it may include unintended files): `git add <file...>` (ensure to include only `docs/REQUIREMENTS.md`).
    - Ensure there is something to commit with: `git diff --cached --quiet && echo "Nothing to commit. Aborting."`. If command output contains "Aborting", OUTPUT exactly "No changes to commit.", and then delete the isolated worktree and branch with `req --git-wt-delete <WORKTREE_NAME>`, and then terminate the execution.
    - Commit a structured commit message with: `git commit -m "docs(<COMPONENT>)<BREAKING>: <DESCRIPTION> [useReq]"`
       - Set `<COMPONENT>` to the most specific component, module, or function affected. If multiple areas are touched, choose the primary one. If you cannot identify a unique component, use `core`.
