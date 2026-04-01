@@ -81,8 +81,8 @@ Create internally a *check-list* for the **Global Roadmap** including all the nu
 1. **CRITICAL**: Check GIT Status
    - Check GIT status with `req --git-check`. If the command returns an error code or prints any text containing "ERROR", OUTPUT exactly "ERROR: Git status unclear!", and then terminate the execution.
 2. **CRITICAL**: Worktree Generation & Isolation
-   - Derive <BASE_PATH> with `req --get-base-path`, <GIT_PATH> with `req --git-path`, and generate <WORKTREE_NAME> with `req --git-wt-name`.
-   - Create the dedicated isolated worktree with `req --git-wt-create <WORKTREE_NAME>`, then execute `cd <GIT_PATH>/../<WORKTREE_NAME>` before proceeding to the next step.
+   - Execute `req --get-base-path`, `req --git-path`, and `req --git-wt-name` as separate shell-safe steps, keep the returned values available for the workflow, and do not compose them with command substitution or other runtime-blocked shell expansion patterns.
+   - Create the dedicated isolated worktree with `req --git-wt-create <WORKTREE_NAME>` in a separate shell-safe step, then enter the created worktree directory before proceeding to the next step without composing a derived path inline in the shell.
    - If the command returns an error code or prints any text containing "ERROR", OUTPUT exactly "ERROR: Worktree generation failed!", and then terminate the execution.
 
 3. Read requirements, generate **Design Delta** and implement the **Implementation Delta** to cover all requirements
@@ -153,7 +153,7 @@ Create internally a *check-list* for the **Global Roadmap** including all the nu
    - Confirm the repo is clean with `req --git-check`. If the command returns an error code or prints any text containing "ERROR", override the final line with EXACTLY "WARNING: Implement request completed with unclean git repository!".
 9. **CRITICAL**: Merge Conflict Management
    - Return to the original repository directory (the sibling directory of the worktree).
-   - Ensure you are on the original branch used before worktree creation by deriving `<BASE_PATH>` with `req --get-base-path` if needed and executing `cd <BASE_PATH>`.
+   - Ensure you are on the original branch used before worktree creation by returning to `<BASE_PATH>` with a shell-safe step and without composing derived paths inline in the shell.
    - Merge the isolated branch into the original branch: `git merge <WORKTREE_NAME>`
    - If the merge completes successfully, delete the isolated worktree and branch with `req --git-wt-delete <WORKTREE_NAME>`; if the command returns an error code or prints any text containing "ERROR", OUTPUT exactly "ERROR: Worktree cleanup verification failed!", and then terminate the execution.
    - If the merge fails or results in conflicts, do NOT remove the worktree directory and override the final line with EXACTLY "WARNING: Implement request completed with merge conflicting!".
