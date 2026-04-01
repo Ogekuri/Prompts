@@ -1,5 +1,30 @@
 # Changelog
 
+## [0.21.0](https://github.com/Ogekuri/Prompts/compare/v0.20.0..v0.21.0) - 2026-04-01
+### 🐛  Bug Fixes
+- Fix git repository.
+
+### 🚜  Changes
+- tighten shell command generation rules [useReq] *(core)*
+  - update REQ-019 and add REQ-020 for restrictive-filter-compatible shell commands
+  - require linear shell commands and forbid command substitution/backticks
+  - align prompt absolute rules and worktree execution phrasing
+  - update WORKFLOW and REFERENCES traceability
+- prevent shell-composed req worktree steps [useReq] *(core)*
+  - Update REQ-019 with a global sequential req-command rule.
+  - Align worktree-enabled prompts with literal result retention.
+  - Align ignored runtime skill mirrors with the same canonical wording.
+  - Update WORKFLOW.md and REFERENCES.md for the new prompt behavior.
+  - Treat req static/references no-source output as verification evidence in this repo.
+- harden worktree shell instructions [useReq] *(core)*
+  - Update REQ-019 for shell-safe sequential req worktree steps.
+  - Revise worktree setup and merge-return wording in prompts.
+  - Mirror the shell-safety wording in req skill artifacts.
+  - Refresh workflow and references documentation.
+
+### ◀️  Revert
+- Roll back branch to d8b055c5 (d8b055c56744af61caa0b8ed11614355ff0c6b79).
+
 ## [0.20.0](https://github.com/Ogekuri/Prompts/compare/v0.19.0..v0.20.0) - 2026-04-01
 ### 🚜  Changes
 - clarify non-GPG commit requirement [useReq] *(core)*
@@ -344,6 +369,7 @@
 - \[0.18.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.18.0
 - \[0.19.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.19.0
 - \[0.20.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.20.0
+- \[0.21.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.21.0
 
 [0.1.0]: https://github.com/Ogekuri/Prompts/releases/tag/v0.1.0
 [0.2.0]: https://github.com/Ogekuri/Prompts/compare/v0.1.0..v0.2.0
@@ -365,3 +391,4 @@
 [0.18.0]: https://github.com/Ogekuri/Prompts/compare/v0.17.0..v0.18.0
 [0.19.0]: https://github.com/Ogekuri/Prompts/compare/v0.18.0..v0.19.0
 [0.20.0]: https://github.com/Ogekuri/Prompts/compare/v0.19.0..v0.20.0
+[0.21.0]: https://github.com/Ogekuri/Prompts/compare/v0.20.0..v0.21.0
