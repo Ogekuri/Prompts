@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.19.0](https://github.com/Ogekuri/Prompts/compare/v0.18.0..v0.19.0) - 2026-04-01
+### 🚜  Changes
+- clarify human-readable final reports [useReq] *(core)*
+  - Update final report instructions to target human readers.
+  - Adjust SRS step requirements for report presentation.
+  - Align prompt artifacts with clear-sentence Markdown guidance.
+  - Refresh WORKFLOW.md and REFERENCES.md for traceability.
+
 ## [0.18.0](https://github.com/Ogekuri/Prompts/compare/v0.17.0..v0.18.0) - 2026-03-30
 ### 🚜  Changes
 - add incompatibility conflict-table output [useReq] *(fix)*
@@ -329,6 +337,7 @@
 - \[0.16.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.16.0
 - \[0.17.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.17.0
 - \[0.18.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.18.0
+- \[0.19.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.19.0
 
 [0.1.0]: https://github.com/Ogekuri/Prompts/releases/tag/v0.1.0
 [0.2.0]: https://github.com/Ogekuri/Prompts/compare/v0.1.0..v0.2.0
@@ -348,3 +357,4 @@
 [0.16.0]: https://github.com/Ogekuri/Prompts/compare/v0.15.0..v0.16.0
 [0.17.0]: https://github.com/Ogekuri/Prompts/compare/v0.16.0..v0.17.0
 [0.18.0]: https://github.com/Ogekuri/Prompts/compare/v0.17.0..v0.18.0
+[0.19.0]: https://github.com/Ogekuri/Prompts/compare/v0.18.0..v0.19.0
