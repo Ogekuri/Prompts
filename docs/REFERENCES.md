@@ -6,16 +6,12 @@
 
 ## Updated Prompt Artifacts
 
-- `src/prompts/{analyze,change,check,cover,create,fix,implement,new,readme,recreate,refactor,references,renumber,workflow,write}.md`: Updated absolute shell-safety rules to require restrictive-filter-compatible linear commands and updated worktree context instructions where worktree workflows reuse command results.
-
-## Runtime Skill Artifacts
-
-- `.github/skills/{req-change,req-cover,req-fix,req-implement,req-new,req-readme,req-recreate,req-refactor,req-references,req-renumber,req-workflow}/SKILL.md`: Updated runtime worktree-context and shell-safety instructions to require restrictive-filter-compatible linear commands and forbid command substitution, complex variable expansion, nested substitution, shell-derived helpers, nested shell logic, and nested pipelines.
+- `src/prompts/{analyze,change,check,cover,create,fix,implement,new,readme,recreate,refactor,references,renumber,workflow,write}.md`: Updated the shared shell-command safety rule to require verification and application of correct quoting, escaping, or option termination for literal arguments that could be parsed as options or flags.
 
 ## Requirement Updates
 
-- `docs/REQUIREMENTS.md`: Updated `REQ-019` to keep literal sequential `req` command usage for reusable command results and added `REQ-020` to require restrictive-filter-compatible linear shell commands that forbid command substitution, backticks, complex variable expansion, nested substitution, shell-derived helpers, nested shell logic, and nested pipelines.
+- `docs/REQUIREMENTS.md`: Split the shell-command constraint so `REQ-020` keeps the linear-command requirement, `REQ-029` isolates the prohibition on command substitution and nested shell composition, and `REQ-030` requires correct quoting, escaping, or option termination for literal option-like arguments.
 
 ## Workflow Model Update
 
-- `docs/WORKFLOW.md`: Updated `PROC:main` lifecycle behavior to encode literal-result retention, simple sequential `req` execution, and restrictive-filter-compatible linear shell command generation rules.
+- `docs/WORKFLOW.md`: Updated `PROC:main` lifecycle behavior to encode the shared shell-command rule for safe handling of literal option-like arguments.
