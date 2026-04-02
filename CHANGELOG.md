@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.22.0](https://github.com/Ogekuri/Prompts/compare/v0.21.0..v0.22.0) - 2026-04-02
+### 🚜  Changes
+- tighten shell literal argument handling [useReq] *(core)*
+  - split shell-command requirement into focused atomic rules
+  - require quoting, escaping, or option termination for flag-like literals
+  - update shared shell-safety instruction across prompt sources
+  - refresh requirements, workflow, and references docs
+
 ## [0.21.0](https://github.com/Ogekuri/Prompts/compare/v0.20.0..v0.21.0) - 2026-04-01
 ### 🐛  Bug Fixes
 - Fix git repository.
@@ -370,6 +378,7 @@
 - \[0.19.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.19.0
 - \[0.20.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.20.0
 - \[0.21.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.21.0
+- \[0.22.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.22.0
 
 [0.1.0]: https://github.com/Ogekuri/Prompts/releases/tag/v0.1.0
 [0.2.0]: https://github.com/Ogekuri/Prompts/compare/v0.1.0..v0.2.0
@@ -392,3 +401,4 @@
 [0.19.0]: https://github.com/Ogekuri/Prompts/compare/v0.18.0..v0.19.0
 [0.20.0]: https://github.com/Ogekuri/Prompts/compare/v0.19.0..v0.20.0
 [0.21.0]: https://github.com/Ogekuri/Prompts/compare/v0.20.0..v0.21.0
+[0.22.0]: https://github.com/Ogekuri/Prompts/compare/v0.21.0..v0.22.0
