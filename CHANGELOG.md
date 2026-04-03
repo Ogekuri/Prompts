@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.23.0](https://github.com/Ogekuri/Prompts/compare/v0.22.0..v0.23.0) - 2026-04-03
+### 🚜  Changes
+- require explicit search option termination [useReq] *(prompts)*
+  - Update REQ-030 for explicit option termination on rg and git grep.
+  - Add REQ-031 to forbid relying only on quoting or backslash escaping.
+  - Propagate the shared shell-command rule across src/prompts/*.md.
+  - Refresh WORKFLOW.md and REFERENCES.md to document the change.
+
 ## [0.22.0](https://github.com/Ogekuri/Prompts/compare/v0.21.0..v0.22.0) - 2026-04-02
 ### 🚜  Changes
 - tighten shell literal argument handling [useReq] *(core)*
@@ -379,6 +387,7 @@
 - \[0.20.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.20.0
 - \[0.21.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.21.0
 - \[0.22.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.22.0
+- \[0.23.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.23.0
 
 [0.1.0]: https://github.com/Ogekuri/Prompts/releases/tag/v0.1.0
 [0.2.0]: https://github.com/Ogekuri/Prompts/compare/v0.1.0..v0.2.0
@@ -402,3 +411,4 @@
 [0.20.0]: https://github.com/Ogekuri/Prompts/compare/v0.19.0..v0.20.0
 [0.21.0]: https://github.com/Ogekuri/Prompts/compare/v0.20.0..v0.21.0
 [0.22.0]: https://github.com/Ogekuri/Prompts/compare/v0.21.0..v0.22.0
+[0.23.0]: https://github.com/Ogekuri/Prompts/compare/v0.22.0..v0.23.0
