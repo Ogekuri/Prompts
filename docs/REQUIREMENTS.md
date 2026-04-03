@@ -1,8 +1,8 @@
 ---
 title: "Prompts Project Requirements"
 description: Software requirements specification
-version: "0.2.1"
-date: "2026-02-23"
+version: "0.2.2"
+date: "2026-04-03"
 author: "req-write"
 scope:
   paths:
@@ -160,7 +160,8 @@ Proposed repository structure (max depth 3, depth 4 for `src/`):
 - **REQ-027**: MUST ensure each prompt YAML header `usage` value is generated with length less than or equal to 1024 characters.
 - **REQ-028**: MUST treat `req --here --static-check` as successful when output contains `Error: no source files found in configured directories.` because configured source directories are intentionally empty in this project.
 - **REQ-029**: MUST require prompt instructions that generate shell commands to avoid command substitution (`$()` or backticks), complex variable expansion, nested substitution, shell-derived helper composition, nested shell logic, and nested pipelines.
-- **REQ-030**: MUST require prompt instructions that generate shell commands to verify and apply correct quoting, escaping, or option termination for literal arguments that could be parsed as options or flags.
+- **REQ-030**: MUST require shell-command instructions to apply safe literal-argument handling and to use explicit option termination for `rg` and `git grep` patterns beginning with `-` or `--`.
+- **REQ-031**: MUST require `rg` and `git grep` search patterns beginning with `-` or `--` to avoid reliance on quoting or backslash escaping alone.
 
 ### 3.3 Prompt's Specific Requirements
 

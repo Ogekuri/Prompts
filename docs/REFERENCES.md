@@ -6,12 +6,12 @@
 
 ## Updated Prompt Artifacts
 
-- `src/prompts/{analyze,change,check,cover,create,fix,implement,new,readme,recreate,refactor,references,renumber,workflow,write}.md`: Updated the shared shell-command safety rule to require verification and application of correct quoting, escaping, or option termination for literal arguments that could be parsed as options or flags.
+- `src/prompts/{analyze,change,check,cover,create,fix,implement,new,readme,recreate,refactor,references,renumber,workflow,write}.md`: Updated the shared shell-command safety rule to require explicit option termination for `rg` and `git grep` patterns that begin with `-` or `--`, and to forbid reliance on quoting or backslash escaping alone for those patterns.
 
 ## Requirement Updates
 
-- `docs/REQUIREMENTS.md`: Split the shell-command constraint so `REQ-020` keeps the linear-command requirement, `REQ-029` isolates the prohibition on command substitution and nested shell composition, and `REQ-030` requires correct quoting, escaping, or option termination for literal option-like arguments.
+- `docs/REQUIREMENTS.md`: Updated `REQ-030` to require explicit option termination for `rg` and `git grep` patterns that begin with `-` or `--`, and added `REQ-031` to forbid reliance on quoting or backslash escaping alone for those patterns.
 
 ## Workflow Model Update
 
-- `docs/WORKFLOW.md`: Updated `PROC:main` lifecycle behavior to encode the shared shell-command rule for safe handling of literal option-like arguments.
+- `docs/WORKFLOW.md`: Updated `PROC:main` lifecycle behavior to encode the explicit option-termination rule for `rg` and `git grep` patterns that begin with `-` or `--`.
