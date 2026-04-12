@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.24.0](https://github.com/Ogekuri/Prompts/compare/v0.23.0..v0.24.0) - 2026-04-12
+### 📚  Documentation
+- align prompt and template usage coverage [useReq] *(readme)*
+  - update prompt table with argument-hint driven selection guidance
+  - document shared shell-safety and req worktree/git-check behaviors
+  - clarify template contracts and release-tag publishing surface
+- Update README.md file.
+
 ## [0.23.0](https://github.com/Ogekuri/Prompts/compare/v0.22.0..v0.23.0) - 2026-04-03
 ### 🚜  Changes
 - require explicit search option termination [useReq] *(prompts)*
@@ -388,6 +396,7 @@
 - \[0.21.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.21.0
 - \[0.22.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.22.0
 - \[0.23.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.23.0
+- \[0.24.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.24.0
 
 [0.1.0]: https://github.com/Ogekuri/Prompts/releases/tag/v0.1.0
 [0.2.0]: https://github.com/Ogekuri/Prompts/compare/v0.1.0..v0.2.0
@@ -412,3 +421,4 @@
 [0.21.0]: https://github.com/Ogekuri/Prompts/compare/v0.20.0..v0.21.0
 [0.22.0]: https://github.com/Ogekuri/Prompts/compare/v0.21.0..v0.22.0
 [0.23.0]: https://github.com/Ogekuri/Prompts/compare/v0.22.0..v0.23.0
+[0.24.0]: https://github.com/Ogekuri/Prompts/compare/v0.23.0..v0.24.0
