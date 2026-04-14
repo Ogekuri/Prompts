@@ -6,12 +6,12 @@
 
 ## Updated Prompt Artifacts
 
-- `src/prompts/flowchart.md`: Adds FLOWCHART-only maintenance workflow that generates `docs/FLOWCHART.md` as a Mermaid flowchart from source evidence, grouping primary-flow phases, extracting atomic parameterless prototypes, and verifying branches and joins against the runtime model.
+- `src/prompts/flowchart.md`: Defines FLOWCHART-only maintenance workflow that generates `docs/FLOWCHART.md` as a Mermaid primary-flow graph, normalizes sibling-branch granularity, exposes hidden helper steps when required for comparability, and audits joins/skips against source evidence.
 
 ## Requirement Updates
 
-- `docs/REQUIREMENTS.md`: Updates the prompt inventory for `src/prompts/flowchart.md`, adds `REQ-016`, and adds `FCH-CTX-001..017` plus `FCH-STP-001..010` for the new flowchart prompt.
+- `docs/REQUIREMENTS.md`: Refines `FCH-STP-007` and adds `FCH-STP-011..017` for Step 4 control-flow deduction, sibling-branch normalization, hidden-step removal, skip validation, and strict pre-write audit rules.
 
 ## Workflow Model Update
 
-- `docs/WORKFLOW.md`: Updates `PROC:main` prompt-artifact entrypoints to include `src/prompts/flowchart.md`.
+- `docs/WORKFLOW.md`: No runtime-model change required; execution units and communication edges remain unchanged for this prompt-only Step 4 instruction update.

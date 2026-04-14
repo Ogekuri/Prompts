@@ -456,7 +456,14 @@ Proposed repository structure (max depth 3, depth 4 for `src/`):
 - **FCH-STP-004**: MUST define Step 4 to instruct: Generate and overwrite `%%DOC_PATH%%/FLOWCHART.md` with a Mermaid flowchart of the primary execution flow.
 - **FCH-STP-005**: MUST define Step 4 to instruct grouping non-atomic functions into sequential alphabetical phases.
 - **FCH-STP-006**: MUST define Step 4 to instruct extracting sequentially numbered atomic operations as parameterless function prototypes.
-- **FCH-STP-007**: MUST define Step 4 to instruct verifying calls, decisions, and joins against the runtime model and source before writing the file.
+- **FCH-STP-007**: MUST define Step 4 to instruct deducing control flow, decisions, and joins from the Step 3 code analysis before writing the file.
 - **FCH-STP-008**: MUST define Step 5 to instruct: CRITICAL: Stage & commit, including an explicit statement that a GPG-signed commit is not required.
 - **FCH-STP-009**: MUST define Step 6 to instruct: CRITICAL: Merge Conflict Management.
 - **FCH-STP-010**: MUST define Step 7 to instruct: Present results for human readers using clear sentences and readable Markdown while preserving the fixed report schema and exact final status line.
+- **FCH-STP-011**: MUST define Step 4 to instruct sibling branches from one decision node to use comparable semantic granularity.
+- **FCH-STP-012**: MUST define Step 4 to instruct normalizing equivalent branches by expanding or collapsing composite helpers to remove hidden-step ambiguity.
+- **FCH-STP-013**: MUST define Step 4 to instruct keeping a composite helper collapsed only when sibling branches do not expose its internal operations.
+- **FCH-STP-014**: MUST define Step 4 to instruct placing joins only after sibling branches are normalized to comparable semantic granularity.
+- **FCH-STP-015**: MUST define Step 4 to instruct rendering skipped work only when source code enforces a real skip or bypass condition.
+- **FCH-STP-016**: MUST define Step 4 to instruct a strict internal audit before writing `%%DOC_PATH%%/FLOWCHART.md`.
+- **FCH-STP-017**: MUST define Step 4 to instruct auditing sibling granularity, hidden helper operations, real skips, and post-normalization joins against runtime-model and source evidence.
