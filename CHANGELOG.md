@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.26.0](https://github.com/Ogekuri/Prompts/compare/v0.25.0..v0.26.0) - 2026-04-14
+### 🚜  Changes
+- normalize branch granularity rules [useReq] *(flowchart)*
+  - refine flowchart Step 4 requirements for branch normalization and audit checks
+  - update src/prompts/flowchart.md with comparability, wrapper, join, and skip rules
+  - refresh docs/REFERENCES.md for the prompt-only change surface
+
 ## [0.25.0](https://github.com/Ogekuri/Prompts/compare/v0.24.0..v0.25.0) - 2026-04-14
 ### ⛰️  Features
 - add flowchart prompt requirements [useReq] *(flowchart)*
@@ -412,6 +419,7 @@
 - \[0.23.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.23.0
 - \[0.24.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.24.0
 - \[0.25.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.25.0
+- \[0.26.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.26.0
 
 [0.1.0]: https://github.com/Ogekuri/Prompts/releases/tag/v0.1.0
 [0.2.0]: https://github.com/Ogekuri/Prompts/compare/v0.1.0..v0.2.0
@@ -438,3 +446,4 @@
 [0.23.0]: https://github.com/Ogekuri/Prompts/compare/v0.22.0..v0.23.0
 [0.24.0]: https://github.com/Ogekuri/Prompts/compare/v0.23.0..v0.24.0
 [0.25.0]: https://github.com/Ogekuri/Prompts/compare/v0.24.0..v0.25.0
+[0.26.0]: https://github.com/Ogekuri/Prompts/compare/v0.25.0..v0.26.0
