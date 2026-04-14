@@ -1,8 +1,8 @@
 ---
 title: "Prompts Project Requirements"
 description: Software requirements specification
-version: "0.2.2"
-date: "2026-04-03"
+version: "0.2.3"
+date: "2026-04-14"
 author: "req-write"
 scope:
   paths:
@@ -69,6 +69,7 @@ This project defines and maintains prompt and template artifacts used by the use
 | Prompt | `src/prompts/cover.md` | Implement deltas that cover unmet requirements. |
 | Prompt | `src/prompts/create.md` | Draft SRS from project source evidence. |
 | Prompt | `src/prompts/fix.md` | Fix defects without changing requirements. |
+| Prompt | `src/prompts/flowchart.md` | Draft `FLOWCHART.md` as a Mermaid flowchart from source evidence. |
 | Prompt | `src/prompts/implement.md` | Implement code from requirements. |
 | Prompt | `src/prompts/new.md` | Add new requirements and implement corresponding changes. |
 | Prompt | `src/prompts/recreate.md` | Reorganize and renumber the SRS. |
@@ -105,6 +106,7 @@ Proposed repository structure (max depth 3, depth 4 for `src/`):
         ├── cover.md
         ├── create.md
         ├── fix.md
+        ├── flowchart.md
         ├── implement.md
         ├── new.md
         ├── recreate.md
@@ -132,6 +134,7 @@ Proposed repository structure (max depth 3, depth 4 for `src/`):
 - **REQ-013**: MUST define `workflow.md` to generate `WORKFLOW.md` from source-code execution evidence.
 - **REQ-014**: MUST define `write.md` to generate an SRS from user-request text without relying on source-code evidence.
 - **REQ-015**: MUST define `readme.md` to update root `README.md` from user-visible implementation evidence only.
+- **REQ-016**: MUST define `flowchart.md` to generate `FLOWCHART.md` as a Mermaid flowchart of primary program flow from source-code evidence only.
 - **REQ-017**: MUST validate placeholder tokens by allowing only `%%ARGS%%`, `%%DOC_PATH%%`, `%%GUIDELINES_FILES%%`, `%%SRC_PATHS%%`, and `%%TEST_PATH%%`, except artifacts that intentionally contain no placeholder tokens.
 - **REQ-018**: MUST NOT contain typo and grammar errors, except fenced code blocks, inline-code spans, literal error strings, placeholders, and command snippets.
 - **REQ-019**: MUST enforce canonical phrasing for shared operational instructions, including project-operation preference for `req` commands, `req --git-check`, `req --docs-check`, `req --get-base-path`, `req --git-path`, `req --git-wt-name`, `req --git-wt-create <WORKTREE_NAME>`, `req --git-wt-delete <WORKTREE_NAME>`, and the Source Code Analysis Toolkit four-pillar workflow ordering 1→2→3→4; when a workflow requires values retrieved from commands for later reuse, instructions MUST require literal `req` commands and simple sequential execution; worktree-generation instructions MUST explicitly require deriving `<BASE_PATH>` with `req --get-base-path` and `<GIT_PATH>` with `req --git-path` before generating `<WORKTREE_NAME>` with `req --git-wt-name`; instructions that execute `req --git-wt-create <WORKTREE_NAME>` MUST explicitly require `cd <GIT_PATH>/../<WORKTREE_NAME>` immediately after `req --git-wt-create <WORKTREE_NAME>` and before the next step; worktree-exit instructions MUST explicitly require deriving `<BASE_PATH>` with `req --get-base-path` when needed and executing `cd <BASE_PATH>` before merge instead of `req --git-wt-exit`; prompts that execute `req --git-wt-create <WORKTREE_NAME>` MUST include `## Pre-requisite: Execution Context` with `<WORKTREE_NAME>` generation via `req --git-wt-name`; prompts that do not execute `req --git-wt-create <WORKTREE_NAME>` MUST NOT include `<WORKTREE_NAME>`, `req --git-wt-name` generation instructions, or the `## Pre-requisite: Execution Context` section; every declared `Pre-requisite: Execution Context` section MUST explicitly require that all listed context information remains continuously available for the entire workflow and is never dropped, forgotten, or overwritten; final repository-cleanliness verification MUST use `req --git-check` and MUST NOT use `git status --porcelain`; after successful worktree creation, every early-termination branch before merge-phase cleanup MUST instruct only `req --git-wt-delete <WORKTREE_NAME>` for cleanup before termination and MUST NOT instruct `git restore .`, `git checkout .`, or `git clean -fd`; branches before the create step MUST NOT instruct `req --git-wt-delete <WORKTREE_NAME>`; and the create-failure branch for `req --git-wt-create <WORKTREE_NAME>` MUST NOT instruct `req --git-wt-delete <WORKTREE_NAME>`.
@@ -424,3 +427,36 @@ Proposed repository structure (max depth 3, depth 4 for `src/`):
 - **RDM-STP-005**: MUST define Step 5 to instruct: CRITICAL: Stage & commit, including an explicit statement that a GPG-signed commit is not required.
 - **RDM-STP-006**: MUST define Step 6 to instruct: CRITICAL: Merge Conflict Management.
 - **RDM-STP-007**: MUST define Step 7 to instruct: Present results for human readers using clear sentences and readable Markdown while preserving the fixed report schema and exact final status line.
+
+#### 3.3.16 Flowchart Prompt
+
+##### Context Requirements
+- **FCH-CTX-001**: MUST define the `usage` YAML field to instruct FLOWCHART-only maintenance from repository evidence and MUST keep the field length less than or equal to 1024 characters.
+- **FCH-CTX-002**: MUST define the `## Purpose` section to instruct runtime-flowchart maintenance for `%%DOC_PATH%%/FLOWCHART.md` from repository evidence only.
+- **FCH-CTX-003**: MUST define the `## Purpose` section to instruct downstream LLM Agents to reason about primary execution flow, decision branches, and grouped internal operations.
+- **FCH-CTX-004**: MUST define the `## Scope` section to limit changes to `%%DOC_PATH%%/FLOWCHART.md` and the commit that records that document update.
+- **FCH-CTX-005**: MUST define the `## Scope` section to exclude requirements, workflow, references, source-code, and test changes.
+- **FCH-CTX-006**: MUST define the `## Professional Personas` section to instruct Senior System Architect and Senior System Engineer roles for runtime-flow and call-trace analysis.
+- **FCH-CTX-007**: MUST define the `## Professional Personas` section to instruct the Business Analyst role for cross-referencing code evidence with `%%DOC_PATH%%/REQUIREMENTS.md`.
+- **FCH-CTX-008**: MUST define the `## Professional Personas` section to instruct Technical Writer and Expert Mermaid.js Developer roles for structurally valid Mermaid output.
+- **FCH-CTX-009**: MUST define the `## Professional Personas` section to instruct QA Auditor and Expert GitOps Engineer roles.
+- **FCH-CTX-010**: MUST define the `## Behavior` section to write `%%DOC_PATH%%/FLOWCHART.md` in English and to avoid unrelated edits.
+- **FCH-CTX-011**: MUST define the `## Behavior` section to allow writing only `%%DOC_PATH%%/FLOWCHART.md` and to prefer read-only commands for analysis.
+- **FCH-CTX-012**: MUST define the `## Behavior` section to use the repository's standard toolchain and the Python preference order `uv`, then `.venv`, when applicable.
+- **FCH-CTX-013**: MUST define a `## FLOWCHART.md Output Contract` section.
+- **FCH-CTX-014**: MUST require `%%DOC_PATH%%/FLOWCHART.md` to contain only a fenced `mermaid` block with `graph TD`.
+- **FCH-CTX-015**: MUST require flowchart nodes to encode alphabetical phases and numbered parameterless function prototypes.
+- **FCH-CTX-016**: MUST require decision nodes to use pseudo-code criteria and MUST hide internal working tags from visible node text.
+- **FCH-CTX-017**: MUST require cross-reference verification against the runtime model and source before writing `%%DOC_PATH%%/FLOWCHART.md`.
+
+##### Steps Requirements
+- **FCH-STP-001**: MUST define Step 1 to instruct: CRITICAL: Check GIT Status.
+- **FCH-STP-002**: MUST define Step 2 to instruct: CRITICAL: Worktree Generation & Isolation.
+- **FCH-STP-003**: MUST define Step 3 to instruct: Static analysis: build the runtime model from %%SRC_PATHS%%.
+- **FCH-STP-004**: MUST define Step 4 to instruct: Generate and overwrite `%%DOC_PATH%%/FLOWCHART.md` with a Mermaid flowchart of the primary execution flow.
+- **FCH-STP-005**: MUST define Step 4 to instruct grouping non-atomic functions into sequential alphabetical phases.
+- **FCH-STP-006**: MUST define Step 4 to instruct extracting sequentially numbered atomic operations as parameterless function prototypes.
+- **FCH-STP-007**: MUST define Step 4 to instruct verifying calls, decisions, and joins against the runtime model and source before writing the file.
+- **FCH-STP-008**: MUST define Step 5 to instruct: CRITICAL: Stage & commit, including an explicit statement that a GPG-signed commit is not required.
+- **FCH-STP-009**: MUST define Step 6 to instruct: CRITICAL: Merge Conflict Management.
+- **FCH-STP-010**: MUST define Step 7 to instruct: Present results for human readers using clear sentences and readable Markdown while preserving the fixed report schema and exact final status line.

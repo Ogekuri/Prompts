@@ -2,16 +2,16 @@
 
 ## Requirements Source
 
-- `docs/REQUIREMENTS.md`: Canonical requirements set for prompt behavior and shared operational instructions.
+- `docs/REQUIREMENTS.md`: Canonical requirements set for prompt behavior, prompt inventory, and shared operational instructions.
 
 ## Updated Prompt Artifacts
 
-- `src/prompts/{analyze,change,check,cover,create,fix,implement,new,readme,recreate,refactor,references,renumber,workflow,write}.md`: Updated the shared shell-command safety rule to require explicit option termination for `rg` and `git grep` patterns that begin with `-` or `--`, and to forbid reliance on quoting or backslash escaping alone for those patterns.
+- `src/prompts/flowchart.md`: Adds FLOWCHART-only maintenance workflow that generates `docs/FLOWCHART.md` as a Mermaid flowchart from source evidence, grouping primary-flow phases, extracting atomic parameterless prototypes, and verifying branches and joins against the runtime model.
 
 ## Requirement Updates
 
-- `docs/REQUIREMENTS.md`: Updated `REQ-030` to require explicit option termination for `rg` and `git grep` patterns that begin with `-` or `--`, and added `REQ-031` to forbid reliance on quoting or backslash escaping alone for those patterns.
+- `docs/REQUIREMENTS.md`: Updates the prompt inventory for `src/prompts/flowchart.md`, adds `REQ-016`, and adds `FCH-CTX-001..017` plus `FCH-STP-001..010` for the new flowchart prompt.
 
 ## Workflow Model Update
 
-- `docs/WORKFLOW.md`: Updated `PROC:main` lifecycle behavior to encode the explicit option-termination rule for `rg` and `git grep` patterns that begin with `-` or `--`.
+- `docs/WORKFLOW.md`: Updates `PROC:main` prompt-artifact entrypoints to include `src/prompts/flowchart.md`.
