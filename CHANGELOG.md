@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.25.0](https://github.com/Ogekuri/Prompts/compare/v0.24.0..v0.25.0) - 2026-04-14
+### ⛰️  Features
+- add flowchart prompt requirements [useReq] *(flowchart)*
+  - add src/prompts/flowchart.md from the provided flowchart template\n- extend docs/REQUIREMENTS.md with REQ-016 and FCH requirement coverage\n- update docs/WORKFLOW.md and docs/REFERENCES.md for the new prompt
+
+### 🐛  Bug Fixes
+- Yaml fields.
+- align prompt compliance wording [useReq] *(prompts)*
+  - Normalize MUST wording in prompt purposes.
+  - Switch targeted prompt Python execution guidance to .venv/bin/python.
+  - Add no-source static-check handling to req-check.
+  - Remove duplicate change commit-comment instruction.
+  - Fix the evidence-oriented grammar defect in req-fix.
+
 ## [0.24.0](https://github.com/Ogekuri/Prompts/compare/v0.23.0..v0.24.0) - 2026-04-12
 ### 📚  Documentation
 - align prompt and template usage coverage [useReq] *(readme)*
@@ -397,6 +411,7 @@
 - \[0.22.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.22.0
 - \[0.23.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.23.0
 - \[0.24.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.24.0
+- \[0.25.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.25.0
 
 [0.1.0]: https://github.com/Ogekuri/Prompts/releases/tag/v0.1.0
 [0.2.0]: https://github.com/Ogekuri/Prompts/compare/v0.1.0..v0.2.0
@@ -422,3 +437,4 @@
 [0.22.0]: https://github.com/Ogekuri/Prompts/compare/v0.21.0..v0.22.0
 [0.23.0]: https://github.com/Ogekuri/Prompts/compare/v0.22.0..v0.23.0
 [0.24.0]: https://github.com/Ogekuri/Prompts/compare/v0.23.0..v0.24.0
+[0.25.0]: https://github.com/Ogekuri/Prompts/compare/v0.24.0..v0.25.0
