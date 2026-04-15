@@ -2,16 +2,16 @@
 
 ## Requirements Source
 
-- `docs/REQUIREMENTS.md`: Canonical requirements set for prompt behavior, prompt inventory, and shared operational instructions.
+- `docs/REQUIREMENTS.md`: Canonical PI-Prompts requirements set for prompt behavior, prompt inventory, shared operational instructions, and repository naming rule `PRJ-005`.
 
-## Updated Prompt Artifacts
+## Updated Repository Artifacts
 
-- `src/prompts/flowchart.md`: Defines FLOWCHART-only maintenance workflow that generates `docs/FLOWCHART.md` as a Mermaid primary-flow graph, normalizes sibling-branch granularity, exposes hidden helper steps when required for comparability, and audits joins/skips against source evidence.
+- `README.md`: Repository-facing documentation updated to identify the project as `PI-Prompts`; satisfies `PRJ-005`.
+- `docs/WORKFLOW.md`: Runtime-model document updated to identify `PROC:main` as the PI-Prompts prompt-workflow orchestrator.
 
-## Requirement Updates
+## Rename Impact Assessment
 
-- `docs/REQUIREMENTS.md`: Refines `FCH-STP-007` and adds `FCH-STP-011..017` for Step 4 control-flow deduction, sibling-branch normalization, hidden-step removal, skip validation, and strict pre-write audit rules.
-
-## Workflow Model Update
-
-- `docs/WORKFLOW.md`: No runtime-model change required; execution units and communication edges remain unchanged for this prompt-only Step 4 instruction update.
+- `.github/workflows/release-markdown.yml`: No rename patch required; release naming already derives the repository name from `${{ github.event.repository.name }}`.
+- `src/prompts/`: No content edits applied; excluded by user request.
+- `src/docs/`: No content edits applied; excluded by user request.
+- `guidelines/`: No content edits applied; excluded by user request.
