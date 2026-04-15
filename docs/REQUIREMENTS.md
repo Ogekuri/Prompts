@@ -1,8 +1,8 @@
 ---
-title: "PI-Prompts Project Requirements"
+title: "Prompts Project Requirements"
 description: Software requirements specification
-version: "0.2.4"
-date: "2026-04-15"
+version: "0.2.3"
+date: "2026-04-14"
 author: "req-write"
 scope:
   paths:
@@ -14,7 +14,7 @@ visibility: "draft"
 tags: ["srs", "prompts", "templates"]
 ---
 
-# PI-Prompts Project Requirements
+# Prompts Project Requirements
 
 ## 1. Introduction
 
@@ -59,7 +59,6 @@ This project defines and maintains prompt and template artifacts used by the use
 - **PRJ-002**: MUST maintain template artifacts in `src/docs/` as mandatory authoring guides and keep template taxonomy aligned with prompt-level Doxygen coverage directives.
 - **PRJ-003**: MUST define each prompt with a single primary workflow intent and deterministic output objective.
 - **PRJ-004**: MUST preserve the process order Requirements -> Design -> Implementation -> Verification when editing prompt instructions.
-- **PRJ-005**: MUST identify the repository project as `PI-Prompts` in `README.md` and `docs/REQUIREMENTS.md`, excluding prompt, guideline, and template artifact bodies.
 
 ### 2.3 In-Scope Artifacts
 | Category | Path | Intended Function |

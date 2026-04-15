@@ -1,4 +1,4 @@
-# PI-Prompts (0.27.0)
+# Prompts (0.27.0)
 
 <p align="center">
   <img src="https://img.shields.io/badge/python-3.11%2B-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python 3.11+">
@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-<strong>The <u>PI-Prompts</u> repository for <strong>useReq/req</strong>.</strong><br>
+<strong>The <u>prompts</u> for <strong>useReq/req</strong> project.</strong><br>
 This repository maintains the prompt set in `src/prompts/` and the documentation templates in `src/docs/` used by the useReq SRS-driven workflow.
 </p>
 
