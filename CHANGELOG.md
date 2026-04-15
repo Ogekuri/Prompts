@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.28.0](https://github.com/Ogekuri/Prompts/compare/v0.27.0..v0.28.0) - 2026-04-15
+### 🚜  Changes
+- rename project to PI-Prompts [useReq] *(core)*
+  - update SRS naming requirement and document titles
+  - rename README and workflow/reference docs to PI-Prompts
+  - preserve prompt, guideline, and template artifact bodies
+
+### ◀️  Revert
+- Roll back branch to ddc08be3 (ddc08be3a6556a6ceb8f93636a3557c9760b8966).
+
 ## [0.27.0](https://github.com/Ogekuri/Prompts/compare/v0.26.0..v0.27.0) - 2026-04-14
 ### 🐛  Bug Fixes
 - Fix src/prompts/flowchart.md file.
@@ -425,6 +435,7 @@
 - \[0.25.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.25.0
 - \[0.26.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.26.0
 - \[0.27.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.27.0
+- \[0.28.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.28.0
 
 [0.1.0]: https://github.com/Ogekuri/Prompts/releases/tag/v0.1.0
 [0.2.0]: https://github.com/Ogekuri/Prompts/compare/v0.1.0..v0.2.0
@@ -453,3 +464,4 @@
 [0.25.0]: https://github.com/Ogekuri/Prompts/compare/v0.24.0..v0.25.0
 [0.26.0]: https://github.com/Ogekuri/Prompts/compare/v0.25.0..v0.26.0
 [0.27.0]: https://github.com/Ogekuri/Prompts/compare/v0.26.0..v0.27.0
+[0.28.0]: https://github.com/Ogekuri/Prompts/compare/v0.27.0..v0.28.0
