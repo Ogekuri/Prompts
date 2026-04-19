@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.29.0](https://github.com/Ogekuri/Prompts/compare/v0.28.0..v0.29.0) - 2026-04-19
+### 📚  Documentation
+- Update README.md file.
+
 ## [0.28.0](https://github.com/Ogekuri/Prompts/compare/v0.27.0..v0.28.0) - 2026-04-15
 ### 🚜  Changes
 - rename project to PI-Prompts [useReq] *(core)*
@@ -436,6 +440,7 @@
 - \[0.26.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.26.0
 - \[0.27.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.27.0
 - \[0.28.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.28.0
+- \[0.29.0\]: https://github.com/Ogekuri/Prompts/releases/tag/v0.29.0
 
 [0.1.0]: https://github.com/Ogekuri/Prompts/releases/tag/v0.1.0
 [0.2.0]: https://github.com/Ogekuri/Prompts/compare/v0.1.0..v0.2.0
@@ -465,3 +470,4 @@
 [0.26.0]: https://github.com/Ogekuri/Prompts/compare/v0.25.0..v0.26.0
 [0.27.0]: https://github.com/Ogekuri/Prompts/compare/v0.26.0..v0.27.0
 [0.28.0]: https://github.com/Ogekuri/Prompts/compare/v0.27.0..v0.28.0
+[0.29.0]: https://github.com/Ogekuri/Prompts/compare/v0.28.0..v0.29.0

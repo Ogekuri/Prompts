@@ -28,7 +28,7 @@
 </div>
 
 
-# Prompts (0.28.0)
+# Prompts (0.29.0)
 
 <p align="center">
   <img src="https://img.shields.io/badge/python-3.11%2B-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python 3.11+">
